@@ -1,0 +1,1719 @@
+{
+  "schema_version": "canonical_dynamic_cut_v1",
+  "adapter_schema_version": "canonical_dynamic_tree_cutter_v1",
+  "top_criterion": "optimal",
+  "cluster_count_requested": 9,
+  "distance_threshold_requested": null,
+  "distance_threshold_normalized_requested": null,
+  "distance_threshold_resolved": null,
+  "cut_optimizer": "calinski_harabasz_score",
+  "cut_polarity": 1,
+  "top_partition_node_ids": [
+    "member_7be4a65d89005d73377ffe60234fb9a1760c631e5ece88a88c04daa6ceaed11c",
+    "member_10e8f6e4f2a3c79bcf7a1b50eedbf67ac33220d87286c9f3a648a5f79927d14e",
+    "member_2a55365a44fcf9d917c529907dc8cd96aa6341b8632b72e3c28f7498c2376ad0",
+    "member_ce7984459ecdd991fd15fccbe40275da0675ea2f70682bead4970cccb7a3a46b",
+    "member_f97317d97caf20146abdb4023bb5b2c94a59abf6da989e9efeb2603fcb1dc8be",
+    "member_89ad358f4480bf0ef99c7d413f1914c99c12f33fbba22da58a21760e5d9211cd",
+    "member_812ee61b6ce8cbea31795bc904cf9500c70abafc55c39050c34849c72d1291b4",
+    "member_c705e54aeae5d1ef7e8d82512845af70f54e391c0b21353942db22775e4aee9f",
+    "member_c9cbb05b7b343196e1a3ec63c9aa3855877da88aa61357ad1822fd2324a1aeac"
+  ],
+  "top_partition_count": 9,
+  "width": {
+    "minimum": 3,
+    "maximum": 10,
+    "target": null,
+    "stop": 10
+  },
+  "max_depth": 5,
+  "threshold_steps": 32,
+  "candidate_distance_thresholds": [
+    0.0,
+    0.14380527653030972,
+    0.26460934825113025,
+    0.3398883305439879,
+    0.4146301444904683,
+    0.468048586824116,
+    0.5952759067186832,
+    0.6510421309966565,
+    0.7030133120665214,
+    0.7639806206249729,
+    0.8327412193986188,
+    0.8803151303628747,
+    0.9353780803417076,
+    0.9816964356325992,
+    1.0360720717195557,
+    1.0910655678192724,
+    1.1480229407882903,
+    1.2038177056691564,
+    1.2575585181886901,
+    1.3348459764866085,
+    1.4194682811693473,
+    1.4849310355539482,
+    1.5915085340586579,
+    1.6666973527045148,
+    1.7675539410742944,
+    1.881328418203794,
+    2.033262576622961,
+    2.143558699533571,
+    2.308272724906251,
+    2.6224688149692477,
+    2.896466983685635,
+    4.361325911051988
+  ],
+  "warnings": [],
+  "root": {
+    "canonical_node_id": "member_fa955a31c93e0faf46e743098371cfff7a6519c28c4a43755e04d435614d6b02",
+    "membership_hash": "fa955a31c93e0faf46e743098371cfff7a6519c28c4a43755e04d435614d6b02",
+    "descendant_count": 457,
+    "depth": 0,
+    "cut_value": null,
+    "direct_leaf_node_ids": [],
+    "children": [
+      {
+        "canonical_node_id": "member_7be4a65d89005d73377ffe60234fb9a1760c631e5ece88a88c04daa6ceaed11c",
+        "membership_hash": "7be4a65d89005d73377ffe60234fb9a1760c631e5ece88a88c04daa6ceaed11c",
+        "descendant_count": 116,
+        "depth": 1,
+        "cut_value": null,
+        "direct_leaf_node_ids": [],
+        "children": [
+          {
+            "canonical_node_id": "member_a204cad0a5af4fcc64e10759fcdb95a09d35b68e6eaa702cf61bd69a690c0c03",
+            "membership_hash": "a204cad0a5af4fcc64e10759fcdb95a09d35b68e6eaa702cf61bd69a690c0c03",
+            "descendant_count": 33,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [
+              "member_4754acdafdd2c5062aab3d7dafea457d0fed3c8e71f4140be61a2b64f71ba553",
+              "member_e7ae1252a3df0e75d395006368e0456ec9468ef7ade329daaf48846f4c62b5ea",
+              "member_35c65e8d2ff9fd4f4d6431db9d8795db882e9ec77bc138c05d58c31c357a2716"
+            ],
+            "children": [
+              {
+                "canonical_node_id": "member_9019d2309de389c3f467c0007c8910f80ad41fd626b23373550f0ff44c1f07c1",
+                "membership_hash": "9019d2309de389c3f467c0007c8910f80ad41fd626b23373550f0ff44c1f07c1",
+                "descendant_count": 3,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_247c262318161b191fc4b4f1e11b9fff12fd72343ecc9a0db0cfb722c97f10ac",
+                  "member_6596344b5729df00cde0319f98fbf729c6d94bde53c6c95674cd40bcbc2b4b5b",
+                  "member_b498908354ca3040c92556395eea7a2c12ed055792df20f7f440365c8fbf7e5c"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_c82a52dcbe74ef796c2bf81a9e6ed894cbff8d555ad28a4db8832b19af257b48",
+                "membership_hash": "c82a52dcbe74ef796c2bf81a9e6ed894cbff8d555ad28a4db8832b19af257b48",
+                "descendant_count": 9,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_10a0e9b9e4dccef1629016937db339a0ead3649f1403b482d0474ab2a665222b",
+                  "member_52011d27c53a9e052cf95fa4b30b009029ae0c2fdc1090fe071fce5d5d50c901",
+                  "member_b2951375aeb8b4fbd679744a54f45dc90e455158df53957009475eb045ea660c",
+                  "member_a12176c4845dd1b9a141f1dd44d815eb3a628a43cc285873ffdae881c6cd7922",
+                  "member_7a9093df02adddc31523761b43204fee9abe6748a34aa8a4f0ab64b41ed26ee2",
+                  "member_37f66eb5e9c1df05bd2994f63e3e3e06c8381fedfbac24ab6c86f5dcc4d3f574",
+                  "member_a983566f7d4fe374462f2550c8fef92177933bf626c6c4dda5685513d312c718",
+                  "member_87ca38342c6f9d7d481ac79108a1c19507ee42e167eb6f0205b97f83df38aa6c",
+                  "member_f7d8384e8232005f0db7cd8c9b8f0519a9cdc1906c24d70d8780c637923cd3be"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_40067bc820ffcdf5202702391640212000218a846fd21a280b392f468639b69f",
+                "membership_hash": "40067bc820ffcdf5202702391640212000218a846fd21a280b392f468639b69f",
+                "descendant_count": 9,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_6b20c529a577efb56abed8bef06b1f5acde0bdbc733a245cd2d6b40ae6be1f07",
+                  "member_c986a4510d37125bd6d52ba2adbfaf05daaad589645e5c102317b16f4e8a3d26",
+                  "member_9b3e9b4386f33f9e1c12da3e1bbc24e382072c589bcd39f5f0e66cb43de0460c",
+                  "member_ca35008e1f47427c1c1f08a511683e52d0e36df7fceaa0ca98e49068e67adaf6",
+                  "member_b5d52c3a3d4b82b1bc166dd142455e3f9699c03189a224b66e119b6f492c7ae1",
+                  "member_42e53f7e4a330b93281c0be5a36300f4e245cb15887ec1cb7ce3fb17d1fca6f3",
+                  "member_b2aeb1d4cb518b4470c39007a9f4bc5b07661281900af64e301a9bf6f2ffd665",
+                  "member_4595470a4267c1c4a99ce2f9ff020d3cf6b45c5b4c328877231eb31cf44b45e3",
+                  "member_bde4e8d4e9a235979c1c68d47f356c30e44ffadaadb40dfb35fe030185717051"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_96c146d8271b85ff0788de589337e8f0eea27c1058b73d3b6e5065757e6daefe",
+                "membership_hash": "96c146d8271b85ff0788de589337e8f0eea27c1058b73d3b6e5065757e6daefe",
+                "descendant_count": 5,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_8d15b58e01cfb81c1947961cad6f0ace5b88c80e0b2b905104cdac1556430e56",
+                  "member_9ac1e3632c713e116fbbf41f96026846bd392084d47319bbac9e3906769cc273",
+                  "member_ac3df7b70565e7294e84e83c14df8785c108f0e54e30424f1e41d6195b15159c",
+                  "member_59ba7df92988b4f5cd60e2ff475392407d02cb9bd2e0bbf5a0016c00c6a9fc67",
+                  "member_f281a4790ac62f4a91114a4ed6f7f36154c3235557220d1aa8b96f8877fa4f95"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_2d90b7a880dd6b17d773d51a8e9636fce6b5963025c6b39b2caa378ee4a94020",
+                "membership_hash": "2d90b7a880dd6b17d773d51a8e9636fce6b5963025c6b39b2caa378ee4a94020",
+                "descendant_count": 2,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_05cf45424cb8d78ed018918d97dc770543026c308b2d32630b5a09aab3508e3e",
+                  "member_3019a2bf267bae421601f48f545f592fd77ba3c7c0831468332690b5389e7760"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_e6fabda88deded189ab1e588ca76b1809f9cc676559422d3d52501f74b055d2f",
+                "membership_hash": "e6fabda88deded189ab1e588ca76b1809f9cc676559422d3d52501f74b055d2f",
+                "descendant_count": 2,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_99fb221f1c2e1dbe873297052f5abd0fc4eb1f267d4fdacd14a06c7ef17b64f4",
+                  "member_d64153f7372c5d0e70d58c4e489b5a6e41c60f0e48ab2cde9fd4bfab3ed03cd0"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "canonical_node_id": "member_12806d3f9dc734041de192b453f810e627c35b2500659171734fdb0c4a8f0e83",
+            "membership_hash": "12806d3f9dc734041de192b453f810e627c35b2500659171734fdb0c4a8f0e83",
+            "descendant_count": 77,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [
+              "member_4d8f443b3d7755720834fdc185524f1b106dbec968cd7aee2ce8a35d9500a439"
+            ],
+            "children": [
+              {
+                "canonical_node_id": "member_f9dbbb75d66540e73bdb55f3b7a9498d8e04a89c078f39a69a66317fb093fb9e",
+                "membership_hash": "f9dbbb75d66540e73bdb55f3b7a9498d8e04a89c078f39a69a66317fb093fb9e",
+                "descendant_count": 9,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_b57001d53c4b96052e46d29173e8a6bf36415ec8c1b53b0c6e65135af880d76d",
+                  "member_d247b0a3916103a9a4eb75b9b7f32e9eef1f0e19a879088c6dc1ec94136307ee",
+                  "member_00fc9db99cc1ac282e15f4567c75e08d7b92b8753f4222165319c3b9a4f9857b",
+                  "member_9657e2ceb880eb0ec65c5dd6a2866b94e1bbbfd92b7bc851ac64f56cd629126c",
+                  "member_b6e1df4417db4071255d93abb01070386df70d5882b7a42cc31369b0fc6e7738",
+                  "member_e26395261d73ff6514cb9699b5dc739532ca48b291c7879754447d1b1ae97d62",
+                  "member_88520d6b87b6a13c88bc2e21e2679f3ea09ec7bef45426c49dad43d9d2c0b3ef",
+                  "member_447f9e1242c449b983ed1e6f3c3ab0fc2e4d032a0ccaa071e132334054100e58",
+                  "member_5d3ebd01f03380a66060e292ec15c199be4876af9c9caf70fffa5e1f0ed9510c"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_668601a45e0226987a1fce71e4c3cb34be52d9dbcc2ff2fae80459d8b2776a76",
+                "membership_hash": "668601a45e0226987a1fce71e4c3cb34be52d9dbcc2ff2fae80459d8b2776a76",
+                "descendant_count": 9,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_5b443caf77452e3c17ff9ada8cd6f8ec5340bc3e2246f72f1e5bc6fd10d234bd",
+                  "member_19b4ca4108cb4db6d54feac79ab3bd96a926c994574e568f64bbb9f916d6253c",
+                  "member_903bc5a092718ea80cf5922321856d8871fa5821ceecbffed334908b38756673",
+                  "member_98591b6e8f18166cc41c9bf94dbdff17fade68f79a298a3849cc880c8172c1d6",
+                  "member_395840bfea152260be6d0a1a7763ebb30089a2f398336ceb4c632d48b97ece73",
+                  "member_938aa53ec6d764382b5018412d076f600745d23f00c69a5cb5bf021a15a24cb7",
+                  "member_3224d576b0de0cf8708c64c1351b6ec6f0c7bb49f0c06ac261e066e41a331dff",
+                  "member_81747be6da2f206486d15d3044ac1c24a142c8682261f5b6c43a6fa8901f30c3",
+                  "member_914e7b06aa8c1b942e67c6bbf66343761b212b952615c211819dff0630780026"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_0175112ca96419f6dc06f2f6db39f749049f2cf17b297659efb8ff1ba3328297",
+                "membership_hash": "0175112ca96419f6dc06f2f6db39f749049f2cf17b297659efb8ff1ba3328297",
+                "descendant_count": 9,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_f3c83f9f31ec46dd649118e54a8450ac204e1018e28a206ff06673adc44776c6",
+                  "member_b1fb316a901031b0e508b4e1c6eaebf8236f2d4bc9e65bbf7955178f45ae1070",
+                  "member_b186a9c22a3cb75506667de9d95e74220101d038687515a5a71067de3adabda9",
+                  "member_c46f99603793318171632aa7b380abea186df67c956bf4f3c88c62a8c6e3bc30",
+                  "member_be973c612c533401b6645eda2fcf5e563e04c6d9661aee42ee27d3319ddd08f4",
+                  "member_827a1e2a45c4a9d0437f5c74359ed9b0dcb1d06c46cf2bb6b510636184668ac4",
+                  "member_c11bfc2174a2a08e5b4debb369439af40e8104d99d4011164fe35c1e8f717125",
+                  "member_b80b891b613f8719ba4ad423490e9ddb9a7f6ec0d3441b6e535939f38ad30411",
+                  "member_74996497641bfdedcc53714e659b513a21782d0aa5fd70846e64f2ea04ceb914"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_3e415b43296c1090fcf376bc508bb55d8af4c175d62827babeffd9a0b10a9025",
+                "membership_hash": "3e415b43296c1090fcf376bc508bb55d8af4c175d62827babeffd9a0b10a9025",
+                "descendant_count": 9,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_e114ed0521173dd2faa4bb109f86703272bd2ada6b3f5e1fa1d5851bedf84036",
+                  "member_4cd1c5ea44e1a891e892b21569defe725ac4fec99dc5be7b212df396107db28d",
+                  "member_11ed09a275c88f279e95c1cc17a0f3cb0ea745c7b25d25e5799316e240ed81b1",
+                  "member_a6ace132dd08ad2847cc040fdd036c12d864dcdcbb1a41023a1e2944c769c464",
+                  "member_0796547fa35828ddf0a65ce2b292cc7968cd2549c3d5014cfd884a079e156dd3",
+                  "member_ac2d773cab3ecee50d9406f40635e525ef2f10f46c8d979895ca089ef262935a",
+                  "member_350b584321e8b21a70ef263500068f09a43ab708030388a8bcae5b87b934bcf6",
+                  "member_d15e11e26965432121308e83cc5df1f72ec2fc5e056f1ce2c63427e3b2382f25",
+                  "member_76ded64013d194c00e29d580aef5f27b587470d94eed2461347085a0da648d16"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_fa1011226654749b9db55f1073141717d71b2c7160b4cc017486fc65bf0d5758",
+                "membership_hash": "fa1011226654749b9db55f1073141717d71b2c7160b4cc017486fc65bf0d5758",
+                "descendant_count": 7,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_8b4819601c5053e8689b7522a98725018d87b7dec28dac40a55c4950c88da7f0",
+                  "member_60b1c453c69173724bb2fd73772097ea1119ad435b758a92e4c459b02ade64ce",
+                  "member_d801d573908033ea4d7fcc95e5e4212ce3b9791d5bde0a27f2017466069e2c2e",
+                  "member_1c89089638d3a39618666a30755290f3a67ad442ab92365865fca8c2be4ecf90",
+                  "member_1f87a97503c9544a30b9985bb77a656661519042362b427201537dcf5cd45bbb",
+                  "member_e89105c0dc613bcdd5cb21e2cb940f87920ced29446779e36ffc69752d042b1b",
+                  "member_d65e68458e02aeb965da717c8f842995745e6d907f85d2234e230500ee7899ec"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_e5605435a1e86b90835d09cb52a750db01736dbacc0e757970600cf3834ebb86",
+                "membership_hash": "e5605435a1e86b90835d09cb52a750db01736dbacc0e757970600cf3834ebb86",
+                "descendant_count": 9,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_144ef849096cf952f9b6df105d614b29c351a100bf892c7fbeb0f0bc6f2a7440",
+                  "member_4e5fc06da450c5626c1a9acc2067173d9e50dd729ff3dbabaa076b80c7e4114d",
+                  "member_492d371ca2b0a3ec4e99956fec627d108e293a702ad06aa167ac0077b7aa44b6",
+                  "member_eb9f58a6932b98cc0f5bb1b9af96382a2b5422fa225a2d00ea5aa0d073cc27ba",
+                  "member_59fc89d5dd9a6c8c4aaada058d869def517fea322465ac2a972a1e3c29dd6936",
+                  "member_f8f46bc1b90ddbed22dec70d3097fcc75cd350e998e37e3b73c30961b1776f18",
+                  "member_327ebea377b231d5b4e31fde89a8f2ac82745381469d5de4100a0561a603894d",
+                  "member_e266bfade8c9512542b14d9cf2dd651ddeede97888854b4594ade1ac55fa17e2",
+                  "member_de6ec4a86e3a3e4b5ed27ba7c38832174f6ca6f416b6f1d6efc90484b7ec0cb1"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_0271ff2ca6668ed5e4b57d03530c44c14b049a6554eac6fd45f7f9aa709e4f9e",
+                "membership_hash": "0271ff2ca6668ed5e4b57d03530c44c14b049a6554eac6fd45f7f9aa709e4f9e",
+                "descendant_count": 9,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_d59283f49200c73d4fcb5e96741cfaf3013017f497da17bcdc3449d58c1d5af3",
+                  "member_9b7d84236021f9384a52a073d9b602d7b1d595ffebd03cb2896679f88e110d75",
+                  "member_05555abf03547518f341ec3ad68ccf57650b0b293e10c5a8958a88fbc58101c2",
+                  "member_0721af6af2ff723a34f5314997e478c0b2e4a3c8f6e969930d5d24d1de97cb5e",
+                  "member_4e9f57a4aa18623afb60d49a6192e71d7a0136e011cc0248f6fa1aeef602a492",
+                  "member_d8d809961a5c1d8bb5b7260433cbbf024e44e672dc9a0a49f48a5c3f62c84728",
+                  "member_f85785108e8279a93b1a0009c029d2792c15cc832a413386829662c7ac0d96d6",
+                  "member_d0ead321aaea3604937db339e3df64093203742396902996d5e98f67d17cdac0",
+                  "member_6f9b672076c68addd8e9535a7223d1f61f2888d4648bd4b2cfcb7d48a535b3a7"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_3610b05583480e3a7de56f3eb273c812c904d83e1e0efd5136d917d6449a4984",
+                "membership_hash": "3610b05583480e3a7de56f3eb273c812c904d83e1e0efd5136d917d6449a4984",
+                "descendant_count": 7,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_3c971bce7e21dca9d139aa0e1e44e88759102ca0d9d5d6304cb9f37041439cc7",
+                  "member_1e5f0db6c4b7f91c386952d6d1d874c77295c27ec78cbd7138a4ff90c9847857",
+                  "member_454b0847a47819745d5f97a66a4765587a6328d1ceb8ef95b0cac4c219b11471",
+                  "member_61591a68e346791695e9f9e2dacb67c030b9a955d4c56570826e771641226887",
+                  "member_08d7c1625c2209f76f88fb46953e11b5b60376be5c331855054314e260829c65",
+                  "member_293d13052a407fada7f2704b2443b74f207dbfbfc0519a6e7c2f54864c5dbfc4",
+                  "member_d016a9a1ff38d70d9f06c5bc094191993dbd7b5630d6dd4bf8cebcd8a3cecc75"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_1d9801dfc5cfa861b19297686315b4a9f7d18ccc9a299d6e23283d841e5ec1c0",
+                "membership_hash": "1d9801dfc5cfa861b19297686315b4a9f7d18ccc9a299d6e23283d841e5ec1c0",
+                "descendant_count": 8,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_2e66bbd15290e008a9ab819897467423c3056062bde297833992aac72ec9dc95",
+                  "member_946aa46e155b236a9ca851001ecc222fcdb4d4abe562ff0396f59883d1bc95f0",
+                  "member_c06e8fddccf8d6485db5b9ee10a436555fe1d4ef2063ccad7b6aaccbb47c3da9",
+                  "member_3986054d768e300eea81ccfc97d4b9f66d5308ae3552013914c47384773fb4f6",
+                  "member_33926b96c86e7d63bed1ad48327981bd022cbe3dd0b83c27f69dc34bcec4bc85",
+                  "member_e6669d78206b9b3ad54f2e35338b2b8490681a590efd5947e617558dcdb3e3c3",
+                  "member_0108b968a8332f0c654900e6224d088501f4df394e990b77c80e82d56fe4d817",
+                  "member_ba80a98c9370642fc04ea9639a440072aaddea0c5bf2ad460076d5b8e7da0bb1"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "canonical_node_id": "member_3dd8ef7aff922682fa2ef060059af049e07b83d22049d4827daaf67cb846b521",
+            "membership_hash": "3dd8ef7aff922682fa2ef060059af049e07b83d22049d4827daaf67cb846b521",
+            "descendant_count": 6,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [
+              "member_c11be8fd2fec9a457ea74c2e55befd1ed0f10988898805a76d12656e0725c9a5",
+              "member_4ca519d99c9cd4fd4c119c092ea18bae7c4c2a3cdfb7ea134fcbe2156935dcf3",
+              "member_7d6773b2229954e19c777d698aadb47c49642ee4c1028d929ed35bf84db520f3",
+              "member_d256f67bb940a3c5432de468ef1845d429500c0af6713dcc3ff7d7cb5672d955",
+              "member_32f34c2fc74944cb436606d3967143dbbdb565fc0aa9c4c2cfe8b18a133ad8ac",
+              "member_9603cadbd074855be2968765214bafd4792ea65a3157c77c8e17884a7df1fc4e"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "canonical_node_id": "member_10e8f6e4f2a3c79bcf7a1b50eedbf67ac33220d87286c9f3a648a5f79927d14e",
+        "membership_hash": "10e8f6e4f2a3c79bcf7a1b50eedbf67ac33220d87286c9f3a648a5f79927d14e",
+        "descendant_count": 41,
+        "depth": 1,
+        "cut_value": null,
+        "direct_leaf_node_ids": [],
+        "children": [
+          {
+            "canonical_node_id": "member_37ef8d20af1bb49c1e329d2f7ac3bb58759aae52b8d64eaa29893c0cf13a21cd",
+            "membership_hash": "37ef8d20af1bb49c1e329d2f7ac3bb58759aae52b8d64eaa29893c0cf13a21cd",
+            "descendant_count": 24,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [
+              "member_bafbb8612f13726e84d4743dbb6cd47f798cde0292e23c004e5f07f22543b093"
+            ],
+            "children": [
+              {
+                "canonical_node_id": "member_2295032bd8da91552e97d0c3c461e38c6a03ffa849fd0dac72e554e7c29f280d",
+                "membership_hash": "2295032bd8da91552e97d0c3c461e38c6a03ffa849fd0dac72e554e7c29f280d",
+                "descendant_count": 2,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_88345a898b57390dc558062409a4bb14497c41c8a9976aab86f44b61be814812",
+                  "member_2977de75491c24ec4ef65026a264124dfdc45a7039791fb1213f26dfebf81362"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_64ea87d70a0c97c32a7c7a93439df54a60f429dfe9f0e25efc492f3b0b911a06",
+                "membership_hash": "64ea87d70a0c97c32a7c7a93439df54a60f429dfe9f0e25efc492f3b0b911a06",
+                "descendant_count": 7,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_29b9dde7cee290562862ab84d0c45efd4ee71080a40aaffabfaa863c7948aaef",
+                  "member_0bed7cda8e9dc5a62ec3b01d3b8ecc963e12411508d8c84438d99b0d55aba116",
+                  "member_8b9870bd12e65122009c7c84eb2e26b12eda0a1083e52f345831b8ee7e218908",
+                  "member_905c3e99e593ca96d111dae093a137620a74eb90bf548ce4d9754b9df902a625",
+                  "member_4d7e22609deb18cea268a6813492a1e66a42a3507d6c36ece841c05a7d455222",
+                  "member_f9f491601c23f74d1e7d46aee7784561f191102ed82096a84429ef5faed0ace9",
+                  "member_53a2e21f191a54560c2fb72b411459f82d4bfa112ed4dc104b5ac116a6bc214c"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_421a559d1482c53880c35cdf9db7eb9713150875323dd5486f757307d6349626",
+                "membership_hash": "421a559d1482c53880c35cdf9db7eb9713150875323dd5486f757307d6349626",
+                "descendant_count": 5,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_2f3d2e2c0d9ced921d2ab4b0169932dcaa0265ba8af8ca4f7e688921f8920eb3",
+                  "member_2ea5586baecd1e94fb39637ab2a75bcc38c461152169204728f100b02302a619",
+                  "member_502afc29ff885272a4b719eff515dfc2b191984b25fdce9db5489344f39e59a0",
+                  "member_f5fbfd8ecec3986725b3a74a4db62603e7eb2cddef3a284bc3ca8c09b7772f64",
+                  "member_e6da0cdb287c943f69cc775b666203456a18084681d936180235135a6d9455c0"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_bcad0c016da7665ee2ac703a1dba69e99992e9bf608ce70749990406dc973c47",
+                "membership_hash": "bcad0c016da7665ee2ac703a1dba69e99992e9bf608ce70749990406dc973c47",
+                "descendant_count": 6,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_1acf192aafd5682f62cbbc56630e34d541415a3e7f311acbeb4f987c892bc4b8",
+                  "member_f8fb6c9efb44216d96cf09da69f5147267f8c383a699d6aa65edfb11a25da7e5",
+                  "member_a63787c34edc828d6e90a375a7634c5d1dfe5444249a5d93b685144c55e5217d",
+                  "member_538884836a857e52926c64af8b845a4cfe2bd2c8737ca55ddbdd27f35f36d99f",
+                  "member_86520839d2402d5ebbf76694e6f17abb28b87ed4e13ce968989f608cdad97a0c",
+                  "member_78954702d7d5b94d055426978d638608c282c4632c011170166414ebe4abd501"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_8d22a5dcb55953241cf93fad51fb27ff7feaf0b09fbf1508b167980efcdf277e",
+                "membership_hash": "8d22a5dcb55953241cf93fad51fb27ff7feaf0b09fbf1508b167980efcdf277e",
+                "descendant_count": 3,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_69db30f2ea9c3f067a8c513200963ac02ad124deaf70199c9f1befe1dfef74bd",
+                  "member_efd89a014335de7097bdfdb736fa3fac455c0be0b8c562c8a36a9b5631424905",
+                  "member_5cccb7b654625a4ded3cde28646b764de8e879197ca8f3b0114e91c03585774f"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "canonical_node_id": "member_5826c3da4bfadcaff41d36a4662944da6a37bc39e900d0e8db52babc7b8db102",
+            "membership_hash": "5826c3da4bfadcaff41d36a4662944da6a37bc39e900d0e8db52babc7b8db102",
+            "descendant_count": 14,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [
+              "member_1323b6ecc37894f5d22539299bab0e9f07428e2e8943f0961e4b53c2ba916642"
+            ],
+            "children": [
+              {
+                "canonical_node_id": "member_7958747bb757f6ebeb43b9ba89aa5956cdc42c14b5de1b232af12ea55f5e6814",
+                "membership_hash": "7958747bb757f6ebeb43b9ba89aa5956cdc42c14b5de1b232af12ea55f5e6814",
+                "descendant_count": 6,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_5454b6d0ebb9591400547f71043784198942b78ccf9461ebfc89415eec961ef2",
+                  "member_564e580e3e54793ee489cfc95d5c39f2ce4741039bf48cc66e7bf478ff691f6c",
+                  "member_a28ec3bee8ed3b074a885223a4c02b63659bd27026cb3bbe69ba322aef7ff826",
+                  "member_f4d01fa159d0f9bc3f259ec7460513c95762826d50d3659bcec00ab3f6836575",
+                  "member_d1171dcea862f2eb6c698a17c5d21b9080fba399651ba9d84541b56ccdf7022f",
+                  "member_35930f36a73bfb16c717cd121c44a72c28e740890310d507b1f79ba15b0ce7f1"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_f2f2ec286adabc15726560b8056384b960a39628a707c861d63035ab40cb722b",
+                "membership_hash": "f2f2ec286adabc15726560b8056384b960a39628a707c861d63035ab40cb722b",
+                "descendant_count": 7,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_7ef3fab747e4315b089e18c63e7982553f18ebe267527d587b54cdf32cef0041",
+                  "member_fce27aa5665ca8e73efda2d21679e1a769b6f968edf86af5f49b5b7c538bb2c3",
+                  "member_01075e8774ab2d533fb0bdd60db7e71afe7c404c7bb861c7236804b426f6d8fc",
+                  "member_8b6893e8ae67bba89705aa4e23487f83c655882fe91162ed8e4aa338fe6b884e",
+                  "member_18058c7d712679c940c36ddc66427746bc353ae8bbeccc0d6a41e38dbab237d0",
+                  "member_d2ce21e4bda6d24062ad00c3bc8df2ad5af93dc6ce6ce1b8effaaa1445b672d9",
+                  "member_a3d08a15a89c437af3ebf769bcc246fb2d7f8707b2ae2c68d10151ba7c31c348"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "canonical_node_id": "member_0b7e45f3969c4bb9033b23a8197328eccded2fb9e4cea832173dfb223aabe77e",
+            "membership_hash": "0b7e45f3969c4bb9033b23a8197328eccded2fb9e4cea832173dfb223aabe77e",
+            "descendant_count": 3,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [
+              "member_80905e65f0def6ae613a768fb816f17683421e7fdaef954a5795c0498a50c080",
+              "member_8913e930007a5f789148b6da2c679e277b3d191e9a2ca29b7991688346d54aa2",
+              "member_7c5ec05d545ed4f00f47f6ad243f84d9fe6ce2edeedfa577f62606401a6dea21"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "canonical_node_id": "member_2a55365a44fcf9d917c529907dc8cd96aa6341b8632b72e3c28f7498c2376ad0",
+        "membership_hash": "2a55365a44fcf9d917c529907dc8cd96aa6341b8632b72e3c28f7498c2376ad0",
+        "descendant_count": 82,
+        "depth": 1,
+        "cut_value": null,
+        "direct_leaf_node_ids": [],
+        "children": [
+          {
+            "canonical_node_id": "member_52f60364c85e2b7548e3253b0d09fd65bd2bac0224d998c8f5621cdaf9d44335",
+            "membership_hash": "52f60364c85e2b7548e3253b0d09fd65bd2bac0224d998c8f5621cdaf9d44335",
+            "descendant_count": 38,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [
+              "member_d9db45fb30c0f5ce4bbaa6e639c1b33273d20b020c409af07f79c12045c5d69c",
+              "member_8a4d63898fcaf09534e7ef85311a38ee3de533f85d075fdfc77e6f212141b4a7",
+              "member_f7c146a87bfaacd6fb55e21ae616cecf89d462bee989f8fe495358d1e83580ed"
+            ],
+            "children": [
+              {
+                "canonical_node_id": "member_22e4aef2cb28be39531278109ba357b8a8106d27819902e899af2de20e204a1a",
+                "membership_hash": "22e4aef2cb28be39531278109ba357b8a8106d27819902e899af2de20e204a1a",
+                "descendant_count": 9,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_c1bdfa0d396eb5de46ceee189068d2742d661b50c1e74896fcf7f02f0603e9f7",
+                  "member_d8fca788ba248c440f5b6a8f894e71b59de8a2101affd782eec1c72955cdf7d0",
+                  "member_67e9ee13c1544d4a2cfee5a22d1cc16c968c5f46450cc2d38ed0952e7fe26e06",
+                  "member_c9a1586db1722001a14ad85f02a8a3a8d0aa5b6a62be5dd84eb5f17bcbbb46ab",
+                  "member_39ae6e0a59f129bea003307c7e3e9e54defb2a783f323ccb00b2717290ad5ae3",
+                  "member_41371189f3701a397261feada63be8c6e07bec5ea6d126489fb4b9ac090078c0",
+                  "member_8a1cc650d2353f3ee0406c2a04ceb6af4af65656ab448bd7f4f6c2743f536d0b",
+                  "member_6bd346a5823fc5bc7f896fe8eae41acacd1b22272fde36eb6dde2f0a061dc9ce",
+                  "member_eec0a06db8f888b7a3dbe5ac19e8112015804d5dbbeafb994716549b9c4c2d3b"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_a2d4ae52929e82fc55d23375e6dfbaec21924fa4e66eb4c29cfb6b375ae0ba39",
+                "membership_hash": "a2d4ae52929e82fc55d23375e6dfbaec21924fa4e66eb4c29cfb6b375ae0ba39",
+                "descendant_count": 8,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_cee52890f9009b60b552d07e51c380069ea788a701e7d0e0c75b0bc1d9fd4647",
+                  "member_d90361f757d81fb2a7d1bdb38823eb827554ce7548a34300ab8281e1a1b646e1",
+                  "member_10252ad65e3e449084aa4ad82f3e77bebc5e6da0dd0ccf51dd24982eaafa9bf4",
+                  "member_9f45caf715818d1a099e10656bb073898d423d5f69dd85c9c79c95a3e377ab0c",
+                  "member_bafb1694fe62501a620b0514da6cd046f5a5aaf25ad1f36f298323e72b44693c",
+                  "member_fb9ac3e2d3b7fe04ccebb30111265f8fe3e8129d46a192c9a5c3ca4ed029470c",
+                  "member_f1185e8d0b1abb1a1c9062043e73e6d5b433c10ffd58899eb4af3fe69fdd4641",
+                  "member_eead6caca43a8a9be37b6bbc2626afe054462e6b7d5fb062e9931c69878fd067"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_6173bbc94eb8867118abd7d8c04af5a1e777aed0ee7f70060432cf7e2b00898d",
+                "membership_hash": "6173bbc94eb8867118abd7d8c04af5a1e777aed0ee7f70060432cf7e2b00898d",
+                "descendant_count": 3,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_2f0ba8592182bd065c99da1bfb97f5ade9d52494787f6d4473d67c17aa046018",
+                  "member_36914c9d1bd54bdba2ee9300839f155e19f03ffd8542f009b55b1da63f98c7cf",
+                  "member_35bc4cb1193860fd262e5d008f9e8d48c421bd3b97e197fddfa6227f87cd9368"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_400f1626ebb3939ccea32452bf74d22f87aec9a417503b6815937de9dfd64ee3",
+                "membership_hash": "400f1626ebb3939ccea32452bf74d22f87aec9a417503b6815937de9dfd64ee3",
+                "descendant_count": 4,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_59d3eec444117e0c477e236b241a0c46ad087af60e8277794a1a873bc17a8173",
+                  "member_cd7cb69f08a3e5c9d5cc2b5ec24caf16b6663f6ebb232bc752820ce70f2cf5fc",
+                  "member_74935ee61f94560e2fb1e24420d1d48aabe8e3379263157f1585c46435a071a8",
+                  "member_28fbcfc038bc0ff01d5c983a889c86300034ffeebff62a6132095cd4a123b502"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_c3640b6f134b74d7784d67f99238c7c0bca94b70e4cfbc23344861ce734dfa07",
+                "membership_hash": "c3640b6f134b74d7784d67f99238c7c0bca94b70e4cfbc23344861ce734dfa07",
+                "descendant_count": 2,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_29f4fece4cfbc88c658ed4386c41c04885d4e92973011eb4528ea61ec270aad6",
+                  "member_1675d6f4e905a1b933d968d306b86fb29053be0ea1882d8c40eab8f59af91644"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_88d1c15ba070cb46178486b2374245ec1bebfda23e087d769acef7b2e4975ac6",
+                "membership_hash": "88d1c15ba070cb46178486b2374245ec1bebfda23e087d769acef7b2e4975ac6",
+                "descendant_count": 6,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_534d454c8d22617aeada787ea7ec171a74038d33b1a9b69b5e77eb3c63038882",
+                  "member_d79a33846ea31c6d4c05b1030f751cc73812f5fea64345c157a3dc5a986ef0de",
+                  "member_28337335b9adfbfa4139ddda99d3b444bcbf517947f094464904812427f0f736",
+                  "member_acc862e70bbebed850d785c66eaf937af35a79a139cb6784df28430b826621a1",
+                  "member_4f7239a5cbf1cf2a5fd752b1e7b5c3a8fa30f9ad320778d8e080a59723053a91",
+                  "member_04574c6017409a5415cfe14be5c1b1ab0d74cc6a140422bab3a17e5dc8cb5085"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_3b77016e780bd8e34b0e775acfa136a56a14b9ae32e391250c262f98d5d04214",
+                "membership_hash": "3b77016e780bd8e34b0e775acfa136a56a14b9ae32e391250c262f98d5d04214",
+                "descendant_count": 3,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_8ae631b505635b9d1b905939f95e73b4f3f67a92e12408f77fe4bdf70cd788f4",
+                  "member_44c18eadcee68cd4c1c644c9c43a838e8506c054d366fa6c9ba3369b070966e2",
+                  "member_68a9c35b918407a85858cee38f71203a03ce5b40d9531c2f15bd8a2e953b55fc"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "canonical_node_id": "member_613c7c54f952d944421675e3aae6edb18f14c7cd3ce525244f9e683326c7ea69",
+            "membership_hash": "613c7c54f952d944421675e3aae6edb18f14c7cd3ce525244f9e683326c7ea69",
+            "descendant_count": 9,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [
+              "member_a6771040698f10493905faefc18313c7c50155489cadbe0bfa80ea3f9c23373d",
+              "member_5f9af862e80dca7c7a8a0920de03446f2bb50c0c6173f1de16df697dbdce73f1",
+              "member_c313284ff92b0a234b99dbef5c0006ba31a2e80bedbe692c731228da5a236c38",
+              "member_64ea4217d84a202b856560ea5eb79fd56b64ab00886c5eb1f4c4c191eb988089",
+              "member_895a47a63acf29a8eddc60cc4b9716edc617991f30e10943f0a707b1f8344a10",
+              "member_af9b5c9bd7ed295f32d3569b52e1cb1f72b6f8803b3929ff4e857ac2762ab27b",
+              "member_afc871f2dabc410ef4fc0ee48518568f5d1502c3efc3a1f8fdcacd01803dce34",
+              "member_6ceaa35dcada4b3bfb1b52723afba738378928754c1d64ca22422a4ec0203102",
+              "member_5572c0e695ecea34e3d44ab054f6a30b663805dd4413c30d9a8ee592a5b61f27"
+            ],
+            "children": []
+          },
+          {
+            "canonical_node_id": "member_be86ca879d57f1f93267258a43984eb8c0e684fb302c6aeb5058cb46252b64d0",
+            "membership_hash": "be86ca879d57f1f93267258a43984eb8c0e684fb302c6aeb5058cb46252b64d0",
+            "descendant_count": 22,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [
+              "member_282aabf059339aabe3fbd88e3b7d62b958abd998924454735e4b5ca15cf7d368"
+            ],
+            "children": [
+              {
+                "canonical_node_id": "member_b9e68940c5e9dca33be42eb4424df92ee4661cddaf7b54d62e100b61178f1650",
+                "membership_hash": "b9e68940c5e9dca33be42eb4424df92ee4661cddaf7b54d62e100b61178f1650",
+                "descendant_count": 3,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_49922860e89ed64571ee70251cdc10f7c3785c48b5222b0d4308bf13bd94b703",
+                  "member_dc9d3307fbcd0e765ff84c3b45d6b9623455b40e3e4e9f94dfcb0f899c875f7b",
+                  "member_989ec088593d533a59d80557c3f94402ed88740c64fe5eff09382085e021f321"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_618d7e80e9fd1cc01b877bd34f6f70101d0c100522dfe94df2331272743cc3ad",
+                "membership_hash": "618d7e80e9fd1cc01b877bd34f6f70101d0c100522dfe94df2331272743cc3ad",
+                "descendant_count": 4,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_1b765bcbdc86c70f7aeff08f968f77296907de08a904db2576bd5f126e85c3d8",
+                  "member_cf392a2e374f80c08625402e3d230c0ae867544b4c8f54d74b4f59a81250b29d",
+                  "member_c2bf582eec60c44e24c822cbdc167df2ab32681b6c56e86673ae9f14c59379df",
+                  "member_78d10b68cd5709fc25a372096f8f355440a8534f1f69f76b34eec19d330a5468"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_77373518586162e1554dba355fd90428ca173d53c9731eaaedcd4ff341a5a28b",
+                "membership_hash": "77373518586162e1554dba355fd90428ca173d53c9731eaaedcd4ff341a5a28b",
+                "descendant_count": 4,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_fd37f12694a5eeb6ff86838972c96c7ae8ddb48beb13e20ab291ffff3e55c70c",
+                  "member_4bd700927b4124975f866c213bafc609ed3121ca4cd491a34fa6ee14703b1838",
+                  "member_8b228b1ff2c44c31516f9c4d5099588ada718255894b8112c95f136666a51115",
+                  "member_fe5b119fff8b31692ffe66f939c13f71da7fc771a239d1936b353e5ccc352efc"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_581f28a93c1990cea5d3de6ea120b360795765e170705dc892ba4fc33e4624b2",
+                "membership_hash": "581f28a93c1990cea5d3de6ea120b360795765e170705dc892ba4fc33e4624b2",
+                "descendant_count": 10,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_ff4e925ed525441fdef1bd45aeb68c4ba3a227169fd84c6e96696becc152f8f6",
+                  "member_090e6c2147aff5620857e289a4f4376feadcaf6a36635bd5edbc3dd0a4cac608",
+                  "member_1d54e32e3d1d8c9e7ec20f452d0a3c7ccdd04334d727711002c6daa1dea81cc0",
+                  "member_80593d9b844877db060f8105c6b8b2d8564ee328f179c5b76dabad20b1b66b02",
+                  "member_99d3665323441394bccd15c948dff8f3d2d8a4bf62eb180fb2312458e6e7cbb5",
+                  "member_079988f056c3a29676441ea3708a21810dacb24ff9552657d70b660df7720696",
+                  "member_26b820e03252709f47d10ed2aec2b6201d29e19470338de7b55f802b0a8ac334",
+                  "member_c0ca370a192a8f43a5d7ec4f40fe7dbc2b97768ef111c3854ffb2626f78b9f5f",
+                  "member_ea58e1c75393372796f14f6979b8902ebd67ac30e0477055e8f899baa669b769",
+                  "member_9d03db196ec417b303378944acd854d059c902ee68b2048b17afb9ba7bac8474"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "canonical_node_id": "member_58e577b575dd5a84b5a3ecbbbe84a2f463dbf881d3495fa1f179e4c521c3d224",
+            "membership_hash": "58e577b575dd5a84b5a3ecbbbe84a2f463dbf881d3495fa1f179e4c521c3d224",
+            "descendant_count": 13,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [
+              "member_227da7d97d7a07ac4c3b7a1cfe5c1d0e2750bc41a7ed7618ebbe63314dbf2a63",
+              "member_61008ebece8d9c7234ac095e6930c150ec6f132ed9685e4965da835b94e86874",
+              "member_c6d72114faa9f9be6cb965c103f79832a282db2940a665ac1986e9e9a698ab7a",
+              "member_41c58216179454ab38c541c8eaed1b91b8690541fe0854c8bd450b0ed937f9e9",
+              "member_3296a92af9d0f33c48abf4a53922469f8b8a29c69fc822e130875170d03b0314",
+              "member_dbfc22ebca531e950015b67e05f19a8ac1574cbbba1a007e1648bab3d0e57748",
+              "member_df79b728d69790c55f68517d0e0677be3ae3be34a01d826721f29e7e73a09865"
+            ],
+            "children": [
+              {
+                "canonical_node_id": "member_de5c89c99a4b2fa60e8d85589e4cc23e64ee125ab66d76ba4df384ca13918aa0",
+                "membership_hash": "de5c89c99a4b2fa60e8d85589e4cc23e64ee125ab66d76ba4df384ca13918aa0",
+                "descendant_count": 2,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_113118762af1b0b573928b0f6809fcca505804e910101426ccc08b2d51b88897",
+                  "member_4d34595174cfbd9df5e07c69137c6185339f5159db4bce9fa69033909bd59827"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_8b9ed4a2dfc340eb5ffbf4e20b2374bbedd490e14aaead51f12a46a738c9056a",
+                "membership_hash": "8b9ed4a2dfc340eb5ffbf4e20b2374bbedd490e14aaead51f12a46a738c9056a",
+                "descendant_count": 2,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_045f187e9e8997633ae656061df33b23bdce18028316f9609b505084749970e0",
+                  "member_626042f3277ba8cc3285af65da518941983d001b6ca05bc8a2c88236a19bb822"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_5ad102186229d72220fe86385f2d5ced87296cf63036f040e5453339e7f4a8c4",
+                "membership_hash": "5ad102186229d72220fe86385f2d5ced87296cf63036f040e5453339e7f4a8c4",
+                "descendant_count": 2,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_416de04b2b180358a3bd4eb1d5706a161082fe452396bc6538cce62e24b8ff08",
+                  "member_7507c88165e37e3f4a2fb6e2a787fe4dea9d40620973d8931174cae26e8c9da3"
+                ],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "canonical_node_id": "member_ce7984459ecdd991fd15fccbe40275da0675ea2f70682bead4970cccb7a3a46b",
+        "membership_hash": "ce7984459ecdd991fd15fccbe40275da0675ea2f70682bead4970cccb7a3a46b",
+        "descendant_count": 4,
+        "depth": 1,
+        "cut_value": null,
+        "direct_leaf_node_ids": [
+          "member_665b03aa625d252d7c2224711b5e563345c48bf689e4f7f706d739268070f67e",
+          "member_a399edbf8de36dfaf867e61bc228a13590dde1f0889d87fdecd22dd456a01b05",
+          "member_e9dc8c0261d0c2998fa3dc10f60994e0100760cb77e394dc2fb5483316f81a03",
+          "member_e9ded74a8357de77a627eb4efed19df50256b3fe09e6022ef0d61f2cc492a456"
+        ],
+        "children": []
+      },
+      {
+        "canonical_node_id": "member_f97317d97caf20146abdb4023bb5b2c94a59abf6da989e9efeb2603fcb1dc8be",
+        "membership_hash": "f97317d97caf20146abdb4023bb5b2c94a59abf6da989e9efeb2603fcb1dc8be",
+        "descendant_count": 19,
+        "depth": 1,
+        "cut_value": null,
+        "direct_leaf_node_ids": [
+          "member_c49ca0870b51b1397a498259aee68b0a8172c17b177a8e1ae5fadecaf2d0239d",
+          "member_edff38f7d3c0af5335be32f15bf790ae382b6752d1afa86a432c363ca36bb6a7"
+        ],
+        "children": [
+          {
+            "canonical_node_id": "member_d5f05f08295c55a453ee32b8108ec1f9a250f6e372a5158c66e70a499a1e4aae",
+            "membership_hash": "d5f05f08295c55a453ee32b8108ec1f9a250f6e372a5158c66e70a499a1e4aae",
+            "descendant_count": 2,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [
+              "member_56e92b7b8cf3fb79a50ad087034970ad89df425c0b75e825feb844dbec93dd98",
+              "member_1f1318c60d403ad265a66ecf77372873124446bb9af52f4d57cfebc08bdde467"
+            ],
+            "children": []
+          },
+          {
+            "canonical_node_id": "member_74eb10f359eaaf62e2251d83247cffc77cb0236238fc1bc0286e35ae3794237b",
+            "membership_hash": "74eb10f359eaaf62e2251d83247cffc77cb0236238fc1bc0286e35ae3794237b",
+            "descendant_count": 4,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [
+              "member_23440b24f78fd76e79b99fd3444f99116521139767156d41535a37ac27b1458c",
+              "member_8ee29836dd6e215938c2fcf29c1ad6e4989dd3b5667b3ddb64a8430f1c36582f",
+              "member_c0064c7e5093d6725c5a47e0e7c67c5b550db2053fa78515246e95cc8ed7fc41",
+              "member_960f9a712df82621c5dc580341776ef26903d9de92b84da82934c1f4c0d20924"
+            ],
+            "children": []
+          },
+          {
+            "canonical_node_id": "member_ca0e3e0cad9e69827e76cc6ed25724e4dfb602ad7ef71b8e062372852328dca8",
+            "membership_hash": "ca0e3e0cad9e69827e76cc6ed25724e4dfb602ad7ef71b8e062372852328dca8",
+            "descendant_count": 2,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [
+              "member_5d715737c1363fab3542292d8c276029f2dc3eb0e3076ba979017a4787d86715",
+              "member_3e431d3f9bc7a0318a97c1e32cdd719b0f0739fb35a27470f0b599cd45c3cc8b"
+            ],
+            "children": []
+          },
+          {
+            "canonical_node_id": "member_035d3bd4747ed7598ee0cf9c5c2d7a974eda2183a6704da03c2fc4587952dd0f",
+            "membership_hash": "035d3bd4747ed7598ee0cf9c5c2d7a974eda2183a6704da03c2fc4587952dd0f",
+            "descendant_count": 3,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [
+              "member_dc1d1f4483fc9e5259a834cffe23fedfa009ecc7dd7df5994b5dbf10fadbbe7b",
+              "member_e489b056bc7301a217f5fc6df2cc61870e793f7c8d2b87950267d3ad55797705",
+              "member_48a077332173d841a2c7f7bbe888e3336a65007cacebba00870f42f97fd3ecd5"
+            ],
+            "children": []
+          },
+          {
+            "canonical_node_id": "member_6a880057bd1a45dd109896238aa6d8f8a158fbcb00e702c54f277e080b795a3e",
+            "membership_hash": "6a880057bd1a45dd109896238aa6d8f8a158fbcb00e702c54f277e080b795a3e",
+            "descendant_count": 2,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [
+              "member_a39e12a6f341f9ffb017556d2761d627763fbf404fa4fe8136a104e8b4048b6e",
+              "member_8e776e520c1221ed5412e8732c46b28b686505cb71ef972c2bdc4036426f4005"
+            ],
+            "children": []
+          },
+          {
+            "canonical_node_id": "member_ebc6233909ea40ffb9664fa4a9678ac9173ce9515d24f04d27f0404423678190",
+            "membership_hash": "ebc6233909ea40ffb9664fa4a9678ac9173ce9515d24f04d27f0404423678190",
+            "descendant_count": 2,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [
+              "member_e3cec3be98798be67febc809059cb905c5cb80b36d65998c004a9eade8f4f6e2",
+              "member_411af067c60519860633d6f1d8ceda7d3dd2c2846180c4508ac81fa776a702c3"
+            ],
+            "children": []
+          },
+          {
+            "canonical_node_id": "member_41c9358269beb99df7bf36dd8d821d992e37958fb901fa28a7db03f67a5d0119",
+            "membership_hash": "41c9358269beb99df7bf36dd8d821d992e37958fb901fa28a7db03f67a5d0119",
+            "descendant_count": 2,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [
+              "member_36a03e985700286e3247b993aed171e399f5f4a20f7df03d52fcbd2e9240e403",
+              "member_42dd78012eb0d68aca85ee6e0b845bf640aa9456248e3c968f1c50af5518f959"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "canonical_node_id": "member_89ad358f4480bf0ef99c7d413f1914c99c12f33fbba22da58a21760e5d9211cd",
+        "membership_hash": "89ad358f4480bf0ef99c7d413f1914c99c12f33fbba22da58a21760e5d9211cd",
+        "descendant_count": 70,
+        "depth": 1,
+        "cut_value": null,
+        "direct_leaf_node_ids": [],
+        "children": [
+          {
+            "canonical_node_id": "member_db25b5998aa0d18504cea04d62082061851117501eb0146aa1609b2da9e951fc",
+            "membership_hash": "db25b5998aa0d18504cea04d62082061851117501eb0146aa1609b2da9e951fc",
+            "descendant_count": 31,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [
+              "member_b4603f2df28ce6f455c294fe335b56c3391cd1a81729f3b1f000cf39df4f029e"
+            ],
+            "children": [
+              {
+                "canonical_node_id": "member_bcfa35c952d9c52f2bfa0532bd7a654baafc3f6e5b7126b95ba656fe2891318e",
+                "membership_hash": "bcfa35c952d9c52f2bfa0532bd7a654baafc3f6e5b7126b95ba656fe2891318e",
+                "descendant_count": 6,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_1906c57648d2782b6c0de49ebeb0625aefa2e79be808a54e6b7ae5d7349d094a",
+                  "member_79b1bfee928e6e52f634b3ed11f0de2db84b5a9c0a39cfbb144e81d93a266058",
+                  "member_3d812608ff75b3d53eb540cdcaca1c36c036612e6a79a19b74527d33f018aa10",
+                  "member_5d88d938d065de7053428ef0fd54b17db4e38456fbdf1068ec96b02fa4141c2b",
+                  "member_7d669bc679a188756b64226d785bc9b4e41957ed8ef7fec7c7b48f47f9bab9dd",
+                  "member_3ff82070cb23c39682fc5f0d19bffe51bbf5efc3765492dda4d209cf3db5f5ac"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_c4b24b3a1a52be1314dcd7cb690e60ddd230b85c44588c6abd61ac874db49628",
+                "membership_hash": "c4b24b3a1a52be1314dcd7cb690e60ddd230b85c44588c6abd61ac874db49628",
+                "descendant_count": 17,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [],
+                "children": [
+                  {
+                    "canonical_node_id": "member_ae4925bf7a617f94957dcfd33697faded8892a452358fc78e75bde35f9df21b4",
+                    "membership_hash": "ae4925bf7a617f94957dcfd33697faded8892a452358fc78e75bde35f9df21b4",
+                    "descendant_count": 4,
+                    "depth": 4,
+                    "cut_value": null,
+                    "direct_leaf_node_ids": [
+                      "member_a2d721e4ac6185300d5a936e9ae558a0617fafe7e1316e439882eb9dcf4b40b8",
+                      "member_18244e274d64f7284f05050f8d01e21a9cd65b523963f3637d9fb84ff0c28c14",
+                      "member_d5276a7b23ef15a0ff1e3a5d50fa0a2b62fbc75cddcb86af859f834aed363ea4",
+                      "member_372dd7563c83b591711d48b929c33c66a92decf2f9a256e523f35da325915010"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "canonical_node_id": "member_74046838b98b9daa6873d89f0041dc7acd0808d7d0b2c6b747a5866d38415b75",
+                    "membership_hash": "74046838b98b9daa6873d89f0041dc7acd0808d7d0b2c6b747a5866d38415b75",
+                    "descendant_count": 3,
+                    "depth": 4,
+                    "cut_value": null,
+                    "direct_leaf_node_ids": [
+                      "member_953ec00b16b775233314b32ecff8c08fb16e19ed06ee8ca44d8dced44a3c552d",
+                      "member_998ce8f41bf8e0da55d7ddcb4033c0ead53eb2b5a20fc417222191f158f2aa70",
+                      "member_41ce1ec43787ffdff573dbfdeccc5988d96ca928d8eb3ce8d37ac74080ccaad7"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "canonical_node_id": "member_727b86ec81a2becf4e36af0754bdbff5a310009964c4de157a9f0c86d80af0e0",
+                    "membership_hash": "727b86ec81a2becf4e36af0754bdbff5a310009964c4de157a9f0c86d80af0e0",
+                    "descendant_count": 8,
+                    "depth": 4,
+                    "cut_value": null,
+                    "direct_leaf_node_ids": [
+                      "member_11c40285cbd590a17e8a88f44e5d84737f86ca39bf3e3d0301f0b978f9a2b92e",
+                      "member_9b0588307a32a2b80f98523401e23978c7345a9c8625355f261c49fde8af53f2",
+                      "member_b850dfa31c2b728278477e3114d2d47947e633c60ce0f590995ad17114b556c0",
+                      "member_5098dcfefab0a1563f27e2bf2d9d04fba060f6ee77c0ee31176a3f6c82defd54",
+                      "member_4f19b79355e207cd7768f31567b019a6f7cb816feb93fb1fae2b0313d1250655",
+                      "member_b59afe9eb6c948f88560820323e798065b6630ec7b0cafe7f1a766f8ff5c032c",
+                      "member_c31503900cc94ac3a2feb4ec2f8c0d4a297d1755d0f440c9d5250c064f6b369e",
+                      "member_e4002bee47c91da5d6c30e2973683f479679e2573ad84cfd6e38fd7140f322b5"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "canonical_node_id": "member_4954fd0c091a1b6e1e83e3633b60e6e62954e46e5c5a6cf2b9a3f8f9002c5c76",
+                    "membership_hash": "4954fd0c091a1b6e1e83e3633b60e6e62954e46e5c5a6cf2b9a3f8f9002c5c76",
+                    "descendant_count": 2,
+                    "depth": 4,
+                    "cut_value": null,
+                    "direct_leaf_node_ids": [
+                      "member_f548aa375479844bb6691e1414b64f0731bec40c3443fc4237efbc6fd0631215",
+                      "member_baf61fdc6cd0d71eaaf40d4e478bb44c165407cab261f47aaca4074d6d4b10f6"
+                    ],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "canonical_node_id": "member_81d676c320ff989f7d7f4c201dfc3d26b25482ee22164c3866fb7c54500fde49",
+                "membership_hash": "81d676c320ff989f7d7f4c201dfc3d26b25482ee22164c3866fb7c54500fde49",
+                "descendant_count": 7,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_42ac61eddeed3db67b1a74e8b6e8cfd472bdd20a0af90a969739ee0f6b03a552",
+                  "member_be0bed0c93d72250323bb033b8666d596dc7c22f2efd555cc6a93fa9f410cbd0",
+                  "member_269d21039626fbe2706a2bad3694eb8471fce9edb5fa1bd5dab19f5f290a959c",
+                  "member_fcafd90e9c3142db2720b6d5e6f9c842c87a8d6103cb720dda4b6ffd64da889d",
+                  "member_a8ffa47d44948f6f112bcd27d2047c1630d94d117621c07b421baedfe6283b08",
+                  "member_50fe58d3f3ccb8eef2d5d37892881667db24176e747b8723139d294991dc5c60",
+                  "member_cecf7bddd2c787127b5daa6f256a91463cfbee69640269a9031ff1f797bf91f9"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "canonical_node_id": "member_95475321ffdc0907f979c4ae5840e81762f3f396b656ea270f2dd85abdd7bfb1",
+            "membership_hash": "95475321ffdc0907f979c4ae5840e81762f3f396b656ea270f2dd85abdd7bfb1",
+            "descendant_count": 21,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [
+              "member_9f26b32ae7c659b58d5b28c0714bad3c4d675370fdc7ecb6deb45e418b357272"
+            ],
+            "children": [
+              {
+                "canonical_node_id": "member_d97659866087eeef4e38332d5a82ab4c02298486215f4a7d311ba24e4e500099",
+                "membership_hash": "d97659866087eeef4e38332d5a82ab4c02298486215f4a7d311ba24e4e500099",
+                "descendant_count": 3,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_160d4f10446bfcd750f806d222b3e8c9d821834ec6d25f69770e82d264150f7a",
+                  "member_5592b6679125710abcd468f818874ee153e9c8a856ebc5c0eef0255ab8a31456",
+                  "member_cbaf8c195830c2dac4522cc6b4541ca0c434fa39d5100ef801000ddb4698f86a"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_2e544b34c72ef2e7e6ddfa246769310fcab93ddb310654ff86a27500318326c5",
+                "membership_hash": "2e544b34c72ef2e7e6ddfa246769310fcab93ddb310654ff86a27500318326c5",
+                "descendant_count": 5,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_a59bea27463288f217e3fe2f81785fecf758bdf7c97c5f8f519bf246572a9173",
+                  "member_0b7475ae4d0ad5f8b38240a3789e7029bfc67af8ede8ec4780f89cef3e9425c8",
+                  "member_21fc32f6bf0e7b63976393e88f13ac2fd10fb6263fcd8b12b8c58b2c8017e0e5",
+                  "member_79109882f47af1036b00f6a32e216ddc86c88316659b9ec30a3e1752528f9d2a",
+                  "member_7ffd27d804964d2dbabcdd79d9abce531124725642de07e1fd5e11ce31d89d0d"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_f8910e99c2cc26cd9bd04576b92140d8076c50af2c8056c6f7a1d23b6a29dc8f",
+                "membership_hash": "f8910e99c2cc26cd9bd04576b92140d8076c50af2c8056c6f7a1d23b6a29dc8f",
+                "descendant_count": 4,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_e06662da4b35433e3077bbc56015c62898fbc3cf7a2121910beb5ecedf89f691",
+                  "member_cbf7c40c9aeb7e52d033a09c81251a07de8d292c0fd9c345de486a5e1eb9efb5",
+                  "member_2523cb79fe4e080802bd9647df3128ceccac9c040c78e67af250f397d22d27d1",
+                  "member_8e6ebb5a0cbbc7c788df3062ea1dd3d32ab48098e9db3c5463b70fd6337fca8a"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_91dcde491cdb981ffd2abccaa585816cf552b0ea82226a3c41fffa9440cecd94",
+                "membership_hash": "91dcde491cdb981ffd2abccaa585816cf552b0ea82226a3c41fffa9440cecd94",
+                "descendant_count": 2,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_509fd88bb24f2f90e626551f2f3190da69c53ff8dc68f4abd4179ba9f0497244",
+                  "member_2ecb63183d08a6c408158bace67a1239eb2599ef2d75e2284192402927e9b6ec"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_0c20d35176113e33f7d7c7fcc0b359830a484dd4b1e8d17a246d2b26b8a06c9b",
+                "membership_hash": "0c20d35176113e33f7d7c7fcc0b359830a484dd4b1e8d17a246d2b26b8a06c9b",
+                "descendant_count": 6,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_c79633adf1c41ae34fb51c49304a848ed2b221a7764725d0b6799077e0a61623",
+                  "member_3943ac11cb9c1a3cccbb5c1e1a8ac6c587ad2febbe75bd6580c62c1eab25a338",
+                  "member_fb174e268e59782a385891c87c0be8ad2799d7ec699019083f2b35d4782eb643",
+                  "member_a63c97e6f0a5276d54a403e8aca860e7db21b19e4803c45b7638100299240f9e",
+                  "member_f378691c11f416c013b9cd16a2a46af8d088392b3356548a51bfe92b5495469e",
+                  "member_e120df0c7a80ce66f351173f39ba4c2414f4b1d2a6b92a732a40eaafdd9baf94"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "canonical_node_id": "member_868c904a6eb19c6caf14645a91db8b34be9fdd4b16e3fe18128b1cb017a37dfc",
+            "membership_hash": "868c904a6eb19c6caf14645a91db8b34be9fdd4b16e3fe18128b1cb017a37dfc",
+            "descendant_count": 18,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [],
+            "children": [
+              {
+                "canonical_node_id": "member_c9f87d595dbd6f40cb1a935d6f81b6fd5374d20836fd5addc50ea39bc96fc320",
+                "membership_hash": "c9f87d595dbd6f40cb1a935d6f81b6fd5374d20836fd5addc50ea39bc96fc320",
+                "descendant_count": 6,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_44b195c8a3145b7dd1dcb6349e611bae2b78c44c94e9ef41aa061f36f1508462",
+                  "member_65caae08e53ee312eef6db365cfaa73602745147dad00fb5a716452a9eb3aca1",
+                  "member_8c89bee8e6e7cac854501a4a3a8b366487178bf7b9124ca2f5f2817729a8486a",
+                  "member_0af9bf0f55db8a0dcccb9aa9415df2ad60902a4b890c700a884aab4d05a99470",
+                  "member_102d3f504b13b36d5be21cb9572db33687ee638595e2fc8e28ac3add6eb550e4",
+                  "member_b8ee11ae5ebb11cef2f1ad0ebe708c517e8e07c5b138688033368dc9fbd8bf0e"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_18a1cc9cae24a287e0cb59ca10ac579a32f4f88c34e306f17303db5a51579593",
+                "membership_hash": "18a1cc9cae24a287e0cb59ca10ac579a32f4f88c34e306f17303db5a51579593",
+                "descendant_count": 6,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_acc5b16550598788af1d3995bcba296ae21a0574ba88db892ed056875ce58c38",
+                  "member_67c4533e42c6109920d830ceb42af6de7fc76aeb77e0c66b1017f2b16542edea",
+                  "member_26fa3503b95744106179e865209dbed6ed306bdeb8c32dce917a79c725f80346",
+                  "member_37bd457a023d3378b7c20f11a6d0a53c9cfc7f92fe8e66eacea31bd96b8e453e",
+                  "member_eb38b7d38861bf1d1416f87cb145447bef25b08e813ca00aee9a1c867c031efb",
+                  "member_fbc851449d8ed1bc802d71391c1ae7326742ad0c537a7721ba5693e78bd97cc4"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_2aecab2496bcebd1250c43763d8abd9e20a5d9c47c14cb675996e2a5d511f416",
+                "membership_hash": "2aecab2496bcebd1250c43763d8abd9e20a5d9c47c14cb675996e2a5d511f416",
+                "descendant_count": 6,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_485bb14afd5ffbd3f8ef3e32dadec9c15b51fa47a026fe2a7a046fa5c9a5ce8c",
+                  "member_755bd53843dbc8f285038786f443965494c6ee3e1f1e00150c86f2935d6af28b",
+                  "member_fa8e90597ace8e3f208d60928fe393b4d3952d232a525ca386180033a85a74c3",
+                  "member_e89c893fcf26102c861d20d350312f7945870771ea7e5dce36dbd5c71d159162",
+                  "member_c8c8194011e36b759ee42cfc422001c7c23d9286234fc3b73e044a6b9fbc75d0",
+                  "member_893fa46666e352f6720233aa27b70ab7e60d057179570643f7b529f3d583eb89"
+                ],
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "canonical_node_id": "member_812ee61b6ce8cbea31795bc904cf9500c70abafc55c39050c34849c72d1291b4",
+        "membership_hash": "812ee61b6ce8cbea31795bc904cf9500c70abafc55c39050c34849c72d1291b4",
+        "descendant_count": 6,
+        "depth": 1,
+        "cut_value": null,
+        "direct_leaf_node_ids": [
+          "member_91fe5bf4de26d60b30c4120cedf68d730399966d6db6102ff7dd02732e240dd9",
+          "member_bf0af6115e2f2b2f48397176f2765fcf64244fe39929be0f31cf47e951b11f24",
+          "member_7469bb39fd8f1c76d4ad4829b4492acebc2da8a98a52dacd53225e125d24ca0e",
+          "member_b59987496eaced1ef09e1e30db2e6e4c42c934aa8271b959e3a1cc213a820e76",
+          "member_2c95af8e997f731cfd6faf68710a57a8caf63858761d415c9356228c7cb2f77f",
+          "member_9b669c36920bcf9555475c069dbb2048488864d2158edc445671e419189becb9"
+        ],
+        "children": []
+      },
+      {
+        "canonical_node_id": "member_c705e54aeae5d1ef7e8d82512845af70f54e391c0b21353942db22775e4aee9f",
+        "membership_hash": "c705e54aeae5d1ef7e8d82512845af70f54e391c0b21353942db22775e4aee9f",
+        "descendant_count": 48,
+        "depth": 1,
+        "cut_value": null,
+        "direct_leaf_node_ids": [],
+        "children": [
+          {
+            "canonical_node_id": "member_53ad00a42c7b7baf122f541334da9461124d2bb83059b5862f2171da4dc0c317",
+            "membership_hash": "53ad00a42c7b7baf122f541334da9461124d2bb83059b5862f2171da4dc0c317",
+            "descendant_count": 11,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [
+              "member_7d6a17258a19ea18680c8065284bbbcc07ed6c75f0847fe6790ad652cf5c912f"
+            ],
+            "children": [
+              {
+                "canonical_node_id": "member_5077e1e092ff6ab55b868bbb63ceef959387600151e38847914c6051743964b7",
+                "membership_hash": "5077e1e092ff6ab55b868bbb63ceef959387600151e38847914c6051743964b7",
+                "descendant_count": 2,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_3f4b9421c854bc967b094f0264c923b17baac7cd5bc1ca08f81557183d8077d9",
+                  "member_8274902f0bf15627ab453e6980f0f1dd36dba0d40b050a557b3a0371798d0738"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_8446f7f24253ee34a6dc127e8bd0aa16c9dd3f8225d05e8ab5846c917a81c405",
+                "membership_hash": "8446f7f24253ee34a6dc127e8bd0aa16c9dd3f8225d05e8ab5846c917a81c405",
+                "descendant_count": 2,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_57f58286809da4cbbed985bd0be89fa463a9cb6b8c968329297ac1ae300faf27",
+                  "member_59c798d99771321357f874256f6d9cea2642f62a2cabca0978c92a4d005bec80"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_1caf404f1dd7cc9f6812982f42608b1f377c5de2d800029768ca80ad514b1fb3",
+                "membership_hash": "1caf404f1dd7cc9f6812982f42608b1f377c5de2d800029768ca80ad514b1fb3",
+                "descendant_count": 4,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_a59ba947111c266ea8f3c0aff97b608adbd482d11cb558252a6d9974999b12ef",
+                  "member_c0e9d4d74cc87bf453910d8663c2c140aa2cc576547cb3c1e036d8401776bbdd",
+                  "member_a80dffa9dbfed590aaa62e4fd7022853ef7f7df69916dd9ee82486b828f7418d",
+                  "member_fbd70a46f3f7b7272475379a859ba0e3338c1d81866caa1044323dcbf79c639e"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_6e34b7d103fd85871422401a9f14b3ce9b5f7e456099a127c3f765cb72ccf871",
+                "membership_hash": "6e34b7d103fd85871422401a9f14b3ce9b5f7e456099a127c3f765cb72ccf871",
+                "descendant_count": 2,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_2df711805bfe09252f386331b3c879304671af6c0b1c3c0ae9e5a4ea83b5bb0d",
+                  "member_a8171f94b529e744ba28d5e6016ac79a84c37bbfd39846a642bc8f8e7f653210"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "canonical_node_id": "member_37b1f5fe973615fbdd8188de208b7113e8b8ab8897bc2ada447e888c9df746c4",
+            "membership_hash": "37b1f5fe973615fbdd8188de208b7113e8b8ab8897bc2ada447e888c9df746c4",
+            "descendant_count": 11,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [
+              "member_07baf7d85c63a02c60fa4c83b9fb271a877f1f94d149d98c3a97b239c7071bfc",
+              "member_15c7c536a7ce27783365894a52f03576372d339014c515ad41ad275adac16458",
+              "member_669fa9dc88a738bdc6c6a2e4d9ebbd8980d5472b1eab25b1648f499bf0f36470",
+              "member_a5f873a12f077bc2eb53db6ad2b936e7f53635f25b0eeabf46e266371d31fdfa",
+              "member_a5ea3f58df280ce40db35320e612085bb5e41dcfeaa7655644e52ee061d68e26",
+              "member_9b435716ff3654fd12e216628c4a2d984977d40514349b5a97d3225b22464ad7",
+              "member_3e412cabbd107b23f81cb69d77b28358f2eef435a14676710b892fb118f120ff",
+              "member_fe91455243243ffc7f083b1cbc13d7b573b185f87fd38e6c1cbda07cdf366215",
+              "member_04b1d74fb473979dab0e77f236478f60b942db1e12946dbf3074f4d4cc522287"
+            ],
+            "children": [
+              {
+                "canonical_node_id": "member_551da6a60740f72dc24e03dd73856f57c7d7eb3f30c3d357e24b1cf792da7d64",
+                "membership_hash": "551da6a60740f72dc24e03dd73856f57c7d7eb3f30c3d357e24b1cf792da7d64",
+                "descendant_count": 2,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_bfd4ea11abbb748164fdfc12f644feb835f9eda32e9e72a4e7a5ae2beed2ca7b",
+                  "member_a0283ea41eaa4826228badac2f635a906ad2cce04abe99452d907fe08b514f9a"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "canonical_node_id": "member_fbc2341aad425be9cdfcdccdb6809a209466692536e52c7ba695587c0ea8e56a",
+            "membership_hash": "fbc2341aad425be9cdfcdccdb6809a209466692536e52c7ba695587c0ea8e56a",
+            "descendant_count": 3,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [
+              "member_ed722600651a68c72518b78ea8e634e6a14dc83834c07cb886a6d863acf50a70",
+              "member_841e92af17b4803d0acd28d3336cec6b61d7f69d6a328e87ce4a1c6dfd1d1835",
+              "member_6d987c4b45284858e55c157ce6f0837e313310ecd4b3bbeddbb345bad4fd22d0"
+            ],
+            "children": []
+          },
+          {
+            "canonical_node_id": "member_121a74653ce783f2dc4ab950b3edfbd7909a4ac579da5d9681b404502eda2492",
+            "membership_hash": "121a74653ce783f2dc4ab950b3edfbd7909a4ac579da5d9681b404502eda2492",
+            "descendant_count": 4,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [
+              "member_ac3c68c1ba0add9d4083626d05f12c1fadb6859eaac53f45b471d745817977ae",
+              "member_50fc0d5db45107cee28868155df5871b092d10ea1c5dbaad19755aef7ebff77c",
+              "member_048cdddffa53849432373e00b3669ae134077c52d9f2a9a55ca1df7115b57b8d",
+              "member_08a5c825cf8a4a5f8c87f9ddd7ba2ea998d914b0ecda33c656eb92cfc840c633"
+            ],
+            "children": []
+          },
+          {
+            "canonical_node_id": "member_a1adb684453a6f1a897dd32fe112262a7cd1acde6fa0e8f0efc177811e7fd324",
+            "membership_hash": "a1adb684453a6f1a897dd32fe112262a7cd1acde6fa0e8f0efc177811e7fd324",
+            "descendant_count": 5,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [
+              "member_3b22c8470929b42e8f677fd0795c9aa50e45cc8dc8c8d54f34b9ce1db0883fc3",
+              "member_c3a9667a18032a5d37f33c8412a07f8e175c490a41dca55c35bc294b085a2555",
+              "member_e8b0048130f09f1f66f1e9a3da34b04d198307f96b1c0a6ab3f8560bc1339c86",
+              "member_701b61141649ce2700c6f80206b3dbac9675d4f09e6703169949736c0997ea54",
+              "member_f2b0da0c5884f3474f1010170dfea9cedbc7b3b36a4d1a0d0897bd3987600fa1"
+            ],
+            "children": []
+          },
+          {
+            "canonical_node_id": "member_c5745766382d77d5e473fa8bde9a442622d4bc18d232de6d84b34a7093522bb6",
+            "membership_hash": "c5745766382d77d5e473fa8bde9a442622d4bc18d232de6d84b34a7093522bb6",
+            "descendant_count": 3,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [
+              "member_c5cc345ebaa8752a5f5698346c7b43bcd9c3385406e60374659efbb3d3b71910",
+              "member_81dfd0acebd17e29efda61a711853a0042ad05f8a8c82892c28b91fd1864b067",
+              "member_f2355186b939b563aba4b2b184f6cbf4d015f7c3110430d60ad0cdd3035aa69f"
+            ],
+            "children": []
+          },
+          {
+            "canonical_node_id": "member_c02f2e5c5b5455d068c3893fad5fe85e1ed3283827ed55cbd58482e997536a73",
+            "membership_hash": "c02f2e5c5b5455d068c3893fad5fe85e1ed3283827ed55cbd58482e997536a73",
+            "descendant_count": 5,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [
+              "member_dcfd112ad6bde07c1aa97ff39d12e66d021e00c94abd353e6645d509dfd4713c",
+              "member_9cfb0568ea271956f0481ec90442690c3d583db13014ac903bcd3ba3c5d3da00",
+              "member_1cccebd8a732aad447719237cc786ef91695909a1d70c680bc4a2ad4a65bcbea",
+              "member_fd63db1b92e36c6df8c346e24bbe48dc1e5da6dc3be759c22e96b0cfd7f92bfd",
+              "member_21afd8db1f8502058dd0843147f259dbc79c76812506f002845323d4a978f30c"
+            ],
+            "children": []
+          },
+          {
+            "canonical_node_id": "member_0d291e1308b77a6e438afc456e3e108bfd3f33a4c28640a1ff70669328eb72d3",
+            "membership_hash": "0d291e1308b77a6e438afc456e3e108bfd3f33a4c28640a1ff70669328eb72d3",
+            "descendant_count": 6,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [
+              "member_c3124582dd565075fe49e22722f765a54d9241833cfacfeec7125e733fa38fff",
+              "member_e9d30e12fd76245b3e542622bd29b708244284a95d0dd120063b6153677eea11",
+              "member_d821a9c2a0f14bacde39092ce3162081779fd88efdfcb8f2cdf60ee06d5e88a7",
+              "member_6159e590e4d7c00c57c56c92630653419e359c745ef38388873d8d90d6f0b382",
+              "member_2d65ef48b42657c0467ccbdb4f0a234173da608fc1eb577e00a03cf5d2953c78",
+              "member_93dcac44b2d9fa38380f7c77d5263da92a0a8acca30188ec598c2c2bf14ef362"
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "canonical_node_id": "member_c9cbb05b7b343196e1a3ec63c9aa3855877da88aa61357ad1822fd2324a1aeac",
+        "membership_hash": "c9cbb05b7b343196e1a3ec63c9aa3855877da88aa61357ad1822fd2324a1aeac",
+        "descendant_count": 71,
+        "depth": 1,
+        "cut_value": null,
+        "direct_leaf_node_ids": [],
+        "children": [
+          {
+            "canonical_node_id": "member_a63466cd111b23527afda05b5b108059ed3a349e8a984ab1d1b6df0a522180bd",
+            "membership_hash": "a63466cd111b23527afda05b5b108059ed3a349e8a984ab1d1b6df0a522180bd",
+            "descendant_count": 47,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [],
+            "children": [
+              {
+                "canonical_node_id": "member_4a7c4263c8fb0e2bad99680d18e894e2f0814c950781e5e780da3b572973fcc0",
+                "membership_hash": "4a7c4263c8fb0e2bad99680d18e894e2f0814c950781e5e780da3b572973fcc0",
+                "descendant_count": 14,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_d5b1a4646f7af4be5e058803147c1833b79267d38443dd7970c5255428ca6c94",
+                  "member_150b755e0b81cff74948bfee873dba517ad23a069b30a0f70a9db31687d6869a"
+                ],
+                "children": [
+                  {
+                    "canonical_node_id": "member_9cc0c3115f609b310a4c921249612f77b1e47c5e2d13652a1209f956d8c9f15f",
+                    "membership_hash": "9cc0c3115f609b310a4c921249612f77b1e47c5e2d13652a1209f956d8c9f15f",
+                    "descendant_count": 2,
+                    "depth": 4,
+                    "cut_value": null,
+                    "direct_leaf_node_ids": [
+                      "member_4dbe18a2298129b1b6fb5f23bf882fa20b792d309c48468bdda79fee813810e7",
+                      "member_2b6856e6f9636fb350061f432795ad0688db0799ed4720c2092ab1a0e55eb4a3"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "canonical_node_id": "member_d86202a2a5f237957c799ace1cfdf2e7e48c190ca4614c7118bb6cad26418efd",
+                    "membership_hash": "d86202a2a5f237957c799ace1cfdf2e7e48c190ca4614c7118bb6cad26418efd",
+                    "descendant_count": 4,
+                    "depth": 4,
+                    "cut_value": null,
+                    "direct_leaf_node_ids": [
+                      "member_70506657dde92e8b426e2cd4ba36bc7a3d1e93ee99e598e24f97b4bdf1ae3f17",
+                      "member_f8bd09cf07f85c6f3c1fde67d24dac2178597259e7d2f86781d0d025071f7caa",
+                      "member_3f7dcfa6ea60eb01ffd8fe026e48a946f7de7b165d574156eb7860c8b440a3e1",
+                      "member_d276cc9941cdb891cd64efef708280b69a7200c6dde0d8a1f98f901ca5ad98fe"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "canonical_node_id": "member_e8d573086ce29697fe8ff01ac0ec90b3d3430053cf3eb06086016aa45cb50b42",
+                    "membership_hash": "e8d573086ce29697fe8ff01ac0ec90b3d3430053cf3eb06086016aa45cb50b42",
+                    "descendant_count": 2,
+                    "depth": 4,
+                    "cut_value": null,
+                    "direct_leaf_node_ids": [
+                      "member_0d02c0420f35b8a4e8274a28b0373c8ed585c080c5b35dc8d9158771845f2bbc",
+                      "member_66c9d947807bed70701df69899a6e1198ae9d6495a490656ddba4769c4a9114f"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "canonical_node_id": "member_67a946669b7de07a477d1b05cf72feb19400e080c79888d746f715ed646f4fce",
+                    "membership_hash": "67a946669b7de07a477d1b05cf72feb19400e080c79888d746f715ed646f4fce",
+                    "descendant_count": 2,
+                    "depth": 4,
+                    "cut_value": null,
+                    "direct_leaf_node_ids": [
+                      "member_34acc9ef2f5f35b570d9847b1902e183e7959d615342cf66c2e8432eaf3a7a34",
+                      "member_3da256f33c1ddbc18ef23741c1ffaae4d8ce11138f486e1684095dbace0ef860"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "canonical_node_id": "member_ba71312ec6ae62daee8cf268497a1b77c1832aef231719918dbcd06a52196bab",
+                    "membership_hash": "ba71312ec6ae62daee8cf268497a1b77c1832aef231719918dbcd06a52196bab",
+                    "descendant_count": 2,
+                    "depth": 4,
+                    "cut_value": null,
+                    "direct_leaf_node_ids": [
+                      "member_690a96397bd7129cf343a1f9c1dce4b7a8289b8c5d808b79b31dec6f42a7a434",
+                      "member_2a36a83967cffdf6378d68586e37b90507729be90964d6b734c4176d102890f9"
+                    ],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "canonical_node_id": "member_c6af51dbbff33fa2df5b6a799564cb07c97392d04d273a57c2bc2bd1784ccf33",
+                "membership_hash": "c6af51dbbff33fa2df5b6a799564cb07c97392d04d273a57c2bc2bd1784ccf33",
+                "descendant_count": 12,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_1cd3004e39db2a0d7be8ff550ba5d43b182fdd273e53893da567bb72191f5e16",
+                  "member_64d95318b02fd52edce87a491c395d5abdbc75cb86128c9945edbc17256b22c0"
+                ],
+                "children": [
+                  {
+                    "canonical_node_id": "member_cbca3e1c7e4a8306ef36e1904ba904e8adfba41c62588132efef913c9423d286",
+                    "membership_hash": "cbca3e1c7e4a8306ef36e1904ba904e8adfba41c62588132efef913c9423d286",
+                    "descendant_count": 2,
+                    "depth": 4,
+                    "cut_value": null,
+                    "direct_leaf_node_ids": [
+                      "member_0ccf2ba3dc0c3b208e761b1195d51f35d84e0414439cbb365e97d208cbfd372b",
+                      "member_55e666bc476204c161d65ad675f1be292623c60e77e19b07603feab17886fe1d"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "canonical_node_id": "member_5d11cb4e56bb284a7d89712d7d31d8e893dafb1d2e8552b629c2eca1ba57bd2a",
+                    "membership_hash": "5d11cb4e56bb284a7d89712d7d31d8e893dafb1d2e8552b629c2eca1ba57bd2a",
+                    "descendant_count": 2,
+                    "depth": 4,
+                    "cut_value": null,
+                    "direct_leaf_node_ids": [
+                      "member_c112dcaa420937e0bea5b9c0b143778ba7ebe472d213fe74d5ddeb34a6ca8525",
+                      "member_51460170aa929d2eb8169fa3a79a13ba19b24f5b5f10b613fac43a7d014d3ff2"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "canonical_node_id": "member_3eec0f51d4067ba76f361665284574e64747f38bf9ce7d920daa9731ff05bb12",
+                    "membership_hash": "3eec0f51d4067ba76f361665284574e64747f38bf9ce7d920daa9731ff05bb12",
+                    "descendant_count": 3,
+                    "depth": 4,
+                    "cut_value": null,
+                    "direct_leaf_node_ids": [
+                      "member_97d3b74f900c1ad94a259fe7b8d6d82267c1cf0b3bcf9e0b4ee63197a14b3436",
+                      "member_81f5c795ce6183817b45d2ca02241562041dfcfc96ac99e34f345d51593a1195",
+                      "member_444c9e79d078d6de71c6e3d2e3c60a2c4a40ba3b0d37929bbb065b1e40639529"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "canonical_node_id": "member_6a9281c43098a993562f81d99e59a6a9c0d84adff7077cff7a704d35904cccfe",
+                    "membership_hash": "6a9281c43098a993562f81d99e59a6a9c0d84adff7077cff7a704d35904cccfe",
+                    "descendant_count": 3,
+                    "depth": 4,
+                    "cut_value": null,
+                    "direct_leaf_node_ids": [
+                      "member_3912090acce8365307483071440cd6f26e20142c24d06cb375e7fe056ff4abce",
+                      "member_c7e99f8bd42f91697c476575e632b292b0c84fa58ede4840cc9939462fd7b748",
+                      "member_39dcd35da44326606b59e38a4b5a97f5b06549d9ad9e3aa0b57c9a19865d3a04"
+                    ],
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "canonical_node_id": "member_4bc2aae3e39ce20a1ed027ddfaf086990fc32d4bbbc0e150036b94d83f10a1de",
+                "membership_hash": "4bc2aae3e39ce20a1ed027ddfaf086990fc32d4bbbc0e150036b94d83f10a1de",
+                "descendant_count": 21,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_ff4c86dea179344a2d4a4c3c49107cf19794271fb59fc7804baf5bd7f97c9530"
+                ],
+                "children": [
+                  {
+                    "canonical_node_id": "member_fd70794e3518b95c662477675f15897819280a8aa3520813deb7221d59983433",
+                    "membership_hash": "fd70794e3518b95c662477675f15897819280a8aa3520813deb7221d59983433",
+                    "descendant_count": 17,
+                    "depth": 4,
+                    "cut_value": null,
+                    "direct_leaf_node_ids": [
+                      "member_60dd31ef8d7c613aba490ac99e92c06201a6642aa4eb5544cc75035f7769bf4a",
+                      "member_152e413f9bcf4df46e104124a52ddc2736b42cb4c76ea35510c478f29ca5e212",
+                      "member_e2933c48a64e89092a2f4db660601fc781dc21fcd5a0fdfeab07faf6a8e1fb66",
+                      "member_237b32a340279dd4e4a8aaf6299bc261c35b805d9b4e7e9d72d9066e14a1b45a",
+                      "member_cac4400e61395bbea4bd429f6154d3574de426ff91786a1d3094d7b3d330bfa7"
+                    ],
+                    "children": [
+                      {
+                        "canonical_node_id": "member_f78ebc19532072608a4c1acde4ed7d8f45ec4e708a5c4ecdcb8ebbbd15e53681",
+                        "membership_hash": "f78ebc19532072608a4c1acde4ed7d8f45ec4e708a5c4ecdcb8ebbbd15e53681",
+                        "descendant_count": 4,
+                        "depth": 5,
+                        "cut_value": null,
+                        "direct_leaf_node_ids": [
+                          "member_8638664ac197fdcbaaec343b4cc8c841f09ad028a238f960c820f3cd4e6b12b8",
+                          "member_21f58904f61afc8a383803956961de62aeb0629bddca0b12b51230f938cfa227",
+                          "member_788f39ece18f507e18614288c6c10c04eccb944fa7ddcf8fecfde6db827fa1bf",
+                          "member_df90d7ebe6f29342c173410f1285baf53db027a489859c0f9caa1720f14bbf57"
+                        ],
+                        "children": []
+                      },
+                      {
+                        "canonical_node_id": "member_6c4f496388eee8141efbcf869693ea63d29d621b9b0df2586bbddbcb1b811dbb",
+                        "membership_hash": "6c4f496388eee8141efbcf869693ea63d29d621b9b0df2586bbddbcb1b811dbb",
+                        "descendant_count": 2,
+                        "depth": 5,
+                        "cut_value": null,
+                        "direct_leaf_node_ids": [
+                          "member_20739b4d07270ea9eb519afe48acc197c66057a770b29e0ba844ce8cd2e51175",
+                          "member_f66e1b133c08b6f1ade99d1798547a8dd9f046bb5d692fd8a0d0d841a22740ae"
+                        ],
+                        "children": []
+                      },
+                      {
+                        "canonical_node_id": "member_6d219e606557237ad155bbe702b61df21180e0b5a901fe9221d9370a232a066a",
+                        "membership_hash": "6d219e606557237ad155bbe702b61df21180e0b5a901fe9221d9370a232a066a",
+                        "descendant_count": 4,
+                        "depth": 5,
+                        "cut_value": null,
+                        "direct_leaf_node_ids": [
+                          "member_f30053ab58ead8b41734b19170fd38f4b14378fa504bcb5f7f1917b793197c6e",
+                          "member_7965bc5aa86a6a17351249758bf611145b4a574fa5fd940fb76b4bc3a3e5fb2f",
+                          "member_bcd4ed9f36c1710b04a09f9e79a286b8a115a8b47548405b2b3a544504030e30",
+                          "member_a0e15c0cefaf579c21c5ff8ebf6481d0bbba899f7f05bb503dac3a863a3b894d"
+                        ],
+                        "children": []
+                      },
+                      {
+                        "canonical_node_id": "member_d441f8599e5d5bb35be55876d5e1020e43917a89593f31e6d15081d8b87de635",
+                        "membership_hash": "d441f8599e5d5bb35be55876d5e1020e43917a89593f31e6d15081d8b87de635",
+                        "descendant_count": 2,
+                        "depth": 5,
+                        "cut_value": null,
+                        "direct_leaf_node_ids": [
+                          "member_f611f42beaf677434afa59375857c667f1c13610d3a770bf7305a5cc78b312c1",
+                          "member_d4254f7962382351b6bf3a9385f385612f12523da7611113715bd190bb96935c"
+                        ],
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "canonical_node_id": "member_3d14ecaf3e4a5dc8f34d92fc473b332e1256d5ce26b4ea6e13006854fc9a9d82",
+                    "membership_hash": "3d14ecaf3e4a5dc8f34d92fc473b332e1256d5ce26b4ea6e13006854fc9a9d82",
+                    "descendant_count": 3,
+                    "depth": 4,
+                    "cut_value": null,
+                    "direct_leaf_node_ids": [
+                      "member_6c531e3b8e5e0ed6207d1be936bb6567d14b5c1820b04b8eb70da9787deac5d4",
+                      "member_74b5932497c0e61e040352ecca136109726b853572494881230f4bc8d165a919",
+                      "member_7ff11bbd9abb9cae50fb36935ff2961ca12932713c30991d3f2272ff79be7a7e"
+                    ],
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "canonical_node_id": "member_3818f82c11820ff7017e12c1feeb84e4d8bff587ef44830c7ea06c2bc0335cf5",
+            "membership_hash": "3818f82c11820ff7017e12c1feeb84e4d8bff587ef44830c7ea06c2bc0335cf5",
+            "descendant_count": 15,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [],
+            "children": [
+              {
+                "canonical_node_id": "member_9f8a51b09428baa6e82a7d47192613933e0c3b5d4349bbb7596eaa268ae23df0",
+                "membership_hash": "9f8a51b09428baa6e82a7d47192613933e0c3b5d4349bbb7596eaa268ae23df0",
+                "descendant_count": 3,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_3d9e82db4bcace8d0d0920f1f11dc4ea1ef7227a84711706a9b94c2c878fed2f",
+                  "member_f9d5490d2bfec8bfc03f1cfcda4140189f5b6f2e67266c10349e71075acd5a0a",
+                  "member_f99ed44afed5960cd163ea49674a3ef6662c64039298680ae0388a6c0e4431f8"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_9fc38ce78665ff8f791eb9594942f07f90658e166fa52fc4b12c13143f5e54e3",
+                "membership_hash": "9fc38ce78665ff8f791eb9594942f07f90658e166fa52fc4b12c13143f5e54e3",
+                "descendant_count": 6,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_b746cf27c43f7c26b59d5c71e41318d8d95d191ff5fd733d80780ea0c52e2834",
+                  "member_34533973bda3160be1c37a4fefc0a1b32b2be73d109258a11224e92845be209d",
+                  "member_a26b8c05b4144e60e561917eb6868c201eef982b7f3a7294a8f4c6b61d87012c",
+                  "member_731de0e3072321e08b98ab186751c6ca48861f2221c7a02229bdf5454abe1775",
+                  "member_6aa1d6690ae42100dfd67e3256bb243b130acefa613247f09b872c46095540cc",
+                  "member_ee36b5b6498d09b630a1d48e0a3f9188e9b35c8349d6da8a749827b9ad246f30"
+                ],
+                "children": []
+              },
+              {
+                "canonical_node_id": "member_37d863b4c3c3600d82551b70991b26b83a7df63bc0cc9fce379c38bd5fa68645",
+                "membership_hash": "37d863b4c3c3600d82551b70991b26b83a7df63bc0cc9fce379c38bd5fa68645",
+                "descendant_count": 6,
+                "depth": 3,
+                "cut_value": null,
+                "direct_leaf_node_ids": [
+                  "member_5cd8ac7f06f10d5744f278692500781facc0200d40e3f4d1a08a01a2756ff303",
+                  "member_22986b098df2647a2bda4a6d932a3620affb34fbb1c1af4a98ec48f450728cc4",
+                  "member_f9b84daf4e1b808fd8e062fa92a281c338539ee9780c1d3072f8f3c409125cac",
+                  "member_48aeedf8146f7f168bc7b2cf0d40113494a9bf1940e5d963c5089895b1eab6a2",
+                  "member_121e1b8be0a4e6726c209c0d0fe1e0af11f4e998a54ac21a7f610c71d0d4db16",
+                  "member_95a7b82b9fb57a81d04dba921315ab74eab7f9582b0c51d0f6877b58d9850ad6"
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "canonical_node_id": "member_945a80c944f01f462c086d8ce0f624ec6566e0c9d8b2b112611d37f1756c4729",
+            "membership_hash": "945a80c944f01f462c086d8ce0f624ec6566e0c9d8b2b112611d37f1756c4729",
+            "descendant_count": 9,
+            "depth": 2,
+            "cut_value": null,
+            "direct_leaf_node_ids": [
+              "member_6604727807c03ba5f67a83388f9e13b7c574318323f1997df513c364683c0dc8",
+              "member_0897ca6080d5d53f291e4637c6709e605006194a47460322aa896f218ca72139",
+              "member_bec452f2ed4bdee75bf5e162c52c5d32f67e2e537d24b811df695c24af452cfa",
+              "member_91e2fb3c7a235a13f5123b73e92b201481a3d3b3ebd781e55e6ee196ed76131b",
+              "member_22b2b4fb8e6ab3d7b2ecda861b1d4a22ff9180f7ad619f53b229e62bc8fc9fd2",
+              "member_990cfad66ec0f49bdaddeac4591fdee2b361e8d5af8f550422805786fc0db6e6",
+              "member_c7434f9d167b6233f19a7de52a16947a29558d9216aff6e1035266b3cd1e793a",
+              "member_9597b2b3c1ccf5042b9ca4225040cf7503e23c2150bd4d4a316bc509a8f4e537",
+              "member_37188202871207002a6908932bd9f59f3042de75bf92595c975e4deb4142ac93"
+            ],
+            "children": []
+          }
+        ]
+      }
+    ]
+  }
+}

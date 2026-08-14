@@ -1,0 +1,36 @@
+{
+  "document_count": 457,
+  "document_schema_version": "orchard_document_v1",
+  "metadata": {
+    "label_set": "phase5a_intrinsic",
+    "notes": "hydrated from phase5a labeled trees + phase3b matrices; labels imported not regenerated",
+    "source": "appworld"
+  },
+  "schema_version": "orchard_artifact_v1",
+  "tree_ids": [
+    "domain",
+    "function"
+  ],
+  "trees": [
+    {
+      "active_label_set": "phase5a_intrinsic",
+      "label_sets": [
+        "phase5a_intrinsic"
+      ],
+      "leaf_count": 457,
+      "method": "average",
+      "root_node_id": "member_fa955a31c93e0faf46e743098371cfff7a6519c28c4a43755e04d435614d6b02",
+      "tree_id": "domain"
+    },
+    {
+      "active_label_set": "phase5a_intrinsic",
+      "label_sets": [
+        "phase5a_intrinsic"
+      ],
+      "leaf_count": 457,
+      "method": "average",
+      "root_node_id": "member_fa955a31c93e0faf46e743098371cfff7a6519c28c4a43755e04d435614d6b02",
+      "tree_id": "function"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "cut_optimizer": "calinski_harabasz_score",
+  "cut_polarity": 1,
+  "feature_matrix": "matching phase3b profile, row-aligned to linkage item_ids; square matrices also column-permuted",
+  "label_set": "phase5a_intrinsic",
+  "max_depth": 5,
+  "max_width": 10,
+  "min_width": 3,
+  "root_overrides": {
+    "domain": "domain",
+    "function": "function"
+  },
+  "sources": {
+    "tools_jsonl": "tool-tree-demo/artifacts/appworld/run-a/tools.jsonl",
+    "trees": {
+      "domain": {
+        "labeled_json": "tool-tree-demo/artifacts/appworld/phase5a/trees/domain_dominant_variance_calibrated/intrinsic_labeled_tree.json",
+        "npz": "tool-tree-demo/artifacts/appworld/phase3b/profiles/domain_dominant_variance_calibrated.npz"
+      },
+      "function": {
+        "labeled_json": "tool-tree-demo/artifacts/appworld/phase5a/trees/functional_dominant_raw_convex/intrinsic_labeled_tree.json",
+        "npz": "tool-tree-demo/artifacts/appworld/phase3b/profiles/functional_dominant_raw_convex.npz"
+      }
+    }
+  },
+  "target_width": null,
+  "threshold_steps": 32,
+  "top_criterion": "optimal",
+  "trees": {
+    "domain": {
+      "aligned_shape": [
+        457,
+        457
+      ],
+      "internals_missing_label": 0,
+      "top_partition_count": 9,
+      "warnings": []
+    },
+    "function": {
+      "aligned_shape": [
+        457,
+        457
+      ],
+      "internals_missing_label": 0,
+      "top_partition_count": 3,
+      "warnings": []
+    }
+  }
+}
