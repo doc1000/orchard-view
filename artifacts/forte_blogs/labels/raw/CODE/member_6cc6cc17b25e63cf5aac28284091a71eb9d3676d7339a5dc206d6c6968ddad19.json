@@ -1,0 +1,10 @@
+{
+  "node_id": "member_6cc6cc17b25e63cf5aac28284091a71eb9d3676d7339a5dc206d6c6968ddad19",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Digital Project Management Frameworks",
+  "raw_text": "Digital Project Management Frameworks",
+  "usage": {
+    "prompt_tokens": 87,
+    "completion_tokens": 5
+  }
+}

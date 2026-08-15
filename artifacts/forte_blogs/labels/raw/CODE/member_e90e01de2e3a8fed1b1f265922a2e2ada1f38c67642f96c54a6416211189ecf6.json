@@ -1,0 +1,10 @@
+{
+  "node_id": "member_e90e01de2e3a8fed1b1f265922a2e2ada1f38c67642f96c54a6416211189ecf6",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Second Brain Summits and Events",
+  "raw_text": "Second Brain Summits and Events",
+  "usage": {
+    "prompt_tokens": 244,
+    "completion_tokens": 6
+  }
+}

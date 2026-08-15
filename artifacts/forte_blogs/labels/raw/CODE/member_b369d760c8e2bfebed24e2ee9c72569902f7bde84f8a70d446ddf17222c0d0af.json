@@ -1,0 +1,10 @@
+{
+  "node_id": "member_b369d760c8e2bfebed24e2ee9c72569902f7bde84f8a70d446ddf17222c0d0af",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Productivity Tools and Techniques",
+  "raw_text": "Productivity Tools and Techniques",
+  "usage": {
+    "prompt_tokens": 85,
+    "completion_tokens": 5
+  }
+}

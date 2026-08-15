@@ -1,0 +1,10 @@
+{
+  "node_id": "member_8e22129f6d8ecac8fb0aa55085001820bcc482d15dc2b4bad1484034bd77efc9",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Creative Knowledge Management",
+  "raw_text": "Creative Knowledge Management",
+  "usage": {
+    "prompt_tokens": 134,
+    "completion_tokens": 3
+  }
+}

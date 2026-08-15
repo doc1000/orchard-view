@@ -1,0 +1,10 @@
+{
+  "node_id": "member_cf9ab7ac8221e19588caf930e293217970800b686daeb512ae8f5ee8b74ff221",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Sustainable Business Growth",
+  "raw_text": "Sustainable Business Growth",
+  "usage": {
+    "prompt_tokens": 84,
+    "completion_tokens": 4
+  }
+}

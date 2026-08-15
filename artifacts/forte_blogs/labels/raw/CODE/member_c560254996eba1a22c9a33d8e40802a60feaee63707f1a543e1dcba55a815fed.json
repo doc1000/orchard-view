@@ -1,0 +1,10 @@
+{
+  "node_id": "member_c560254996eba1a22c9a33d8e40802a60feaee63707f1a543e1dcba55a815fed",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Agile Productivity Frameworks",
+  "raw_text": "Agile Productivity Frameworks",
+  "usage": {
+    "prompt_tokens": 109,
+    "completion_tokens": 5
+  }
+}

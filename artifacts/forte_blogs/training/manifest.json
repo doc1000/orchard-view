@@ -1,0 +1,321 @@
+{
+  "document_count": 279,
+  "training_item_count": 45,
+  "items": [
+    {
+      "item_id": "seed.capture.0",
+      "label": "capture",
+      "source": "yaml_chunk",
+      "path": null,
+      "heading": null
+    },
+    {
+      "item_id": "seed.capture.1",
+      "label": "capture",
+      "source": "yaml_chunk",
+      "path": null,
+      "heading": null
+    },
+    {
+      "item_id": "seed.capture.2",
+      "label": "capture",
+      "source": "yaml_chunk",
+      "path": null,
+      "heading": null
+    },
+    {
+      "item_id": "seed.capture.3",
+      "label": "capture",
+      "source": "yaml_chunk",
+      "path": null,
+      "heading": null
+    },
+    {
+      "item_id": "seed.capture.4",
+      "label": "capture",
+      "source": "yaml_chunk",
+      "path": null,
+      "heading": null
+    },
+    {
+      "item_id": "seed.organize.0",
+      "label": "organize",
+      "source": "yaml_chunk",
+      "path": null,
+      "heading": null
+    },
+    {
+      "item_id": "seed.organize.1",
+      "label": "organize",
+      "source": "yaml_chunk",
+      "path": null,
+      "heading": null
+    },
+    {
+      "item_id": "seed.organize.2",
+      "label": "organize",
+      "source": "yaml_chunk",
+      "path": null,
+      "heading": null
+    },
+    {
+      "item_id": "seed.organize.3",
+      "label": "organize",
+      "source": "yaml_chunk",
+      "path": null,
+      "heading": null
+    },
+    {
+      "item_id": "seed.organize.4",
+      "label": "organize",
+      "source": "yaml_chunk",
+      "path": null,
+      "heading": null
+    },
+    {
+      "item_id": "seed.distill.0",
+      "label": "distill",
+      "source": "yaml_chunk",
+      "path": null,
+      "heading": null
+    },
+    {
+      "item_id": "seed.distill.1",
+      "label": "distill",
+      "source": "yaml_chunk",
+      "path": null,
+      "heading": null
+    },
+    {
+      "item_id": "seed.distill.2",
+      "label": "distill",
+      "source": "yaml_chunk",
+      "path": null,
+      "heading": null
+    },
+    {
+      "item_id": "seed.distill.3",
+      "label": "distill",
+      "source": "yaml_chunk",
+      "path": null,
+      "heading": null
+    },
+    {
+      "item_id": "seed.distill.4",
+      "label": "distill",
+      "source": "yaml_chunk",
+      "path": null,
+      "heading": null
+    },
+    {
+      "item_id": "seed.express.0",
+      "label": "express",
+      "source": "yaml_chunk",
+      "path": null,
+      "heading": null
+    },
+    {
+      "item_id": "seed.express.1",
+      "label": "express",
+      "source": "yaml_chunk",
+      "path": null,
+      "heading": null
+    },
+    {
+      "item_id": "seed.express.2",
+      "label": "express",
+      "source": "yaml_chunk",
+      "path": null,
+      "heading": null
+    },
+    {
+      "item_id": "seed.express.3",
+      "label": "express",
+      "source": "yaml_chunk",
+      "path": null,
+      "heading": null
+    },
+    {
+      "item_id": "seed.express.4",
+      "label": "express",
+      "source": "yaml_chunk",
+      "path": null,
+      "heading": null
+    },
+    {
+      "item_id": "0002-finding-alpha-what-8217-s-worth-consuming-in-the-age-of-ai.h2.changing-your-information-consumption-and-capture",
+      "label": "capture",
+      "source": "heading_section",
+      "path": "posts/0002-finding-alpha-what-8217-s-worth-consuming-in-the-age-of-ai.md",
+      "heading": "Changing your information consumption and capture"
+    },
+    {
+      "item_id": "0013-launching-building-a-second-brain-in-brazil-and-mexico.h3.stage-2-capture-the-excitement-in-the-new",
+      "label": "capture",
+      "source": "heading_section",
+      "path": "posts/0013-launching-building-a-second-brain-in-brazil-and-mexico.md",
+      "heading": "Stage 2: Capture the excitement in the new Instagram and WhatsApp accounts"
+    },
+    {
+      "item_id": "0015-the-ultimate-guide-to-storing-managing-and-enjoying-your-photos.h2.how-to-organize-your-photos",
+      "label": "organize",
+      "source": "heading_section",
+      "path": "posts/0015-the-ultimate-guide-to-storing-managing-and-enjoying-your-photos.md",
+      "heading": "How to organize your photos"
+    },
+    {
+      "item_id": "0021-organize-your-bookmarks-with-the-para-method-for-lightning-fast-web-browsing.h1.organize-your-bookmarks-with-the-para-method-for",
+      "label": "organize",
+      "source": "heading_section",
+      "path": "posts/0021-organize-your-bookmarks-with-the-para-method-for-lightning-fast-web-browsing.md",
+      "heading": "Organize Your Bookmarks with the PARA Method for Lightning Fast Web Browsing"
+    },
+    {
+      "item_id": "0027-building-a-second-brain-the-definitive-introductory-guide.h2.capture-only-the-most-important-information",
+      "label": "capture",
+      "source": "heading_section",
+      "path": "posts/0027-building-a-second-brain-the-definitive-introductory-guide.md",
+      "heading": "Capture only the most important information"
+    },
+    {
+      "item_id": "0027-building-a-second-brain-the-definitive-introductory-guide.h3.utilize-capture-tools",
+      "label": "capture",
+      "source": "heading_section",
+      "path": "posts/0027-building-a-second-brain-the-definitive-introductory-guide.md",
+      "heading": "Utilize capture tools"
+    },
+    {
+      "item_id": "0027-building-a-second-brain-the-definitive-introductory-guide.h2.organize-for-actionability",
+      "label": "organize",
+      "source": "heading_section",
+      "path": "posts/0027-building-a-second-brain-the-definitive-introductory-guide.md",
+      "heading": "Organize for actionability"
+    },
+    {
+      "item_id": "0027-building-a-second-brain-the-definitive-introductory-guide.h3.distill-opportunistically-a-little-bit-at-a-time",
+      "label": "distill",
+      "source": "heading_section",
+      "path": "posts/0027-building-a-second-brain-the-definitive-introductory-guide.md",
+      "heading": "Distill opportunistically, a little bit at a time"
+    },
+    {
+      "item_id": "0027-building-a-second-brain-the-definitive-introductory-guide.h2.express-your-unique-ideas-and-experiences",
+      "label": "express",
+      "source": "heading_section",
+      "path": "posts/0027-building-a-second-brain-the-definitive-introductory-guide.md",
+      "heading": "Express your unique ideas and experiences"
+    },
+    {
+      "item_id": "0031-the-para-method-the-simple-system-for-organizing-your-digital-life-in-seconds.h2.can-ai-organize-your-files-according-to-para",
+      "label": "organize",
+      "source": "heading_section",
+      "path": "posts/0031-the-para-method-the-simple-system-for-organizing-your-digital-life-in-seconds.md",
+      "heading": "Can AI Organize Your Files According to PARA?"
+    },
+    {
+      "item_id": "0037-how-to-capture-ideas-like-a-pro-the-pinkcast.h1.how-to-capture-ideas-like-a-pro-the",
+      "label": "capture",
+      "source": "heading_section",
+      "path": "posts/0037-how-to-capture-ideas-like-a-pro-the-pinkcast.md",
+      "heading": "How to Capture Ideas Like a Pro | The Pinkcast"
+    },
+    {
+      "item_id": "0039-building-a-second-brain-to-organize-your-digital-life-all-the-hacks-podcast.h1.building-a-second-brain-to-organize-your-digital",
+      "label": "organize",
+      "source": "heading_section",
+      "path": "posts/0039-building-a-second-brain-to-organize-your-digital-life-all-the-hacks-podcast.md",
+      "heading": "Building a Second Brain to Organize Your Digital Life | All the Hacks Podcast"
+    },
+    {
+      "item_id": "0071-how-to-organize-your-life-ali-abdaal.h1.how-to-organize-your-life-ali-abdaal",
+      "label": "organize",
+      "source": "heading_section",
+      "path": "posts/0071-how-to-organize-your-life-ali-abdaal.md",
+      "heading": "How to Organize Your Life | Ali Abdaal"
+    },
+    {
+      "item_id": "0078-how-to-organize-the-creative-process-nobody-told-me-podcast.h1.how-to-organize-the-creative-process-nobody-told",
+      "label": "organize",
+      "source": "heading_section",
+      "path": "posts/0078-how-to-organize-the-creative-process-nobody-told-me-podcast.md",
+      "heading": "How to Organize the Creative Process | Nobody Told Me! Podcast"
+    },
+    {
+      "item_id": "0089-12-steps-to-build-a-second-brain.h2.1-decide-what-you-want-to-capture",
+      "label": "capture",
+      "source": "heading_section",
+      "path": "posts/0089-12-steps-to-build-a-second-brain.md",
+      "heading": "**1. Decide what you want to capture**"
+    },
+    {
+      "item_id": "0089-12-steps-to-build-a-second-brain.h2.3-choose-a-capture-tool",
+      "label": "capture",
+      "source": "heading_section",
+      "path": "posts/0089-12-steps-to-build-a-second-brain.md",
+      "heading": "**3. Choose a capture tool**"
+    },
+    {
+      "item_id": "0089-12-steps-to-build-a-second-brain.h2.6-automatically-capture-your-ebook-highlights",
+      "label": "capture",
+      "source": "heading_section",
+      "path": "posts/0089-12-steps-to-build-a-second-brain.md",
+      "heading": "**6. Automatically capture your ebook highlights**"
+    },
+    {
+      "item_id": "0141-why-i-organize-areas-in-para-with-a-taxonomy-of-functional-areas.h1.why-i-organize-areas-in-para-with-a",
+      "label": "organize",
+      "source": "heading_section",
+      "path": "posts/0141-why-i-organize-areas-in-para-with-a-taxonomy-of-functional-areas.md",
+      "heading": "Why I Organize Areas in PARA with a Taxonomy of Functional Areas"
+    },
+    {
+      "item_id": "0144-the-ultimate-guide-to-summarizing-books-how-to-distill-ideas-to-accelerate-your-learning.h1.the-ultimate-guide-to-summarizing-books-how-to",
+      "label": "distill",
+      "source": "heading_section",
+      "path": "posts/0144-the-ultimate-guide-to-summarizing-books-how-to-distill-ideas-to-accelerate-your-learning.md",
+      "heading": "The Ultimate Guide to Summarizing Books: How to Distill Ideas to Accelerate Your Learning"
+    },
+    {
+      "item_id": "0168-how-to-take-smart-notes-10-principles-to-revolutionize-your-note-taking-and-writing.h2.principle-8-organize-your-notes-by-context-not",
+      "label": "organize",
+      "source": "heading_section",
+      "path": "posts/0168-how-to-take-smart-notes-10-principles-to-revolutionize-your-note-taking-and-writing.md",
+      "heading": "Principle #8: Organize your notes by context, not by topic"
+    },
+    {
+      "item_id": "0190-the-10-principles-of-building-a-second-brain.h2.2-the-capture-habit",
+      "label": "capture",
+      "source": "heading_section",
+      "path": "posts/0190-the-10-principles-of-building-a-second-brain.md",
+      "heading": "2. The Capture Habit"
+    },
+    {
+      "item_id": "0202-using-notion-as-your-second-brain.h2.deal-breaker-1-quick-capture-and-editing-yes",
+      "label": "capture",
+      "source": "heading_section",
+      "path": "posts/0202-using-notion-as-your-second-brain.md",
+      "heading": "Deal Breaker #1: Quick capture and editing (Yes)"
+    },
+    {
+      "item_id": "0202-using-notion-as-your-second-brain.h2.must-have-8-many-ways-to-capture-information",
+      "label": "capture",
+      "source": "heading_section",
+      "path": "posts/0202-using-notion-as-your-second-brain.md",
+      "heading": "Must-have #8: Many ways to capture information (it depends)"
+    },
+    {
+      "item_id": "0231-the-essential-requirements-for-choosing-a-notes-app-as-your-second-brain.h2.8-many-ways-to-capture-information",
+      "label": "capture",
+      "source": "heading_section",
+      "path": "posts/0231-the-essential-requirements-for-choosing-a-notes-app-as-your-second-brain.md",
+      "heading": "8. Many ways to capture information"
+    },
+    {
+      "item_id": "0235-progressive-summarization-vi-core-principles-of-knowledge-capture.h1.progressive-summarization-vi-core-principles-of-knowledge-capture",
+      "label": "capture",
+      "source": "heading_section",
+      "path": "posts/0235-progressive-summarization-vi-core-principles-of-knowledge-capture.md",
+      "heading": "Progressive Summarization VI: Core Principles of Knowledge Capture"
+    }
+  ]
+}

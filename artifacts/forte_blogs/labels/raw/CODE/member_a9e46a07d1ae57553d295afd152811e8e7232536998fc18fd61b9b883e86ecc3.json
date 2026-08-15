@@ -1,0 +1,10 @@
+{
+  "node_id": "member_a9e46a07d1ae57553d295afd152811e8e7232536998fc18fd61b9b883e86ecc3",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Cognitive Productivity Techniques",
+  "raw_text": "Cognitive Productivity Techniques",
+  "usage": {
+    "prompt_tokens": 102,
+    "completion_tokens": 4
+  }
+}

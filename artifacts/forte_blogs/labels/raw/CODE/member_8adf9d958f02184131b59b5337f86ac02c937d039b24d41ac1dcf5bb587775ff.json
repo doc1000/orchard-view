@@ -1,0 +1,10 @@
+{
+  "node_id": "member_8adf9d958f02184131b59b5337f86ac02c937d039b24d41ac1dcf5bb587775ff",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Second Brain Development Updates",
+  "raw_text": "Second Brain Development Updates",
+  "usage": {
+    "prompt_tokens": 192,
+    "completion_tokens": 4
+  }
+}

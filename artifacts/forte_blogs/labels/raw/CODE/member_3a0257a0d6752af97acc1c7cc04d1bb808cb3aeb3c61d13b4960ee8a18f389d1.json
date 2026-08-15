@@ -1,0 +1,10 @@
+{
+  "node_id": "member_3a0257a0d6752af97acc1c7cc04d1bb808cb3aeb3c61d13b4960ee8a18f389d1",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Writing and Publishing Insights",
+  "raw_text": "Writing and Publishing Insights",
+  "usage": {
+    "prompt_tokens": 378,
+    "completion_tokens": 4
+  }
+}

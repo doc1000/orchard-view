@@ -1,0 +1,10 @@
+{
+  "node_id": "member_1cd141bcd2e914a1018a1cf7a3718524ae694fc0f1867a10096b89c208eb0eda",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Organizational Knowledge Management",
+  "raw_text": "Organizational Knowledge Management",
+  "usage": {
+    "prompt_tokens": 124,
+    "completion_tokens": 5
+  }
+}

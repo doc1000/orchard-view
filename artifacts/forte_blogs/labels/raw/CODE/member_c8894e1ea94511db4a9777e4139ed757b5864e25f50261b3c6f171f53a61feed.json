@@ -1,0 +1,10 @@
+{
+  "node_id": "member_c8894e1ea94511db4a9777e4139ed757b5864e25f50261b3c6f171f53a61feed",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Digital Knowledge Management",
+  "raw_text": "Digital Knowledge Management",
+  "usage": {
+    "prompt_tokens": 140,
+    "completion_tokens": 3
+  }
+}

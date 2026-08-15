@@ -1,0 +1,49 @@
+{
+  "document_count": 279,
+  "document_schema_version": "orchard_document_v1",
+  "metadata": {
+    "builder": {
+      "embedding_backend": "TfidfEmbeddingBackend",
+      "include_semantic_with_taxonomies": true,
+      "linkage_method": "average",
+      "metadata": {
+        "label_set": "gpt41mini",
+        "source": "forte_blogs"
+      },
+      "semantic_signed_cosine": false,
+      "taxonomies": [
+        "CODE"
+      ],
+      "taxonomy_similarity": "jensen_shannon"
+    },
+    "label_set": "gpt41mini",
+    "source": "forte_blogs"
+  },
+  "schema_version": "orchard_artifact_v1",
+  "tree_ids": [
+    "CODE",
+    "semantic"
+  ],
+  "trees": [
+    {
+      "active_label_set": "gpt41mini",
+      "label_sets": [
+        "gpt41mini"
+      ],
+      "leaf_count": 279,
+      "method": "average",
+      "root_node_id": "member_9d66c7a645a8127206a5bd2e006df084fad58c5b80c47ffd75d5622b37d07822",
+      "tree_id": "CODE"
+    },
+    {
+      "active_label_set": "gpt41mini",
+      "label_sets": [
+        "gpt41mini"
+      ],
+      "leaf_count": 279,
+      "method": "average",
+      "root_node_id": "member_9d66c7a645a8127206a5bd2e006df084fad58c5b80c47ffd75d5622b37d07822",
+      "tree_id": "semantic"
+    }
+  ]
+}

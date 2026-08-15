@@ -1,0 +1,10 @@
+{
+  "node_id": "member_f7c2fb28ee08b22fb142a1cf0841c64edb264b96ec3139de7fdc3206319a5ab6",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Digital Productivity Systems",
+  "raw_text": "Digital Productivity Systems",
+  "usage": {
+    "prompt_tokens": 92,
+    "completion_tokens": 3
+  }
+}

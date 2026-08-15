@@ -1,0 +1,75 @@
+{
+  "label_order": [
+    "capture",
+    "organize",
+    "distill",
+    "express"
+  ],
+  "labels": [
+    {
+      "cues": [
+        "save",
+        "clip",
+        "record",
+        "note",
+        "photograph",
+        "bookmark",
+        "jot",
+        "down"
+      ],
+      "definition": "Capture is the selective intake of information judged worth retaining. It includes noticing, collecting, recording, clipping, saving, or otherwise bringing potentially valuable material into a trusted system. The emphasis is on deciding what deserves attention and preserving it before it is lost.",
+      "label_id": "capture",
+      "name": "Capture"
+    },
+    {
+      "cues": [
+        "file",
+        "move",
+        "group",
+        "associate",
+        "tag",
+        "link",
+        "sort",
+        "assign"
+      ],
+      "definition": "Organize is the placement of captured information into useful context so it can be found and applied when needed. It emphasizes actionability, association, and retrieval rather than abstract subject classification. Organizing changes the context or location of information more than its substantive content.",
+      "label_id": "organize",
+      "name": "Organize"
+    },
+    {
+      "cues": [
+        "highlight",
+        "summarize",
+        "extract",
+        "condense",
+        "emphasize",
+        "synthesize",
+        "rank"
+      ],
+      "definition": "Distill is the reduction of retained information to its most relevant, useful, or essential elements. It includes highlighting, summarizing, compressing, extracting key claims, and progressively surfacing signal from a larger body of material. The goal is to make the essence easier to perceive and reuse without rereading everything.",
+      "label_id": "distill",
+      "name": "Distill"
+    },
+    {
+      "cues": [
+        "write",
+        "publish",
+        "present",
+        "teach",
+        "build",
+        "decide",
+        "send",
+        "create",
+        "ship"
+      ],
+      "definition": "Express is the conversion of accumulated knowledge into a tangible outcome. It includes writing, publishing, presenting, deciding, building, teaching, creating, or otherwise applying what has been captured, organized, and distilled. The defining feature is that knowledge leaves the private repository and becomes useful through action or communication.",
+      "label_id": "express",
+      "name": "Express"
+    }
+  ],
+  "name": "CODE",
+  "provenance": "Converted from artifacts/forte_blogs/code_taxonomy_seed.yaml (Tiago Forte CODE; cues from typical-action phrases)",
+  "schema_version": "orchard_taxonomy_definition_v1",
+  "structure": "flat",
+  "taxonomy_version": "orchard_taxonomy_v1"
+}

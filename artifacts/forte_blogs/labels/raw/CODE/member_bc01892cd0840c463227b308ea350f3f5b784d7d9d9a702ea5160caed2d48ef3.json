@@ -1,0 +1,10 @@
+{
+  "node_id": "member_bc01892cd0840c463227b308ea350f3f5b784d7d9d9a702ea5160caed2d48ef3",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Second Brain Methodology Updates",
+  "raw_text": "Second Brain Methodology Updates",
+  "usage": {
+    "prompt_tokens": 107,
+    "completion_tokens": 5
+  }
+}

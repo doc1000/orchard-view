@@ -1,0 +1,10 @@
+{
+  "node_id": "member_332c9930c5481ecda1aebd06832692107eca6ce4d1e0327cfdd51aea9dcfd7b2",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Second Brain AI Integration",
+  "raw_text": "Second Brain AI Integration",
+  "usage": {
+    "prompt_tokens": 371,
+    "completion_tokens": 4
+  }
+}

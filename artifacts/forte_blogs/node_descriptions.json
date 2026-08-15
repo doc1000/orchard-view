@@ -1,0 +1,370 @@
+{
+  "semantic": {
+    "member_9d66c7a645a8127206a5bd2e006df084fad58c5b80c47ffd75d5622b37d07822": {
+      "label": "semantic",
+      "descendant_count": 279
+    },
+    "member_410a509178c88290eb8220a7b6c6fc0b11606067cfd8630280ead13bfd1b70ad": {
+      "label": "Second Brain AI Integration",
+      "descendant_count": 277
+    },
+    "member_77e0057c6f52a81b582f02026241fd13bf78cd5e7fffcfb5a700a6dcc00b3469": {
+      "label": "Second Brain Development Updates",
+      "descendant_count": 275
+    },
+    "member_8e210b17f593dcc6fb0e7abeb4a3a4019edbe0f681a69d1ef0f0be891a94f393": {
+      "label": "Second Brain AI Integration",
+      "descendant_count": 273
+    },
+    "member_332c9930c5481ecda1aebd06832692107eca6ce4d1e0327cfdd51aea9dcfd7b2": {
+      "label": "Second Brain AI Integration",
+      "descendant_count": 270
+    },
+    "member_e8d743baea375f9a3f2980870a39a701e450f13302e87220f51f4b3fbdd78982": {
+      "label": "Second Brain Development Updates",
+      "descendant_count": 187
+    },
+    "member_1ccc55d93edfbf9a529e251dd4b19683b17855e36d579e12c27900a5d8418607": {
+      "label": "Second Brain Foundations",
+      "descendant_count": 77
+    }
+  },
+  "CODE": {
+    "member_9d66c7a645a8127206a5bd2e006df084fad58c5b80c47ffd75d5622b37d07822": {
+      "label": "CODE",
+      "descendant_count": 279
+    },
+    "member_61af49db1a6f62e317a0ce3ca1df0aebed441f0757511eb23c832a0c87f69587": {
+      "label": "Second Brain Evolution",
+      "descendant_count": 131
+    },
+    "member_41240dc9728123cd14d13128b702e788ba257f8ab840837d31f927eb959a1b2e": {
+      "label": "Second Brain System Updates",
+      "descendant_count": 25
+    },
+    "member_8adf9d958f02184131b59b5337f86ac02c937d039b24d41ac1dcf5bb587775ff": {
+      "label": "Second Brain Development Updates",
+      "descendant_count": 10
+    },
+    "member_c758e161473245aa470a4222def28635f26eb59711915470d25272d22686d873": {
+      "label": "Personal Knowledge Management Strategies",
+      "descendant_count": 8
+    },
+    "member_a1560f212ea6c811b7a56fa973516b183432aedeef60056f711611a981ee8592": {
+      "label": "Knowledge Management Frameworks",
+      "descendant_count": 7
+    },
+    "member_992e1ab2881a4e8aa5740e5d4e54e18c529705f58c258f039ccbf4733c475b24": {
+      "label": "Second Brain Development Strategies",
+      "descendant_count": 40
+    },
+    "member_24d743a60d5cd640cd298873a73cb7b83c273e0d8e4d37a4905acdde966a7e31": {
+      "label": "Second Brain Productivity Systems",
+      "descendant_count": 22
+    },
+    "member_b227290dad1e657ff868b8dd35cad528610e3268eb41a3e0c9fb5c58bf082adf": {
+      "label": "Content Curation Strategies",
+      "descendant_count": 2
+    },
+    "member_59b309cbe0eee6ed749ad9ade84a0b21df980a98f6a6d84d5900bdeb5e80083c": {
+      "label": "Content Curation and Mentorship",
+      "descendant_count": 2
+    },
+    "member_f8e9109cdc5a9d4b2d79cce5b14c366fba87e059961a9cd0943c344309f595e5": {
+      "label": "AI Integration Updates",
+      "descendant_count": 2
+    },
+    "member_ab9cb3e99eb4c7862ade45bc4abeff9682c66b61fd6a3aa6d766d4c674b9c1ab": {
+      "label": "Personal Productivity Techniques",
+      "descendant_count": 3
+    },
+    "member_6bba7028b3af7ed82a7d68bbe58c484b25db60b5531eba4f2eecf224e2dbb6c0": {
+      "label": "Second Brain Organization Techniques",
+      "descendant_count": 2
+    },
+    "member_d1366aef9aeafc4524aa33977237a097b41841db9c9ac6fb9285f8db97c3545b": {
+      "label": "Knowledge Management Techniques",
+      "descendant_count": 2
+    },
+    "member_6cc6cc17b25e63cf5aac28284091a71eb9d3676d7339a5dc206d6c6968ddad19": {
+      "label": "Digital Project Management Frameworks",
+      "descendant_count": 3
+    },
+    "member_a9e46a07d1ae57553d295afd152811e8e7232536998fc18fd61b9b883e86ecc3": {
+      "label": "Cognitive Productivity Techniques",
+      "descendant_count": 4
+    },
+    "member_e90e01de2e3a8fed1b1f265922a2e2ada1f38c67642f96c54a6416211189ecf6": {
+      "label": "Second Brain Summits and Events",
+      "descendant_count": 13
+    },
+    "member_9fa0c413a6f1ddf379ae9443cd942db867634209838392f2573b0740c308e10f": {
+      "label": "Second Brain Techniques",
+      "descendant_count": 3
+    },
+    "member_0c56343ba81f296f44660fd399e91186cf132e07bf86d73eb09377aa75d01ac5": {
+      "label": "Second Brain Foundations",
+      "descendant_count": 3
+    },
+    "member_b54fd6da185a324cb6119c3b58ab422f674a9336a90a3cea66e64a88f8cd973b": {
+      "label": "Book Promotion Strategies",
+      "descendant_count": 2
+    },
+    "member_4182f28f1046256aa8d8298e45efd4fe73b8ca7caa0ce4c841883fe75f2f03e3": {
+      "label": "Second Brain Success Stories",
+      "descendant_count": 2
+    },
+    "member_890a1f43e9e715d2e9a76c6d75cfe1e4dec6cc4a030cd65e4c3eb7601aafe507": {
+      "label": "Building a Second Brain Updates",
+      "descendant_count": 2
+    },
+    "member_1cd141bcd2e914a1018a1cf7a3718524ae694fc0f1867a10096b89c208eb0eda": {
+      "label": "Organizational Knowledge Management",
+      "descendant_count": 5
+    },
+    "member_3a0257a0d6752af97acc1c7cc04d1bb808cb3aeb3c61d13b4960ee8a18f389d1": {
+      "label": "Writing and Publishing Insights",
+      "descendant_count": 27
+    },
+    "member_151140dc0ff1582d10d1fc4eadd615d86f9603a8f35533538413249788a45fa2": {
+      "label": "Personal Knowledge Management Updates",
+      "descendant_count": 11
+    },
+    "member_399b0859d2bd41261151dfead641c38c14a599f5ec8569792d50aa692a1fe904": {
+      "label": "Productivity and Research Insights",
+      "descendant_count": 2
+    },
+    "member_52db82a0fcff17ff52d70ec7772c5690b1a5cfc115b463542bd301d59c752451": {
+      "label": "Creative Output Development Essentials",
+      "descendant_count": 2
+    },
+    "member_3488ab6c44dfed8f7adcc3e0d54c7987eeb8041ec5e84054021a918099e1176f": {
+      "label": "Writing and Publishing Strategies",
+      "descendant_count": 9
+    },
+    "member_ef33c8fc6f1ecde150af335a1797fe0e9f67036eea07b0ad6e93699c5b021925": {
+      "label": "Creative Process Insights",
+      "descendant_count": 4
+    },
+    "member_722cfbb3cb3871ab0d8c0b32f02055244746c4c7770f03f8dc8927ff5fd34e1c": {
+      "label": "Creative Writing and Note-Taking",
+      "descendant_count": 3
+    },
+    "member_34021b58f389ba57ed1d5f0ae283654c1860dd9dbf7cc229460dd5566d439fa8": {
+      "label": "Second Brain Publishing Insights",
+      "descendant_count": 23
+    },
+    "member_8e22129f6d8ecac8fb0aa55085001820bcc482d15dc2b4bad1484034bd77efc9": {
+      "label": "Creative Knowledge Management",
+      "descendant_count": 6
+    },
+    "member_b3d39fa486985bdf41915875ebcecbf0b18468a5fa0ac283bd0d20a1d3a158a7": {
+      "label": "Publishing and Book Updates",
+      "descendant_count": 2
+    },
+    "member_7bf27a1e142216ff665a447f9c65f3bb3fb7974a4ff08ac4239501a00e1c1769": {
+      "label": "Knowledge Management Techniques",
+      "descendant_count": 2
+    },
+    "member_e316650a9cdce4a5977fceb78e4aa6d952103c5cfb91a8e8771d3c7bf251c6b5": {
+      "label": "Personal Knowledge Management Strategies",
+      "descendant_count": 5
+    },
+    "member_c560254996eba1a22c9a33d8e40802a60feaee63707f1a543e1dcba55a815fed": {
+      "label": "Agile Productivity Frameworks",
+      "descendant_count": 4
+    },
+    "member_8eeb9a32b53f3e5c06e05d98bd2d228315f4121e6f8794993a7e1e569bb11342": {
+      "label": "Second Brain Tools and Techniques",
+      "descendant_count": 12
+    },
+    "member_13a24d3daaa81a3a861f5093da7641167b3e452140b2ba825475ef10e33a8451": {
+      "label": "Digital Productivity Systems",
+      "descendant_count": 3
+    },
+    "member_6c7e2698e29ec0bf56b13baeb53c8a865eb1883e050d1bc865681f804fb5a5d7": {
+      "label": "Second Brain App Reviews",
+      "descendant_count": 2
+    },
+    "member_c0395ff600d724f18edf50c7e0ead618af21fab77731567e0191d151f2723289": {
+      "label": "Note-Taking Techniques and Personas",
+      "descendant_count": 3
+    },
+    "member_c1f7d7aff2f3de3470e7da15f98e4c617b9d9c02f2663fc21fc2bddcf832504f": {
+      "label": "Knowledge Synthesis Techniques",
+      "descendant_count": 2
+    },
+    "member_d15eee338aa025dd4ea6ea61bada46dbb3cb8ec25259c87d3c029f4affd66c5c": {
+      "label": "Digital Organization Strategies",
+      "descendant_count": 72
+    },
+    "member_2e5434ba3f29164ee25bf6c95aa959d838d162ee2e835f2bc04e3f5981669f7a": {
+      "label": "Digital Organization Frameworks",
+      "descendant_count": 16
+    },
+    "member_ed242d1f2af437ba81724f4760404e53c7335d8e7a8377f2165695eceeda75f3": {
+      "label": "PARA Method and Publishing Updates",
+      "descendant_count": 4
+    },
+    "member_34d3f3f0f0455dafc94fcd1592235671cde078a6681058c00604b16fb06e58a3": {
+      "label": "Digital Organization Strategies",
+      "descendant_count": 2
+    },
+    "member_59bd842b566ea84a2ae11dec809b07b61576dcf637fc891f94e4220c7f7b1846": {
+      "label": "Second Brain Principles",
+      "descendant_count": 2
+    },
+    "member_b910f506f694aa5971fb64716af0f9daeb28ea72f50ffcc01ad4a8640e9718c0": {
+      "label": "Project Management Frameworks",
+      "descendant_count": 2
+    },
+    "member_5f389f2e49b769408f6d839788287d0104fed4e8e67c5a74514f7670d5e274ab": {
+      "label": "Second Brain Development Updates",
+      "descendant_count": 27
+    },
+    "member_c8894e1ea94511db4a9777e4139ed757b5864e25f50261b3c6f171f53a61feed": {
+      "label": "Digital Knowledge Management",
+      "descendant_count": 7
+    },
+    "member_647a38c6bb185d2bd869bb6f5b8b3c776f4bf506a6d672be687eb1842f805904": {
+      "label": "Building a Second Brain Updates",
+      "descendant_count": 15
+    },
+    "member_bc01892cd0840c463227b308ea350f3f5b784d7d9d9a702ea5160caed2d48ef3": {
+      "label": "Second Brain Methodology Updates",
+      "descendant_count": 5
+    },
+    "member_81dd11663e9d6806966f9a444c04c0d1671f9f820b4fff68e96b23ce4e754bde": {
+      "label": "Creative Process and Notion Integration",
+      "descendant_count": 2
+    },
+    "member_35e5a275dc3acbd5a8da6e9fd933b75563e81d94b61c7cfcafc9d4e7906196ca": {
+      "label": "Digital Note-Taking Strategies",
+      "descendant_count": 5
+    },
+    "member_b11d20178c200e91e51ab280fa5fa449221e28de2e4ca357e277bd27331bf705": {
+      "label": "Second Brain Implementation Strategies",
+      "descendant_count": 29
+    },
+    "member_c5766495f8fcf724bef65e2d0f98efa91566ab0849945424100b08ea2474f4d0": {
+      "label": "Thought Leadership and Productivity",
+      "descendant_count": 4
+    },
+    "member_8a0b619bb80cef3a915659a26ed95940a668476470e2bd42fec0f49605615fcd": {
+      "label": "Memory Enhancement and Knowledge Management",
+      "descendant_count": 7
+    },
+    "member_1ac722c504bddbf0a496cef49de1b654942b6a850c8a61f24fdb6b16694c7055": {
+      "label": "Knowledge Management Strategies",
+      "descendant_count": 3
+    },
+    "member_2b3de628606217cd1e815e59475c380cade73f6f6d3532a462bd32332d57421a": {
+      "label": "Digital Note-Taking Techniques",
+      "descendant_count": 2
+    },
+    "member_f0e80ccc8975754c238669cb161e99749822ccb0bcefde66bdf38edba71b36af": {
+      "label": "International Publishing and Resources",
+      "descendant_count": 2
+    },
+    "member_b3cf454c51eaf034a514e69ff8add839bf59ea035d1a69fb48a0703ad483d82c": {
+      "label": "Second Brain Identity and Applications",
+      "descendant_count": 5
+    },
+    "member_a17fbf398ccc94e782e37807321a643382ca4e444bd9295a3518b80ca1d0844e": {
+      "label": "Digital Note-Taking Techniques",
+      "descendant_count": 3
+    },
+    "member_a7bcedc3154fdf4146bfbbde52393b30674add4665a45199f04873b6613f9134": {
+      "label": "Second Brain Foundations",
+      "descendant_count": 71
+    },
+    "member_04f96b31ea2c71436442321b8c5d3e4dda4449c47d80ed457b9b7a608ded58d0": {
+      "label": "Second Brain Foundations",
+      "descendant_count": 10
+    },
+    "member_8477a9e93bfd82ae22e8c1e5aafd1a88a65aed5b34dc16c06343e30b23ee1c1d": {
+      "label": "Personal Knowledge Management Systems",
+      "descendant_count": 5
+    },
+    "member_c7fb15b0c4baed6cc1e351afc959d727ab0cc7305a550875aafb13607f591705": {
+      "label": "Second Brain Foundations",
+      "descendant_count": 12
+    },
+    "member_966efb5f47c77c9a0f3a6f3ae320fe4c8258b859a3f448e5f6bd92af3e2aee98": {
+      "label": "Second Brain Foundations",
+      "descendant_count": 2
+    },
+    "member_cf9ab7ac8221e19588caf930e293217970800b686daeb512ae8f5ee8b74ff221": {
+      "label": "Sustainable Business Growth",
+      "descendant_count": 2
+    },
+    "member_59c951c9ae631b64da4efa69fb24d9b538eee01c9546d6738d159cd4c2e68712": {
+      "label": "Productivity and Creativity Insights",
+      "descendant_count": 2
+    },
+    "member_2af9e1afc5d014bf3242705b76107a4ee85ab2f509407c70d0e89886c2d0f609": {
+      "label": "Behavior Change Strategies",
+      "descendant_count": 2
+    },
+    "member_40a8948d25b897cd73651f48362d841e0f5179a13c1332f36e4a9787d50b6564": {
+      "label": "Second Brain Foundations",
+      "descendant_count": 2
+    },
+    "member_515cd8845d85df9e9c6aedfd91f22e58f20577896542d8a51e8582d6fe15602b": {
+      "label": "Second Brain Foundations",
+      "descendant_count": 10
+    },
+    "member_159c406f3609d8f30fed18b27ffdaece4f319d4299633c60ea0cfb060bd43dc1": {
+      "label": "Digital Organization Strategies",
+      "descendant_count": 3
+    },
+    "member_f3db611ccefca591f472c94d7bbdd920719bc208a596643062f5efc8e5bec4ea": {
+      "label": "Information Management Strategies",
+      "descendant_count": 7
+    },
+    "member_ada872735a33a576782739e1e097af0259452f48fde26375483d884633cc0563": {
+      "label": "Digital Productivity Strategies",
+      "descendant_count": 5
+    },
+    "member_fb29036d4693d9f038c352278f192f5aa4ea2d460801981ef2b7891e682ebcb1": {
+      "label": "Second Brain Productivity Strategies",
+      "descendant_count": 14
+    },
+    "member_44eea48f6bce6109960a052ac38ad44329772cb79e2b6d870961b7b4a775ba7d": {
+      "label": "Cognitive Organization Strategies",
+      "descendant_count": 2
+    },
+    "member_55e4f76ad3286c254986e7b538c1ea24a515bea5f73eb2775e76d5c3a8e86b6e": {
+      "label": "Second Brain Foundations",
+      "descendant_count": 2
+    },
+    "member_7bdbbd93bd7e833e7f9c2e98f86beae331deed1efa22afae612fb7967cf6c549": {
+      "label": "Information Management Strategies",
+      "descendant_count": 3
+    },
+    "member_f7c2fb28ee08b22fb142a1cf0841c64edb264b96ec3139de7fdc3206319a5ab6": {
+      "label": "Digital Productivity Systems",
+      "descendant_count": 2
+    },
+    "member_b369d760c8e2bfebed24e2ee9c72569902f7bde84f8a70d446ddf17222c0d0af": {
+      "label": "Productivity Tools and Techniques",
+      "descendant_count": 2
+    },
+    "member_5bd1457abc07438d2bcefc802dbbf12ad91b9bbc355b4997bfc3f7cf06139125": {
+      "label": "Creative Productivity Systems",
+      "descendant_count": 2
+    },
+    "member_cea945a683255058f8a9cc8afda9ba110d8a0837f51902eb3e6caa6cc50a489a": {
+      "label": "Second Brain Foundations",
+      "descendant_count": 5
+    },
+    "member_9958431daa77d4b6009e19dca7b28587433be39a3769b5b3984c78f76b34a67c": {
+      "label": "Idea Capture Techniques",
+      "descendant_count": 3
+    },
+    "member_e8f7d77a6bed85854423166ba2a11a4b36c54ca89ac250cdda7752f8460915e8": {
+      "label": "Digital Note-Taking Tools",
+      "descendant_count": 2
+    }
+  }
+}

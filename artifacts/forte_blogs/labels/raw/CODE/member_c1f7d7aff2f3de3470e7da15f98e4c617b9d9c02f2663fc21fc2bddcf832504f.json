@@ -1,0 +1,10 @@
+{
+  "node_id": "member_c1f7d7aff2f3de3470e7da15f98e4c617b9d9c02f2663fc21fc2bddcf832504f",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Knowledge Synthesis Techniques",
+  "raw_text": "Knowledge Synthesis Techniques",
+  "usage": {
+    "prompt_tokens": 90,
+    "completion_tokens": 4
+  }
+}

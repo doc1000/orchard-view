@@ -1,0 +1,10 @@
+{
+  "node_id": "member_ada872735a33a576782739e1e097af0259452f48fde26375483d884633cc0563",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Digital Productivity Strategies",
+  "raw_text": "Digital Productivity Strategies",
+  "usage": {
+    "prompt_tokens": 126,
+    "completion_tokens": 3
+  }
+}

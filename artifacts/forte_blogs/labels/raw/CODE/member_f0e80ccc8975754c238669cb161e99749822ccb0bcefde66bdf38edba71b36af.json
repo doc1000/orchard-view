@@ -1,0 +1,10 @@
+{
+  "node_id": "member_f0e80ccc8975754c238669cb161e99749822ccb0bcefde66bdf38edba71b36af",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "International Publishing and Resources",
+  "raw_text": "International Publishing and Resources",
+  "usage": {
+    "prompt_tokens": 86,
+    "completion_tokens": 4
+  }
+}

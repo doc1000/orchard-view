@@ -1,0 +1,10 @@
+{
+  "node_id": "member_ef33c8fc6f1ecde150af335a1797fe0e9f67036eea07b0ad6e93699c5b021925",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Creative Process Insights",
+  "raw_text": "Creative Process Insights",
+  "usage": {
+    "prompt_tokens": 109,
+    "completion_tokens": 3
+  }
+}

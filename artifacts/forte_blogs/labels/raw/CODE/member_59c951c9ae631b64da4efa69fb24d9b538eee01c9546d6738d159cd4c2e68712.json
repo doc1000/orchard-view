@@ -1,0 +1,10 @@
+{
+  "node_id": "member_59c951c9ae631b64da4efa69fb24d9b538eee01c9546d6738d159cd4c2e68712",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Productivity and Creativity Insights",
+  "raw_text": "Productivity and Creativity Insights",
+  "usage": {
+    "prompt_tokens": 88,
+    "completion_tokens": 5
+  }
+}
