@@ -1,0 +1,2044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orchard Visual Search</title>
+<style>
+/* ─── TOKENS ─── */
+:root {
+  --bg:         #06090d;
+  --surface:    #0d1520;
+  --surface2:   #131f30;
+  --surface3:   #1a2840;
+  --border:     #2a3d55;
+  --border-hi:  #4a6888;
+  --text:       #ffffff;
+  --text-dim:   #d0eaff;
+  --text-muted: #7aaccc;
+  --accent:     #00d8ff;
+  --accent-dim: #003850;
+  --green:      #00ff88;
+  --green-dim:  #004428;
+  --red:        #ff5555;
+  --red-dim:    #440a0a;
+  --yellow:     #ffe040;
+  --yellow-dim: #3a2e00;
+  --blue:       #44b8ff;
+  --blue-dim:   #0a2540;
+  --radius:     4px;
+  --sidebar-w:  280px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', 'Segoe UI', -apple-system, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ─── HEADER ─── */
+.header {
+  background: var(--surface);
+  border-bottom: 2px solid var(--border-hi);
+  padding: 9px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.logo { font-size: 16px; font-weight: 900; color: var(--accent); letter-spacing: 3px; white-space: nowrap; }
+.search-input {
+  flex: 1;
+  background: var(--surface2);
+  border: 2px solid var(--border-hi);
+  border-radius: var(--radius);
+  color: var(--text);
+  padding: 7px 13px;
+  font-size: 15px;
+  font-weight: 500;
+  outline: none;
+}
+.search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(0,216,255,0.25); }
+.search-input::placeholder { color: var(--text-muted); }
+.btn {
+  padding: 7px 15px;
+  border-radius: var(--radius);
+  border: 2px solid transparent;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+  transition: filter 0.1s;
+}
+.btn:hover { filter: brightness(1.18); }
+.btn:active { filter: brightness(0.88); }
+.btn-ghost { background: var(--surface2); color: var(--text-dim); border-color: var(--border-hi); }
+.btn-go    { background: var(--green);    color: #000; font-size: 15px; font-weight: 900; padding: 7px 22px; }
+.btn-go-disabled { opacity: 0.4; cursor: not-allowed; }
+.btn-undo  { background: var(--yellow-dim); color: var(--yellow); border-color: var(--yellow); }
+.btn-prune { background: var(--accent-dim); color: var(--accent); border-color: var(--accent); }
+.doc-badge {
+  background: var(--surface3); border: 2px solid var(--border-hi);
+  border-radius: var(--radius); padding: 5px 12px;
+  font-size: 13px; font-weight: 700; color: var(--text-dim); white-space: nowrap;
+}
+.doc-badge strong { color: var(--green); font-size: 16px; font-weight: 900; }
+
+/* ─── UNDO GO CONFIRMATION ─── */
+.undo-confirm {
+  background: var(--yellow-dim); color: var(--yellow);
+  border-bottom: 2px solid var(--yellow);
+  padding: 6px 16px; font-size: 13px; font-weight: 800;
+  text-align: center; letter-spacing: 0.3px;
+}
+
+/* ─── CHIP TRAY + TREE SWITCHER ─── */
+.chip-tray {
+  padding: 6px 16px;
+  min-height: 44px;
+  border-bottom: 2px solid var(--border-hi);
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.chip-tray-left  { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; flex: 1; }
+.chip-tray-right { display: flex; gap: 7px; align-items: center; flex-shrink: 0; border-left: 2px solid var(--border-hi); padding-left: 12px; margin-left: 8px; }
+.chip-tray-label    { font-size: 12px; font-weight: 800; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1.5px; white-space: nowrap; margin-right: 4px; }
+.tree-switcher-label { font-size: 12px; font-weight: 800; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1.5px; white-space: nowrap; }
+.tree-mode-btn {
+  padding: 5px 13px; border-radius: var(--radius); border: 2px solid var(--border-hi);
+  font-size: 13px; font-weight: 700; cursor: pointer;
+  background: var(--surface2); color: var(--text-dim);
+  transition: all 0.1s;
+}
+.tree-mode-btn.active { background: var(--accent-dim); color: var(--accent); border-color: var(--accent); }
+.history-select {
+  padding: 5px 10px; border-radius: var(--radius); border: 2px solid var(--border-hi);
+  font-size: 13px; font-weight: 700; cursor: pointer;
+  background: var(--surface2); color: var(--text-dim);
+  margin-right: 4px;
+}
+.history-select:hover { border-color: var(--accent); color: var(--text); }
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 30px; padding: 0 12px;
+  border-radius: var(--radius); font-size: 13px; font-weight: 700;
+  cursor: pointer; border: 2px solid transparent; user-select: none;
+  transition: filter 0.1s;
+}
+.chip:hover { filter: brightness(1.2); }
+.chip.positive { background: var(--green-dim); color: var(--green); border-color: var(--green); }
+.chip.negative { background: var(--red-dim);   color: var(--red);   border-color: var(--red); }
+.chip.date     { background: var(--blue-dim);  color: var(--blue);  border-color: var(--blue); }
+.chip.inactive { opacity: 0.28; }
+.chip-x    { opacity: 0.7; cursor: pointer; font-size: 16px; line-height: 1; }
+.chip-x:hover { opacity: 1; }
+.chip-flip { opacity: 0.6; cursor: pointer; font-size: 13px; }
+.chip-flip:hover { opacity: 1; }
+.chip-tag {
+  font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
+  opacity: 0.75; border: 1px solid currentColor; border-radius: 3px; padding: 1px 4px;
+}
+.no-chips { color: var(--text-muted); font-size: 14px; font-weight: 600; }
+.chip-or {
+  color: var(--accent); font-size: 11px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.5px; align-self: center; opacity: 0.85;
+}
+
+/* ─── MAIN LAYOUT ─── */
+.main-layout { display: flex; flex: 1; overflow: hidden; }
+
+/* ─── SIDEBAR ─── */
+.sidebar {
+  width: var(--sidebar-w);
+  min-width: 180px; max-width: 500px;
+  background: var(--surface);
+  border-right: 2px solid var(--border-hi);
+  display: flex; flex-direction: column;
+  flex-shrink: 0; overflow: hidden;
+}
+.sidebar-header {
+  padding: 8px 14px 6px;
+  border-bottom: 2px solid var(--border-hi);
+  font-size: 12px; font-weight: 800; color: var(--text-dim);
+  text-transform: uppercase; letter-spacing: 1.5px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0;
+}
+.sidebar-collapse-all {
+  font-size: 12px; color: var(--accent); cursor: pointer; font-weight: 700;
+  background: none; border: none; padding: 0; letter-spacing: 0;
+}
+.sidebar-collapse-all:hover { color: var(--text); }
+.sidebar-scroll { flex: 1; overflow-y: auto; overflow-x: hidden; padding: 3px 0; }
+.sidebar-scroll::-webkit-scrollbar { width: 7px; }
+.sidebar-scroll::-webkit-scrollbar-thumb { background: var(--border-hi); border-radius: 4px; }
+
+/* Tree row */
+.tree-row {
+  display: flex; align-items: center;
+  padding: 4px 10px 4px 0;
+  cursor: pointer; user-select: none;
+  min-height: 32px;
+  border-left: 3px solid transparent;
+  transition: background 0.08s;
+}
+.tree-row:hover { background: var(--surface2); }
+.tree-row.pos-selected { background: var(--green-dim); border-left-color: var(--green); }
+.tree-row.neg-selected { background: var(--red-dim);   border-left-color: var(--red); opacity: 0.8; }
+.tree-row.highlight-pos  { border-left-color: var(--green); background: rgba(0,255,136,0.08); }
+.tree-row.highlight-neg  { border-left-color: var(--red);   background: rgba(255,85,85,0.07); opacity: 0.75; }
+.tree-row.highlight-weak { border-left-color: var(--accent); background: rgba(0,216,255,0.06); }
+
+.row-toggle {
+  width: 20px; height: 20px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: var(--text-dim); transition: transform 0.12s;
+}
+.row-toggle.open { transform: rotate(90deg); }
+.row-toggle.leaf { color: transparent; }
+
+.row-dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--border-hi); flex-shrink: 0; margin: 0 8px 0 4px;
+  transition: background 0.1s;
+}
+.tree-row.pos-selected  .row-dot { background: var(--green); box-shadow: 0 0 7px var(--green); }
+.tree-row.neg-selected  .row-dot { background: var(--red);   box-shadow: 0 0 7px var(--red); }
+.tree-row.highlight-pos .row-dot { background: var(--green); }
+.tree-row.highlight-neg .row-dot { background: var(--red); }
+.tree-row.highlight-weak .row-dot { background: var(--accent); }
+
+.row-label {
+  flex: 1; font-size: 14px; font-weight: 600; color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.3;
+}
+.tree-row.pos-selected  .row-label { color: var(--green); font-weight: 800; }
+.tree-row.neg-selected  .row-label { color: var(--red);   text-decoration: line-through; }
+.tree-row.highlight-pos .row-label { color: var(--green); font-weight: 700; }
+.tree-row.highlight-weak .row-label { color: var(--accent); }
+
+.row-count {
+  font-size: 12px; font-weight: 700; color: var(--text-dim);
+  white-space: nowrap; margin-left: 6px; flex-shrink: 0;
+}
+.tree-row.pos-selected .row-count { color: var(--green); }
+.tree-row.neg-selected .row-count { color: var(--red); }
+
+/* ─── DRAG HANDLE ─── */
+.drag-handle {
+  width: 5px; background: var(--border-hi); cursor: col-resize;
+  flex-shrink: 0; transition: background 0.1s;
+}
+.drag-handle:hover, .drag-handle.dragging { background: var(--accent); }
+
+/* ─── CENTER ─── */
+.center { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+.center-toolbar {
+  padding: 6px 16px;
+  background: var(--surface2);
+  border-bottom: 2px solid var(--border-hi);
+  display: flex; align-items: center; gap: 10px;
+  flex-shrink: 0;
+}
+.view-btn {
+  padding: 5px 14px; border-radius: var(--radius); border: 2px solid var(--border-hi);
+  font-size: 13px; font-weight: 700; cursor: pointer;
+  background: var(--surface3); color: var(--text-dim);
+  transition: all 0.1s;
+}
+.view-btn.active { background: var(--surface); color: var(--text); border-color: var(--text-muted); }
+.view-sep { width: 2px; height: 18px; background: var(--border-hi); }
+.center-hint { font-size: 13px; font-weight: 600; color: var(--text-muted); margin-left: auto; }
+
+/* ─── TREEMAP BREADCRUMB ─── */
+.tm-breadcrumb {
+  padding: 5px 12px;
+  background: var(--surface2);
+  border-bottom: 2px solid var(--border-hi);
+  display: flex; align-items: center; gap: 1px; flex-wrap: wrap; flex-shrink: 0;
+  font-size: 12px; font-weight: 700; min-height: 30px;
+}
+.tm-crumb {
+  color: var(--accent); cursor: pointer; padding: 2px 6px;
+  border-radius: 3px; transition: background 0.1s; white-space: nowrap;
+}
+.tm-crumb:hover { background: var(--accent-dim); }
+.tm-crumb-current { color: var(--text); cursor: default; font-weight: 800; }
+.tm-crumb-current:hover { background: none; }
+.tm-crumb-sep { color: var(--text-muted); padding: 0 2px; }
+
+/* ─── TREEMAP VIEW ─── */
+.treemap-view { flex: 1; overflow: hidden; position: relative; }
+
+/* ─── LIST VIEW ─── */
+.list-view { flex: 1; overflow-y: auto; padding: 10px 16px; display: none; }
+.list-view.active { display: block; }
+.list-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.list-header h3 { font-size: 12px; font-weight: 800; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1.5px; }
+.list-count { font-size: 15px; font-weight: 800; color: var(--green); }
+.result-item {
+  background: var(--surface);
+  border: 2px solid var(--border-hi);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  cursor: pointer; margin-bottom: 7px;
+  transition: border-color 0.1s, background 0.1s;
+  display: flex; gap: 10px; align-items: flex-start;
+}
+.result-item:hover { border-color: var(--accent); background: var(--surface2); }
+.result-item.selected { border-color: var(--green); }
+.result-item.excluded { border-color: var(--red); opacity: 0.5; }
+.result-item.excluded:hover { opacity: 0.75; }
+.list-header-right { display: flex; align-items: center; gap: 10px; }
+.show-excluded-btn { font-size: 12px; padding: 4px 10px; }
+.result-body { flex: 1; min-width: 0; }
+.result-title   { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.result-path    { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+.result-snippet { font-size: 13px; font-weight: 500; color: var(--text-dim); line-height: 1.5; }
+.result-snippet mark { background: rgba(0,216,255,0.22); color: var(--text); border-radius: 2px; padding: 0 3px; }
+.hopper-btn {
+  flex-shrink: 0; background: none; border: 2px solid var(--border-hi); border-radius: 4px;
+  color: var(--text-dim); cursor: pointer; padding: 5px 9px;
+  font-size: 17px; font-weight: 700; line-height: 1; transition: all 0.1s;
+}
+.hopper-btn:hover  { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
+.hopper-btn.active { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
+.no-results { color: var(--text-dim); font-size: 15px; font-weight: 600; text-align: center; padding: 28px 0; }
+
+/* ─── PREVIEW PANEL ─── */
+.preview-panel {
+  width: 0; overflow: hidden; transition: width 0.18s;
+  border-left: 2px solid transparent; flex-shrink: 0; display: flex; flex-direction: column;
+}
+.preview-panel.open { width: 380px; border-left-color: var(--border-hi); }
+.preview-hdr {
+  padding: 12px 15px; background: var(--surface2); border-bottom: 2px solid var(--border-hi);
+  display: flex; align-items: flex-start; gap: 10px; flex-shrink: 0;
+}
+.preview-title { flex: 1; font-size: 16px; font-weight: 700; color: var(--text); line-height: 1.35; }
+.preview-close { cursor: pointer; color: var(--text-dim); font-size: 22px; flex-shrink: 0; line-height: 1; }
+.preview-close:hover { color: var(--red); }
+.preview-path { padding: 7px 15px; background: var(--surface); border-bottom: 2px solid var(--border-hi); font-size: 13px; font-weight: 700; color: var(--accent); flex-shrink: 0; }
+.preview-body { flex: 1; overflow-y: auto; padding: 16px 15px; font-size: 15px; font-weight: 500; color: var(--text-dim); line-height: 1.75; background: var(--bg); }
+.preview-body mark { background: rgba(0,216,255,0.2); color: var(--text); border-radius: 2px; padding: 0 3px; }
+.preview-ftr { padding: 10px 15px; background: var(--surface2); border-top: 2px solid var(--border-hi); display: flex; gap: 8px; flex-shrink: 0; }
+.btn-hopper { background: var(--accent-dim); color: var(--accent); border: 2px solid var(--accent); flex: 1; font-size: 14px; font-weight: 800; }
+.btn-hopper:hover { background: var(--accent); color: #000; }
+
+/* ─── HOPPER ─── */
+.hopper { background: var(--surface2); border-top: 2px solid var(--border-hi); flex-shrink: 0; }
+.hopper-hdr {
+  padding: 6px 16px; display: flex; align-items: center; gap: 10px;
+  cursor: pointer; user-select: none;
+}
+.hopper-hdr:hover { background: var(--surface3); }
+.hopper-title  { font-size: 12px; font-weight: 800; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1.5px; }
+.hopper-count  { background: var(--accent-dim); color: var(--accent); border-radius: 4px; padding: 2px 9px; font-size: 13px; font-weight: 800; }
+.hopper-toggle { color: var(--text-muted); margin-left: auto; font-size: 13px; font-weight: 700; }
+.hopper-clear { font-size: 12px; color: var(--accent); cursor: pointer; font-weight: 700; margin-left: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+.hopper-clear:hover { color: var(--text); }
+.hopper-body { padding: 6px 16px 9px; display: flex; flex-wrap: wrap; gap: 6px; max-height: 80px; overflow-y: auto; }
+.hopper.collapsed .hopper-body { display: none; }
+.hopper-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--accent-dim); border: 2px solid var(--accent);
+  border-radius: 4px; padding: 4px 11px;
+  font-size: 13px; font-weight: 700; color: var(--accent); cursor: pointer; max-width: 240px;
+}
+.hopper-chip:hover { background: var(--accent); color: #000; }
+.hopper-chip span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 190px; }
+.hopper-chip .chip-x { color: inherit; font-size: 15px; }
+.hopper-empty { color: var(--text-dim); font-size: 13px; font-weight: 600; }
+
+/* ─── STATUS BAR ─── */
+.status-bar {
+  background: var(--surface); border-top: 2px solid var(--border-hi);
+  padding: 5px 16px; font-size: 13px; font-weight: 600; color: var(--text-dim);
+  display: flex; align-items: center; gap: 18px; flex-shrink: 0;
+}
+.status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); display: inline-block; margin-right: 6px; box-shadow: 0 0 8px var(--green); }
+
+/* ─── TOOLTIP ─── */
+.tooltip {
+  position: fixed; z-index: 9999;
+  background: var(--surface3); border: 2px solid var(--border-hi);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius); padding: 11px 14px;
+  min-width: 220px; max-width: 300px;
+  pointer-events: none; box-shadow: 0 8px 28px rgba(0,0,0,0.75); display: none;
+}
+.tooltip.visible { display: block; }
+.tt-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+.tt-count { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+.tt-child { font-size: 13px; font-weight: 600; color: var(--text-dim); padding: 4px 0; border-top: 1px solid var(--border); }
+.tt-hint  { font-size: 12px; font-weight: 700; color: var(--yellow); margin-top: 8px; }
+
+/* ─── SESSION HISTORY OVERLAY (provenance display — read-only) ─── */
+.history-overlay {
+  position: fixed; top: 78px; right: 16px; z-index: 9998;
+  width: 340px; max-height: 420px;
+  background: var(--surface3); border: 2px solid var(--border-hi);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius); box-shadow: 0 8px 28px rgba(0,0,0,0.75);
+  display: flex; flex-direction: column;
+}
+.history-overlay-hdr {
+  padding: 10px 14px; background: var(--surface2); border-bottom: 2px solid var(--border-hi);
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 14px; font-weight: 800; color: var(--text); flex-shrink: 0;
+}
+.history-overlay-body { overflow-y: auto; padding: 8px 12px; }
+.history-entry {
+  font-size: 12px; font-weight: 600; color: var(--text-dim);
+  padding: 6px 8px; border-radius: 3px; margin-bottom: 4px;
+  border-left: 3px solid var(--border-hi);
+}
+.history-entry.history-include { border-left-color: var(--green); color: var(--green); }
+.history-entry.history-exclude { border-left-color: var(--red);   color: var(--red); }
+.history-empty { font-size: 13px; font-weight: 600; color: var(--text-dim); padding: 8px; }
+
+/* scrollbar global */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-hi); border-radius: 4px; }
+</style>
+<script src="d3.min.js"></script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="logo">⬡ ORCHARD</div>
+  <input class="search-input" id="searchInput" type="text" list="queryHistory"
+    placeholder='"beach vacation" -hawaii   or   remote ML fintech jobs' autocomplete="off"/>
+  <datalist id="queryHistory"></datalist>
+  <button class="btn btn-ghost" onclick="parseQuery()">Parse</button>
+  <button class="btn btn-undo"  onclick="undo()">↩ Undo</button>
+  <button class="btn btn-prune" onclick="pruneTree()" id="pruneBtn">Prune</button>
+  <button class="btn btn-ghost" onclick="resetAll()">Reset</button>
+  <div class="doc-badge"><strong id="activeCount">457</strong> in scope</div>
+  <button class="btn btn-go" id="goBtn" onclick="go()">Go ▶</button>
+</header>
+
+<!-- UNDO GO CONFIRMATION -->
+<div class="undo-confirm" id="undoConfirm" style="display:none;">↩ Undo GO? Press Undo again to confirm.</div>
+
+<!-- CHIP TRAY + TREE SWITCHER -->
+<div class="chip-tray">
+  <div class="chip-tray-left">
+    <span class="chip-tray-label">Conditions:</span>
+    <span class="no-chips" id="noChips">Enter a query to parse conditions</span>
+  </div>
+  <!-- BEHAVIOR: Switches between taxonomy trees. Each tree organizes the same corpus differently.
+       Domain tree = by subject matter. Function tree = by use/intent.
+       In production: loads a different tree-z artifact. -->
+  <div class="chip-tray-right">
+    <select class="history-select" id="historySelect" onchange="showHistoryOverlay(this.value)" title="Session history — provenance only, does not restore">
+      <option value="">History ▾</option>
+    </select>
+    <span class="tree-switcher-label">Tree:</span>
+    <button class="tree-mode-btn active" id="btnDomain" onclick="switchTree('domain')">Domain</button>
+    <button class="tree-mode-btn"        id="btnFunction" onclick="switchTree('function')">Function</button>
+  </div>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="main-layout">
+
+  <!-- SIDEBAR: VS Code-style tree -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <span id="sidebarTreeLabel">Domain Tree</span>
+      <button class="sidebar-collapse-all" onclick="collapseAll()">collapse all</button>
+    </div>
+    <div class="sidebar-scroll" id="sidebarTree"></div>
+  </div>
+
+  <!-- DRAG HANDLE -->
+  <div class="drag-handle" id="dragHandle"></div>
+
+  <!-- CENTER -->
+  <div class="center">
+    <div class="center-toolbar">
+      <button class="view-btn active" id="btnTreemap" onclick="setView('treemap')">Treemap</button>
+      <button class="view-btn"        id="btnList"    onclick="setView('list')">Results List</button>
+      <div class="view-sep"></div>
+      <span class="center-hint" id="centerHint">Highlights show query relevance — press Go to retrieve</span>
+    </div>
+
+    <!-- TREEMAP BREADCRUMB -->
+    <div class="tm-breadcrumb" id="tmBreadcrumb"></div>
+
+    <!-- TREEMAP VIEW -->
+    <div class="treemap-view" id="treemapView"></div>
+
+    <!-- LIST VIEW -->
+    <div class="list-view" id="listView">
+      <div class="list-header">
+        <h3>Results</h3>
+        <div class="list-header-right">
+          <button class="btn btn-ghost show-excluded-btn" id="showExcludedBtn" onclick="toggleShowExcluded()" style="display:none;">Show excluded</button>
+          <span class="list-count" id="listCount"></span>
+        </div>
+      </div>
+      <div id="listItems">
+        <div class="no-results">Press Go ▶ to retrieve documents</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PREVIEW PANEL -->
+  <div class="preview-panel" id="previewPanel">
+    <div class="preview-hdr">
+      <div class="preview-title" id="pvTitle"></div>
+      <div class="preview-close" onclick="closePreview()">✕</div>
+    </div>
+    <div class="preview-path" id="pvPath"></div>
+    <div class="preview-body" id="pvBody"></div>
+    <div class="preview-ftr">
+      <button class="btn btn-hopper" onclick="addToHopperFromPreview()">＋ Add to Hopper</button>
+    </div>
+  </div>
+</div>
+
+<!-- HOPPER -->
+<div class="hopper" id="hopper">
+  <div class="hopper-hdr" onclick="toggleHopper()">
+    <span class="hopper-title">Hopper</span>
+    <span class="hopper-count" id="hopperCount">0</span>
+    <span style="font-size:11px;color:var(--text-muted);margin-left:6px;font-weight:500">saved for closer review</span>
+    <span class="hopper-clear" onclick="clearHopper(event)" title="Remove all saved docs">clear</span>
+    <span class="hopper-toggle" id="hopperToggle">▲</span>
+  </div>
+  <div class="hopper-body" id="hopperBody">
+    <span class="hopper-empty" id="hopperEmpty">No docs saved — click ⊕ on a result</span>
+  </div>
+</div>
+
+<!-- STATUS BAR -->
+<div class="status-bar">
+  <span><span class="status-dot"></span>457 docs · 9 top-level clusters</span>
+  <span id="statusMsg">Click tree nodes to select · right-click to cycle state · hover to preview</span>
+</div>
+
+<!-- TOOLTIP -->
+<div class="tooltip" id="tooltip">
+  <div class="tt-title" id="ttTitle"></div>
+  <div class="tt-count" id="ttCount"></div>
+  <div id="ttChildren"></div>
+  <div class="tt-hint"  id="ttHint"></div>
+</div>
+
+<!-- SESSION HISTORY OVERLAY (read-only provenance — does not restore) -->
+<div class="history-overlay" id="historyOverlay" style="display:none;">
+  <div class="history-overlay-hdr">
+    <span id="historyOverlayTitle"></span>
+    <span class="preview-close" onclick="closeHistoryOverlay()">✕</span>
+  </div>
+  <div class="history-overlay-body" id="historyOverlayBody"></div>
+</div>
+
+<script src="mockup_data.js"></script>
+<script>
+// ════════════════════════════════════════════════════
+// ANCESTOR PATHS — precomputed per doc, per node label
+// ════════════════════════════════════════════════════
+
+// Returns array of node IDs from root to `targetId` (inclusive), or null if not found
+function pathToNode(tree, targetId, path = []) {
+  const current = [...path, tree.id];
+  if (tree.id === targetId) return current;
+  for (const child of (tree.children || [])) {
+    const found = pathToNode(child, targetId, current);
+    if (found) return found;
+  }
+  return null;
+}
+
+// Precomputed per doc: { domPath: string[], fnPath: string[] }
+// Index position = depth (0 = root, last = leaf)
+const DOC_PATHS = new Map(); // doc.id → { domPath, fnPath }
+
+function buildDocPaths(docs) {
+  for (const doc of docs) {
+    DOC_PATHS.set(doc.id, {
+      domPath: pathToNode(DOMAIN_TREE, doc.domCluster) ?? [],
+      fnPath:  pathToNode(FUNCTION_TREE, doc.fnCluster) ?? [],
+    });
+  }
+}
+
+// Build a Map<nodeId, label.toLowerCase()> at startup for fast lookup
+const NODE_LABELS = new Map();
+function buildNodeLabels(tree) {
+  NODE_LABELS.set(tree.id, tree.label.toLowerCase());
+  for (const child of (tree.children || [])) buildNodeLabels(child);
+}
+
+// ════════════════════════════════════════════════════
+// CHIP / HIGHLIGHT MAPS
+// ════════════════════════════════════════════════════
+const CHIP_REL = {
+  "beach":          {pos:["travel-beach","t-b-carib","t-b-pac","t-b-med"],  neg:[]},
+  "coastal":        {pos:["travel-beach","t-b-pac","t-b-med"],               neg:[]},
+  "vacation spots": {pos:["travel","travel-beach","travel-urban","travel-mtns"], neg:[]},
+  "travel":         {pos:["travel"],                                          neg:[]},
+  "hawaii":         {pos:[],                                                  neg:["t-b-pac"]},
+  "machine learning":{pos:["w-t-ml","r-ml","r-ml-repr","r-ml-gen","r-ml-agent"], neg:[]},
+  "ai":             {pos:["w-t-ml","r-ml","r-ml-agent"],                     neg:[]},
+  "fintech":        {pos:["work-finance","w-f-fin"],                          neg:[]},
+  "banking":        {pos:[],                                                  neg:["w-f-bank"]},
+  "careers":        {pos:["work"],                                            neg:[]},
+  "job postings":   {pos:["work"],                                            neg:[]},
+  "remote":         {pos:["work-tech","work-design"],                         neg:[]},
+  "after aug 1 2024":{pos:[],                                                 neg:[]},
+};
+const QUERY_PARSE = {
+  "beach":    [{text:"beach",type:"positive",hint:"exact"},{text:"coastal",type:"positive",hint:"related"}],
+  "vacation": [{text:"vacation spots",type:"positive",hint:"broad"},{text:"travel",type:"positive",hint:"related"}],
+  "hawaii":   [{text:"hawaii",type:"negative",hint:"exclusion"}],
+  "-hawaii":  [{text:"hawaii",type:"negative",hint:"exclusion"}],
+  "remote":   [{text:"remote",type:"positive",hint:"modifier"}],
+  "ml":       [{text:"machine learning",type:"positive",hint:"expanded"},{text:"ai",type:"positive",hint:"related"}],
+  "fintech":  [{text:"fintech",type:"positive",hint:"sector"},{text:"banking",type:"negative",hint:"excluded"}],
+  "jobs":     [{text:"careers",type:"positive",hint:"broad"},{text:"job postings",type:"positive",hint:"explicit"}],
+  "after:2024-08-01": [{text:"after aug 1 2024",type:"date",hint:"date filter"}],
+};
+
+// ════════════════════════════════════════════════════
+// STATE
+// ════════════════════════════════════════════════════
+let S = {
+  treeMode:    "domain",
+  expanded:    {},          // {nodeId: true} — sidebar expand state
+  nodeStates:  {},          // {nodeId: "pos"|"neg"}
+  chips:       [],
+  highlighted: {},          // {nodeId: "pos"|"neg"|"weak"}
+  results:     [],
+  executed:    false,
+  pruned:      false,
+  fillData:    {},
+  hopperDocs:  [],
+  hopperOpen:  true,
+  previewDoc:  null,
+  viewMode:    "treemap",   // "treemap" | "list"
+  drillPath:   [],          // treemap drill-down stack; each entry = node being viewed
+  history:     [],
+  showExcluded: false,      // results-list local toggle (Phase 3)
+};
+
+// ════════════════════════════════════════════════════
+// FIVE STORES (Phase 1 — additive; not yet wired to UI)
+// ════════════════════════════════════════════════════
+
+// CORPUS: immutable after load — snapshot of DOCS
+const CORPUS = [...DOCS];
+
+// BASE: committed selection; starts as CORPUS
+let BASE = [...CORPUS];
+
+// LEDGER: ordered array of decision entries
+// Shape: { ts, source, target_type, target_id, polarity }
+let LEDGER = [];
+
+// WORKING_SCOPE: derived; recomputed on every ledger write
+let WORKING_SCOPE = [...BASE];
+
+// HOPPER: persistent independent collection (doc IDs) — survives Go/Undo/Reset
+const HOPPER = new Set();
+
+// UNDO_STACK: typed entries for undo
+let UNDO_STACK = [];
+
+// SESSION_HISTORY: archived ledger states (one per Go)
+let SESSION_HISTORY = [];
+
+// Precompute ancestor paths and node label index now that DOCS/CORPUS exist
+buildDocPaths(CORPUS);
+buildNodeLabels(DOMAIN_TREE);
+buildNodeLabels(FUNCTION_TREE);
+
+// ════════════════════════════════════════════════════
+// EVALUATE — core ledger-driven scope computation
+// ════════════════════════════════════════════════════
+
+function evaluate(base, ledger) {
+  // Group term entries by OR group_id once per call (not per-doc) for performance.
+  const termEntries = ledger.filter(e => e.target_type === "term");
+  const orGroups = groupBy(termEntries, e => e.group_id);
+  // Once at least one node is actively included anywhere in the ledger, the
+  // included branch(es) become the whole scope rather than an add-on to
+  // everything else — computed once per call, not per-doc (RF-1 style cache).
+  const nodeIncludeActive = ledgerHasActiveNodeInclude(ledger);
+  return base.filter(doc => resolveDoc(doc, ledger, orGroups, nodeIncludeActive) !== "exclude");
+}
+
+function groupBy(arr, keyFn) {
+  const map = new Map();
+  for (const item of arr) {
+    const key = keyFn(item);
+    if (!map.has(key)) map.set(key, []);
+    map.get(key).push(item);
+  }
+  return map;
+}
+
+// True if the most recent decision on at least one node in this ledger is "include".
+// Forward iteration + overwrite gives the latest-per-node polarity in one pass,
+// since ledger entries are always appended in chronological order.
+function ledgerHasActiveNodeInclude(ledger) {
+  const latest = new Map();
+  for (const e of ledger) {
+    if (e.target_type === "node") latest.set(e.target_id, e.polarity);
+  }
+  for (const polarity of latest.values()) {
+    if (polarity === "include") return true;
+  }
+  return false;
+}
+
+// Returns "include", "exclude", or "neutral" (neutral = in scope)
+function resolveDoc(doc, ledger, orGroups, nodeIncludeActive) {
+  const paths = DOC_PATHS.get(doc.id);
+  if (!paths) return "neutral";
+
+  // Track the winning decision: { specificity, ts, polarity }
+  let winner = null;
+
+  for (const entry of ledger) {
+    let specificity = -1;
+
+    if (entry.target_type === "document") {
+      if (String(doc.id) === String(entry.target_id)) {
+        specificity = 999; // always wins
+      }
+
+    } else if (entry.target_type === "node") {
+      // Check both trees; specificity = depth index in path
+      const domIdx = paths.domPath.indexOf(entry.target_id);
+      const fnIdx  = paths.fnPath.indexOf(entry.target_id);
+      const idx = Math.max(domIdx, fnIdx); // one or both may be -1
+      if (idx >= 0) specificity = idx;
+
+    } else {
+      // "term" entries don't compete in the specificity contest at all — they're
+      // applied afterward as a gate, not a vote. See the term gate below.
+      continue;
+    }
+
+    if (specificity < 0) continue;
+
+    const beats =
+      !winner ||
+      specificity > winner.specificity ||
+      (specificity === winner.specificity && entry.ts > winner.ts);
+
+    if (beats) {
+      winner = { specificity, ts: entry.ts, polarity: entry.polarity, kind: entry.target_type };
+    }
+  }
+
+  // Implicit default-exclude: once any node is actively included (anywhere in
+  // either tree), a doc that no document/node decision reached at all is no
+  // longer "neutral" — it falls outside every included branch, so it's excluded.
+  // Only fires when nothing else decided this doc; any real node/document entry
+  // (including the doc's own no-op "neutral" reset) still takes precedence.
+  if (nodeIncludeActive && winner === null) {
+    winner = { specificity: 0, ts: 0, polarity: "exclude" };
+  }
+
+  // Term gate — applied OUTSIDE the specificity contest, not as a competitor in it.
+  // The tree layer chooses the candidate set; the query text filters within it.
+  // A term is a content predicate, not a position in the hierarchy, so it has no
+  // meaningful specificity to compare against a node's depth — comparing them is
+  // what made deeper (more specific) includes override terms harder, which is
+  // backwards. The one exception is an explicit per-document decision: that's a
+  // deliberate manual act and stays final.
+  if (orGroups && orGroups.size > 0 && winner?.kind !== "document") {
+    if (!docPassesTermFilter(doc, orGroups)) return "exclude";
+  }
+
+  return winner ? winner.polarity : "neutral";
+}
+
+// termMatchesDoc(termId, doc, quoted) — real tokenizer-driven implementation (Phase 5).
+// Quoted terms match only literal body/title substrings. Unquoted terms also match
+// via ancestor node label (domain + function tree), which brings the whole branch in scope.
+function termMatchesDoc(termId, doc, quoted = false) {
+  const body  = doc.body.toLowerCase();
+  const title = doc.title.toLowerCase();
+  const term  = termId.toLowerCase();
+
+  if (quoted) {
+    return body.includes(term) || title.includes(term);
+  }
+
+  if (body.includes(term) || title.includes(term)) return true;
+
+  const paths = DOC_PATHS.get(doc.id);
+  if (!paths) return false;
+  return nodeLabelsContainTerm([...paths.domPath, ...paths.fnPath], term);
+}
+
+function nodeLabelsContainTerm(nodeIds, term) {
+  return nodeIds.some(id => NODE_LABELS.get(id)?.includes(term));
+}
+
+// A doc passes the term filter if: no exclude term matches it, AND
+// (there are no include OR-groups, OR it matches every term in at least one include group).
+function docPassesTermFilter(doc, orGroups) {
+  const allGroups      = [...orGroups.values()];
+  const includeGroups  = allGroups.filter(g => g.some(e => e.polarity === "include"));
+  const excludeTerms   = allGroups.flat().filter(e => e.polarity === "exclude");
+
+  for (const e of excludeTerms) {
+    if (termMatchesDoc(e.target_id, doc, e.quoted)) return false;
+  }
+
+  if (includeGroups.length === 0) return true;
+
+  return includeGroups.some(group =>
+    group.filter(e => e.polarity === "include")
+         .every(e => termMatchesDoc(e.target_id, doc, e.quoted))
+  );
+}
+
+// ════════════════════════════════════════════════════
+// LEDGER WRITE + RECOMPUTE
+// ════════════════════════════════════════════════════
+
+// Monotonic counter so entries pushed within the same millisecond (e.g. a
+// multi-token parseQuery() loop) still get a unique, order-preserving id —
+// ts alone isn't fine-grained enough to key a single entry for removal.
+let LEDGER_SEQ = 0;
+
+function writeLedger(entry) {
+  hideUndoConfirm(); // any new ledger write cancels a pending "undo past Go?" confirmation
+  LEDGER.push({ ...entry, ts: Date.now(), seq: LEDGER_SEQ++ });
+  recompute();
+}
+
+function recompute() {
+  WORKING_SCOPE = evaluate(BASE, LEDGER);
+  WORKING_COUNT_CACHE = buildCountCache(WORKING_SCOPE);
+  BASE_COUNT_CACHE = buildCountCache(BASE);
+  renderAll();
+}
+
+// ════════════════════════════════════════════════════
+// NODE POLARITY (Phase 2 — ledger-driven; replaces S.nodeStates writes)
+// ════════════════════════════════════════════════════
+
+function cycleNodePolarity(nodeId, source) {
+  // Find the current effective polarity for this node from the ledger
+  const current = getNodeLedgerPolarity(nodeId);
+  const next = current === "neutral"  ? "include"
+              : current === "include" ? "exclude"
+              : "neutral";
+
+  // Push to undo stack before writing
+  UNDO_STACK.push({ type: "ledger_pop" });
+
+  writeLedger({
+    source,
+    target_type: "node",
+    target_id: nodeId,
+    polarity: next,
+  });
+
+  setStatus(`${nodeId}: ${next}`);
+}
+
+// Returns the polarity of the most recent ledger entry for this exact node
+// (not considering propagation — just what was explicitly set on this node)
+function getNodeLedgerPolarity(nodeId) {
+  for (let i = LEDGER.length - 1; i >= 0; i--) {
+    if (LEDGER[i].target_type === "node" && LEDGER[i].target_id === nodeId) {
+      return LEDGER[i].polarity;
+    }
+  }
+  return "neutral";
+}
+
+// ════════════════════════════════════════════════════
+// DOCUMENT POLARITY (Phase 2 — results list right-click)
+// ════════════════════════════════════════════════════
+
+function cycleDocPolarity(docId) {
+  const current = getDocLedgerPolarity(docId);
+  const next = current === "neutral"  ? "include"
+              : current === "include" ? "exclude"
+              : "neutral";
+
+  UNDO_STACK.push({ type: "ledger_pop" });
+
+  writeLedger({
+    source: "results_list",
+    target_type: "document",
+    target_id: String(docId),
+    polarity: next,
+  });
+}
+
+function getDocLedgerPolarity(docId) {
+  for (let i = LEDGER.length - 1; i >= 0; i--) {
+    const e = LEDGER[i];
+    if (e.target_type === "document" && String(e.target_id) === String(docId)) {
+      return e.polarity;
+    }
+  }
+  return "neutral";
+}
+
+// ════════════════════════════════════════════════════
+// SHARED NODE DISPLAY (Phase 3 — pure functions of the ledger/scope)
+// ════════════════════════════════════════════════════
+
+// Returns "include" | "exclude" | "neutral" for display on the node itself
+// (its own ledger decision — not considering propagation to descendants)
+function getNodeDisplayPolarity(nodeId) {
+  return getNodeLedgerPolarity(nodeId);
+}
+
+// Precomputed nodeId → doc count, rebuilt in recompute() (RF-1 perf cache)
+let WORKING_COUNT_CACHE = new Map();
+let BASE_COUNT_CACHE = new Map();
+
+function buildCountCache(docs) {
+  const cache = new Map();
+  for (const doc of docs) {
+    const p = DOC_PATHS.get(doc.id);
+    if (!p) continue;
+    for (const id of [...p.domPath, ...p.fnPath]) {
+      cache.set(id, (cache.get(id) ?? 0) + 1);
+    }
+  }
+  return cache;
+}
+
+function nodeWorkingCount(nodeId) { return WORKING_COUNT_CACHE.get(nodeId) ?? 0; }
+function nodeBaseCount(nodeId)    { return BASE_COUNT_CACHE.get(nodeId) ?? 0; }
+
+// "W" when working === base, "W / B" when they differ
+function nodeCountLabel(nodeId) {
+  const w = nodeWorkingCount(nodeId), b = nodeBaseCount(nodeId);
+  return w === b ? `${w}` : `${w} / ${b}`;
+}
+
+// ════════════════════════════════════════════════════
+// HEADER (doc count badge + Go button enable state)
+// ════════════════════════════════════════════════════
+function updateHeader() {
+  document.getElementById("activeCount").textContent = WORKING_SCOPE.length;
+  const goBtn = document.getElementById("goBtn");
+  goBtn.disabled = WORKING_SCOPE.length === 0;
+  goBtn.classList.toggle("btn-go-disabled", WORKING_SCOPE.length === 0);
+}
+
+// ════════════════════════════════════════════════════
+// GO / RESET (Phase 2 — ledger-driven; replaces old executeSearch/resetAll flow)
+// ════════════════════════════════════════════════════
+
+function go() {
+  if (WORKING_SCOPE.length === 0) return; // blocked when scope = 0
+
+  hideUndoConfirm();
+
+  // Archive current state for session history
+  SESSION_HISTORY.push({
+    label: `Cycle ${SESSION_HISTORY.length + 1} — ${BASE.length} → ${WORKING_SCOPE.length} docs`,
+    ledger: [...LEDGER],
+    base:   [...BASE],
+  });
+
+  // Push to undo stack so we can undo past Go
+  UNDO_STACK.push({
+    type:       "go_commit",
+    prevBase:   [...BASE],
+    prevLedger: [...LEDGER],
+  });
+
+  // Record the query that produced this cycle (Phase 4.3 — query history datalist)
+  const rawQuery = document.getElementById("searchInput").value.trim();
+  if (rawQuery && !QUERY_HISTORY.includes(rawQuery)) QUERY_HISTORY.push(rawQuery);
+  updateQueryHistoryDatalist();
+
+  BASE          = [...WORKING_SCOPE];
+  LEDGER        = [];
+  WORKING_SCOPE = [...BASE];
+
+  document.getElementById("searchInput").value = "";
+  updateGoButton();
+  updateHistoryDropdown();
+  recompute();
+  setStatus(`Committed — ${BASE.length} docs now base`);
+}
+
+function updateGoButton() { updateHeader(); }
+
+// ════════════════════════════════════════════════════
+// UNDO-GO CONFIRMATION BAR (Phase 4.1)
+// ════════════════════════════════════════════════════
+function showUndoConfirm() {
+  const el = document.getElementById("undoConfirm");
+  if (el) el.style.display = "block";
+}
+function hideUndoConfirm() {
+  const el = document.getElementById("undoConfirm");
+  if (el) el.style.display = "none";
+}
+
+// ════════════════════════════════════════════════════
+// SESSION HISTORY DROPDOWN (Phase 4.2 — read-only provenance display)
+// ════════════════════════════════════════════════════
+function updateHistoryDropdown() {
+  const sel = document.getElementById("historySelect");
+  sel.innerHTML = `<option value="">History ▾</option>`;
+  SESSION_HISTORY.forEach((h, i) => {
+    const opt = document.createElement("option");
+    opt.value = i;
+    opt.textContent = h.label;
+    sel.appendChild(opt);
+  });
+}
+
+function showHistoryOverlay(idx) {
+  const overlay = document.getElementById("historyOverlay");
+  if (idx === "" || idx === undefined || idx === null) { overlay.style.display = "none"; return; }
+  const cycle = SESSION_HISTORY[Number(idx)];
+  if (!cycle) { overlay.style.display = "none"; return; }
+
+  document.getElementById("historyOverlayTitle").textContent = cycle.label;
+  const body = document.getElementById("historyOverlayBody");
+  body.innerHTML = "";
+  if (!cycle.ledger.length) {
+    body.innerHTML = '<div class="history-empty">No ledger entries this cycle — Go was pressed with no active filters.</div>';
+  } else {
+    for (const entry of cycle.ledger) {
+      const row = document.createElement("div");
+      const pol = entry.polarity === "include" ? "history-include" : entry.polarity === "exclude" ? "history-exclude" : "";
+      row.className = "history-entry " + pol;
+      row.textContent = `${entry.source} · ${entry.target_type}:${entry.target_id} → ${entry.polarity}`;
+      body.appendChild(row);
+    }
+  }
+  overlay.style.display = "flex";
+  // Reset the select so choosing the same cycle again still fires a change event
+  document.getElementById("historySelect").value = "";
+}
+
+function closeHistoryOverlay() {
+  document.getElementById("historyOverlay").style.display = "none";
+}
+
+// ════════════════════════════════════════════════════
+// QUERY HISTORY DATALIST (Phase 4.3)
+// ════════════════════════════════════════════════════
+let QUERY_HISTORY = [];
+
+function updateQueryHistoryDatalist() {
+  const dl = document.getElementById("queryHistory");
+  dl.innerHTML = "";
+  for (const q of QUERY_HISTORY) {
+    const opt = document.createElement("option");
+    opt.value = q;
+    dl.appendChild(opt);
+  }
+}
+
+// ════════════════════════════════════════════════════
+// HOPPER (Phase 2 — ledger-independent persistent set)
+// ════════════════════════════════════════════════════
+
+function addToHopper(docId) {
+  HOPPER.add(docId);
+  renderHopper();
+}
+
+function removeFromHopper(docId) {
+  HOPPER.delete(docId);
+  renderHopper();
+}
+
+function toggleHopperDoc(docId, e) {
+  if (e) e.stopPropagation();
+  if (HOPPER.has(docId)) removeFromHopper(docId);
+  else addToHopper(docId);
+  renderList(); // refresh hopper-btn state in list
+  if (S.previewDoc?.id === docId) {
+    document.getElementById("previewPanel").querySelector(".btn-hopper").textContent =
+      HOPPER.has(docId) ? "✓ In Hopper" : "＋ Add to Hopper";
+  }
+}
+
+function clearHopper(e) {
+  if (e) e.stopPropagation();
+  HOPPER.clear();
+  renderHopper();
+  renderList();
+  setStatus("Hopper cleared");
+}
+
+// ════════════════════════════════════════════════════
+// HISTORY
+// ════════════════════════════════════════════════════
+function snap() {
+  S.history.push({
+    nodeStates: {...S.nodeStates},
+    chips: S.chips.map(c=>({...c})),
+    highlighted: {...S.highlighted},
+    executed: S.executed, results:[...S.results], fillData:{...S.fillData},
+    expanded: {...S.expanded},
+  });
+  if (S.history.length > 30) S.history.shift();
+}
+function undo() {
+  if (!UNDO_STACK.length) { setStatus("Nothing to undo"); return; }
+
+  const action = UNDO_STACK[UNDO_STACK.length - 1]; // peek first
+
+  if (action.type === "go_commit") {
+    // Show confirmation before undoing a Go commit
+    if (!action.confirmed) {
+      action.confirmed = true;
+      showUndoConfirm();
+      setStatus("Undo GO? Press Undo again to confirm.");
+      return;
+    }
+    // Confirmed: restore
+    hideUndoConfirm();
+    UNDO_STACK.pop();
+    BASE   = action.prevBase;
+    LEDGER = action.prevLedger;
+    SESSION_HISTORY.pop();
+    updateHistoryDropdown();
+
+  } else if (action.type === "ledger_pop") {
+    hideUndoConfirm();
+    UNDO_STACK.pop();
+    LEDGER.pop(); // remove the most recent ledger entry
+
+  } else if (action.type === "ledger_restore") {
+    hideUndoConfirm();
+    UNDO_STACK.pop();
+    LEDGER.push(...action.removed);
+    LEDGER.sort((a, b) => a.seq - b.seq); // keep chronological invariant intact
+  }
+
+  recompute();
+  setStatus("Undone");
+}
+
+// ════════════════════════════════════════════════════
+// TREE MODE
+// ════════════════════════════════════════════════════
+function switchTree(mode) {
+  snap();
+  S.treeMode = mode;
+  S.nodeStates = {}; S.expanded = {}; S.highlighted = {}; S.drillPath = [];
+  document.getElementById("btnDomain").classList.toggle("active",   mode==="domain");
+  document.getElementById("btnFunction").classList.toggle("active", mode==="function");
+  document.getElementById("sidebarTreeLabel").textContent =
+    mode === "domain" ? "Domain Tree" : "Function Tree";
+  updateDocCount(); renderAll(); setStatus(`Switched to ${mode} tree`);
+}
+function currentTree() { return TREES[S.treeMode]; }
+
+// ════════════════════════════════════════════════════
+// QUERY PARSER (Phase 5)
+// ════════════════════════════════════════════════════
+
+// Grammar: query = group (OR group)*; group = term+; term = [-]?(quoted|unquoted)
+function tokenize(query) {
+  const tokens = [];
+  const re = /(-?"[^"]*"|-?\S+)/g;
+  let m;
+  while ((m = re.exec(query)) !== null) {
+    const raw = m[1];
+    const neg = raw.startsWith("-");
+    const inner = neg ? raw.slice(1) : raw;
+    const quoted = inner.startsWith('"') && inner.endsWith('"');
+    const term = quoted ? inner.slice(1, -1) : inner.toLowerCase();
+    tokens.push({ term, neg, quoted });
+  }
+  return tokens;
+}
+
+// Split on the literal unquoted token "or" (case-insensitive). Terms within a
+// group are AND; groups are OR.
+function splitOrGroups(tokens) {
+  const groups = [[]];
+  for (const tok of tokens) {
+    if (!tok.neg && !tok.quoted && tok.term === "or") {
+      groups.push([]);
+    } else {
+      groups[groups.length - 1].push(tok);
+    }
+  }
+  return groups.filter(g => g.length > 0);
+}
+
+// Returns the live term entry for this exact condition, or null. Term entries
+// have no "neutral" state — removeChipCondition() splices them out by seq —
+// so presence in LEDGER *is* activeness, no latest-wins scan needed.
+function findActiveTermEntry(termId, polarity, quoted) {
+  return LEDGER.find(e =>
+    e.target_type === "term" &&
+    e.target_id === termId &&
+    e.polarity === polarity &&
+    Boolean(e.quoted) === Boolean(quoted)
+  ) || null;
+}
+
+function parseQuery() {
+  const raw = document.getElementById("searchInput").value.trim();
+  if (!raw) return;
+
+  const tokens = tokenize(raw);
+  const groups = splitOrGroups(tokens);
+
+  // One group_id per OR-group, shared by every token inside it — that's what
+  // makes multi-term AND-within-group matching work in docPassesTermFilter.
+  // (Giving each token its own id, as an earlier pass did, silently turned
+  // every multi-word AND query into an OR across its individual words.)
+  // query_id ties all of this Parse call's groups together — the chip tray
+  // uses it to draw an "or" connector between OR-alternatives while leaving
+  // unrelated conditions from other queries unconnected.
+  const baseId = Date.now();
+  let written = 0, skipped = 0;
+  groups.forEach((group, gIdx) => {
+    // If any token in this group is already live, adopt that entry's ids so the
+    // re-added tokens rejoin the existing AND-group rather than forming a new
+    // OR-alternative beside it. Without this, "beach travel" → ×beach → re-parse
+    // leaves travel@old + beach@new, which docPassesTermFilter reads as
+    // "beach OR travel" (16 docs) instead of AND (3).
+    const anchor = group
+      .map(t => findActiveTermEntry(t.term, t.neg ? "exclude" : "include", t.quoted))
+      .find(Boolean);
+    const groupId = anchor ? anchor.group_id : baseId + gIdx;
+    const queryId = anchor ? anchor.query_id : baseId;
+
+    for (const tok of group) {
+      const polarity = tok.neg ? "exclude" : "include";
+      // Idempotent write: the search box is deliberately never cleared, so
+      // re-submitting the same text re-parses every token. Writing a duplicate
+      // entry for a condition that's already live would just add a second
+      // identical chip with no effect on scope — skip it instead.
+      if (findActiveTermEntry(tok.term, polarity, tok.quoted)) { skipped++; continue; }
+      UNDO_STACK.push({ type: "ledger_pop" });
+      writeLedger({
+        source:      "query",
+        target_type: "term",
+        target_id:   tok.term,
+        polarity,
+        quoted:      tok.quoted,
+        group_id:    groupId,
+        query_id:    queryId,
+      });
+      written++;
+    }
+  });
+
+  if (written) {
+    setStatus(`${written} condition${written !== 1 ? "s" : ""} added${skipped ? ` — ${skipped} already active` : ""}`);
+  } else if (skipped) {
+    setStatus(`Already active — no new conditions added`);
+  }
+}
+
+// ════════════════════════════════════════════════════
+// CHIPS
+// ════════════════════════════════════════════════════
+function decompose() {
+  const q = document.getElementById("searchInput").value.trim();
+  if (!q) return;
+  snap();
+  const tokens = q.toLowerCase().split(/\s+/);
+  const added = [];
+  for (const tok of tokens) {
+    if (QUERY_PARSE[tok]) {
+      for (const c of QUERY_PARSE[tok]) {
+        if (!S.chips.find(x=>x.text===c.text)) {
+          added.push({...c, active:true, id:Date.now()+Math.random()});
+        }
+      }
+    }
+  }
+  if (!added.length) added.push({text:q,type:"positive",hint:"raw",active:true,id:Date.now()});
+  S.chips = [...S.chips, ...added];
+  document.getElementById("searchInput").value = "";
+  updateHighlights(); updateDocCount(); renderAll();
+  setStatus(`${added.length} condition${added.length!==1?"s":""} parsed — review tree highlights then Go`);
+}
+// Phase 6.1 — chip tray reads directly from LEDGER (replaces the legacy
+// S.chips-driven renderer above; decompose()/toggleChip/removeChip/flipChip
+// are now dead code, left in place rather than deleted).
+//
+// One chip per currently-active condition:
+//   - node/document: most recent entry for that exact target, unless it was
+//     cycled back to "neutral" (a no-op reset renders no chip)
+//   - term: every term entry currently in the ledger (terms have no neutral
+//     state — a term condition exists until its chip is explicitly removed)
+function getActiveLedgerChips() {
+  const latestByTarget = new Map(); // "type|id" -> most recent entry
+  for (const e of LEDGER) {
+    if (e.target_type === "term") continue;
+    latestByTarget.set(`${e.target_type}|${e.target_id}`, e); // ledger is chronological — last write wins
+  }
+  const chips = [...latestByTarget.values()].filter(e => e.polarity !== "neutral");
+  for (const e of LEDGER) {
+    if (e.target_type === "term") chips.push(e);
+  }
+  chips.sort((a, b) => a.ts - b.ts);
+  return chips;
+}
+
+function renderChips() {
+  const tray = document.querySelector(".chip-tray-left");
+  [...tray.querySelectorAll(".chip, .chip-or")].forEach(c => c.remove());
+
+  const chips = getActiveLedgerChips();
+  document.getElementById("noChips").style.display = chips.length ? "none" : "";
+
+  let prevTerm = null; // last rendered term entry, for the "or" connector
+  for (const entry of chips) {
+    // Two consecutive term chips from the same Parse call but different
+    // OR-groups are alternatives ("beach or vacation") — connect them with
+    // a small "or" divider. Same group_id (AND, e.g. "beach travel") or a
+    // different query_id (unrelated condition) gets no connector.
+    if (
+      entry.target_type === "term" && prevTerm &&
+      prevTerm.query_id !== undefined && prevTerm.query_id === entry.query_id &&
+      prevTerm.group_id !== entry.group_id
+    ) {
+      const orLabel = document.createElement("span");
+      orLabel.className = "chip-or";
+      orLabel.textContent = "or";
+      tray.appendChild(orLabel);
+    }
+
+    const isInclude = entry.polarity === "include";
+    const el = document.createElement("span");
+    el.className = `chip ${isInclude ? "positive" : "negative"}`;
+    const icon = isInclude ? "+" : "−";
+
+    let label, tag = "";
+    if (entry.target_type === "term") {
+      label = entry.quoted ? `"${entry.target_id}"` : entry.target_id;
+    } else if (entry.target_type === "node") {
+      const node = findNode(entry.target_id, DOMAIN_TREE) || findNode(entry.target_id, FUNCTION_TREE);
+      label = node ? node.label : entry.target_id;
+      tag = `<span class="chip-tag">tree</span>`;
+    } else { // document
+      const doc = CORPUS.find(d => String(d.id) === String(entry.target_id));
+      const title = doc ? doc.title : `#${entry.target_id}`;
+      label = title.length > 28 ? title.slice(0, 27) + "…" : title;
+      tag = `<span class="chip-tag">doc</span>`;
+    }
+
+    el.innerHTML = `<span>${icon}</span>${tag}<span>${label}</span><span class="chip-x">×</span>`;
+    el.querySelector(".chip-x").addEventListener("click", e => {
+      e.stopPropagation();
+      removeChipCondition(entry);
+    });
+    tray.appendChild(el);
+
+    prevTerm = entry.target_type === "term" ? entry : null;
+  }
+}
+
+// Removing a chip clears that condition entirely, not just its most recent
+// cycle. Node/document conditions reset via the same append-only "neutral"
+// convention cycling already uses (undoable with one ledger_pop). Terms have
+// no neutral state, so their entry is spliced out directly by its unique seq
+// (undoable via ledger_restore, since ts alone can collide within one parse).
+function removeChipCondition(entry) {
+  if (entry.target_type === "term") {
+    UNDO_STACK.push({ type: "ledger_restore", removed: [entry] });
+    LEDGER = LEDGER.filter(e => e.seq !== entry.seq);
+    recompute();
+    setStatus(`Removed condition: ${entry.quoted ? '"' + entry.target_id + '"' : entry.target_id}`);
+  } else {
+    UNDO_STACK.push({ type: "ledger_pop" });
+    writeLedger({
+      source: "chip_tray",
+      target_type: entry.target_type,
+      target_id: entry.target_id,
+      polarity: "neutral",
+    });
+    setStatus(`Cleared condition: ${entry.target_id}`);
+  }
+}
+
+// ════════════════════════════════════════════════════
+// HIGHLIGHTS
+// ════════════════════════════════════════════════════
+function updateHighlights() {
+  S.highlighted = {};
+  for (const chip of S.chips) {
+    if (!chip.active) continue;
+    const rel = CHIP_REL[chip.text.toLowerCase()];
+    if (!rel) continue;
+    if (chip.type==="positive") {
+      rel.pos.forEach(id=>S.highlighted[id]="pos");
+      rel.neg.forEach(id=>S.highlighted[id]=S.highlighted[id]||"neg");
+    } else if (chip.type==="negative") {
+      rel.pos.forEach(id=>S.highlighted[id]="neg");
+    }
+  }
+}
+// Legacy chip-based counting is superseded by WORKING_SCOPE (Phase 3). Chips
+// (Phase 5) still call this after mutating S.chips; it just keeps the header honest.
+function updateDocCount() {
+  updateHeader();
+}
+
+// ════════════════════════════════════════════════════
+// SIDEBAR TREE RENDER (VS Code style)
+// ════════════════════════════════════════════════════
+function renderSidebar() {
+  const container = document.getElementById("sidebarTree");
+  container.innerHTML = "";
+  renderTreeNodes(currentTree().children, 0, container);
+}
+function renderTreeNodes(nodes, depth, container) {
+  for (const node of nodes) {
+    const polarity = getNodeDisplayPolarity(node.id);
+    if (S.pruned && polarity === "exclude") continue;
+
+    const working = nodeWorkingCount(node.id);
+    // Clean-slate state (no active ledger — right after Go/Reset/on load):
+    // a branch with zero docs is gone, not just dimmed. Pre-Go it still shows
+    // red (below) so you can see what a filter emptied out before committing.
+    if (working === 0 && LEDGER.length === 0) continue;
+
+    const hl = S.highlighted[node.id]; // legacy query highlight (Phase 5 will replace)
+    const isExpanded = S.expanded[node.id];
+    const hasChildren = node.children.length > 0;
+
+    const emptyPreGo = working === 0 && LEDGER.length > 0; // pre-Go empty nodes display red
+
+    // ns: mapped for display purposes ("pos"/"neg"/null) — reused by existing color helpers
+    let ns = polarity === "include" ? "pos" : polarity === "exclude" ? "neg" : null;
+    if (!ns && emptyPreGo) ns = "neg";
+
+    let rowCls = "tree-row";
+    if      (ns==="pos")       rowCls += " pos-selected";
+    else if (ns==="neg")       rowCls += " neg-selected";
+    else if (hl==="pos")       rowCls += " highlight-pos";
+    else if (hl==="neg")       rowCls += " highlight-neg";
+    else if (hl==="weak")      rowCls += " highlight-weak";
+
+    const row = document.createElement("div");
+    row.className = rowCls;
+    row.dataset.id = node.id;
+    row.style.paddingLeft = (depth * 16 + 8) + "px";
+
+    const stateIcon = polarity==="include" ? "✓" : polarity==="exclude" ? "✕" : "";
+
+    row.innerHTML = `
+      <span class="row-toggle${hasChildren?(isExpanded?" open":""):" leaf"}">${hasChildren?"▶":""}</span>
+      <span class="row-dot"></span>
+      <span class="row-label">${node.label}${stateIcon ? ` <span style="font-size:11px;opacity:0.9">${stateIcon}</span>` : ""}</span>
+      <span class="row-count">${nodeCountLabel(node.id)}</span>
+    `;
+
+    // Left-click navigates only (expand/collapse) — it never changes polarity.
+    // Only right-click cycles include/exclude, so browsing a branch never
+    // disturbs an exclusion you set on it (e.g. expanding an excluded node
+    // to look at its children shouldn't un-exclude it).
+    row.addEventListener("click", e => {
+      e.stopPropagation();
+      if (hasChildren) {
+        S.expanded[node.id] = !S.expanded[node.id];
+        renderSidebar();
+      }
+    });
+
+    // Right-click: cycle neutral → include → exclude → neutral (node STAYS VISIBLE)
+    row.addEventListener("contextmenu", e => {
+      e.preventDefault();
+      cycleNodePolarity(node.id, S.treeMode === "function" ? "function_tree" : "domain_tree");
+    });
+
+    row.addEventListener("mouseenter", e => showTooltip(node, e, ns, hl));
+    row.addEventListener("mousemove", moveTooltip);
+    row.addEventListener("mouseleave", hideTooltip);
+
+    container.appendChild(row);
+
+    if (hasChildren && isExpanded) {
+      renderTreeNodes(node.children, depth+1, container);
+    }
+  }
+}
+function collapseAll() { S.expanded = {}; renderSidebar(); }
+
+// ════════════════════════════════════════════════════
+// TREEMAP — D3 squarified treemap with drill-down
+// ════════════════════════════════════════════════════
+
+// Current view node: the node whose children fill the treemap
+function treemapFocusNode() {
+  return S.drillPath.length > 0 ? S.drillPath[S.drillPath.length - 1] : currentTree();
+}
+
+// Color helpers
+function tmFill(ns, hl, depth) {
+  if (ns==="pos") return depth===1 ? "rgba(0,70,35,0.75)"  : "rgba(0,100,50,0.88)";
+  if (ns==="neg") return depth===1 ? "rgba(65,10,10,0.75)" : "rgba(90,14,14,0.88)";
+  if (hl==="pos") return depth===1 ? "rgba(0,60,30,0.50)"  : "rgba(0,80,40,0.72)";
+  if (hl==="neg") return depth===1 ? "rgba(55,10,10,0.50)" : "rgba(70,12,12,0.65)";
+  if (hl==="weak") return depth===1 ? "rgba(0,38,60,0.50)" : "rgba(0,50,78,0.78)";
+  return depth===1 ? "rgba(13,21,32,0.88)" : "rgba(19,31,48,0.94)";
+}
+function tmStroke(ns, hl) {
+  if (ns==="pos"||hl==="pos") return "#00ff88";
+  if (ns==="neg"||hl==="neg") return "#ff5555";
+  if (hl==="weak") return "#00d8ff";
+  return "#4a6888";
+}
+function tmLabelColor(ns, hl) {
+  if (ns==="pos"||hl==="pos") return "#00ff88";
+  if (ns==="neg"||hl==="neg") return "#ff5555";
+  if (hl==="weak") return "#00d8ff";
+  return "#d0eaff";
+}
+function cycleNodeState(id) {
+  const cur = S.nodeStates[id]||null;
+  const next = cur==="pos" ? null : cur===null ? "neg" : "pos";
+  if (next) S.nodeStates[id]=next; else delete S.nodeStates[id];
+}
+
+// Truncate text to fit width (rough char estimate)
+function tmTrunc(label, pxWidth, fontSize) {
+  const charsPerPx = 1 / (fontSize * 0.6);
+  const maxChars = Math.floor(pxWidth * charsPerPx);
+  return label.length > maxChars ? label.slice(0, Math.max(3, maxChars - 1)) + "…" : label;
+}
+
+// When drilled to a leaf: show its in-scope docs as tiles
+function renderLeafDocs(container, node, W, H) {
+  const docs = WORKING_SCOPE.filter(d => d.domCluster === node.id || d.fnCluster === node.id);
+  const svg = d3.select(container).append("svg")
+    .attr("width", W).attr("height", H).style("overflow","hidden");
+
+  if (!docs.length) {
+    svg.append("text").attr("x", W/2).attr("y", H/2)
+      .attr("text-anchor","middle").attr("fill","#7aaccc")
+      .attr("font-size","14px").attr("font-family","Inter,Segoe UI,sans-serif")
+      .text("No documents in this cluster");
+    return;
+  }
+
+  const cols = Math.min(3, docs.length);
+  const rows = Math.ceil(docs.length / cols);
+  const cellW = Math.floor((W - 8) / cols) - 4;
+  const cellH = Math.min(Math.floor((H - 8) / rows) - 4, 110);
+
+  docs.forEach((doc, i) => {
+    const col = i % cols;
+    const row = Math.floor(i / cols);
+    const x = col * (cellW + 4) + 4;
+    const y = row * (cellH + 4) + 4;
+    const inH = HOPPER.has(doc.id);
+
+    const g = svg.append("g").style("cursor","pointer");
+    g.append("rect")
+      .attr("x",x).attr("y",y).attr("width",cellW).attr("height",cellH)
+      .attr("rx",4)
+      .attr("fill", inH ? "rgba(0,56,80,0.95)" : "rgba(19,31,48,0.95)")
+      .attr("stroke", inH ? "#00d8ff" : "#4a6888")
+      .attr("stroke-width", inH ? 2 : 1);
+
+    if (cellW > 60) {
+      g.append("text").attr("x",x+8).attr("y",y+20)
+        .attr("fill","#ffffff").attr("font-size","12px").attr("font-weight","700")
+        .attr("font-family","Inter,Segoe UI,sans-serif").attr("pointer-events","none")
+        .text(tmTrunc(doc.title, cellW - 16, 12));
+    }
+    if (cellH > 35 && cellW > 60) {
+      g.append("text").attr("x",x+8).attr("y",y+36)
+        .attr("fill","#00d8ff").attr("font-size","10px").attr("font-weight","600")
+        .attr("font-family","Inter,Segoe UI,sans-serif").attr("pointer-events","none")
+        .text(tmTrunc(doc.path.split(' → ').slice(-2).join(' › '), cellW - 16, 10));
+    }
+    if (cellH > 55 && cellW > 80) {
+      g.append("text").attr("x",x+8).attr("y",y+52)
+        .attr("fill","#7aaccc").attr("font-size","10px")
+        .attr("font-family","Inter,Segoe UI,sans-serif").attr("pointer-events","none")
+        .text(tmTrunc(doc.body.slice(0,72), cellW - 16, 10));
+    }
+
+    g.on("click", () => openPreview(doc));
+    g.on("mouseenter", e => showTooltip({label:doc.title,count:1,children:[]}, e, null, null));
+    g.on("mousemove", e => moveTooltip(e));
+    g.on("mouseleave", hideTooltip);
+  });
+}
+
+function renderTreemap() {
+  const container = document.getElementById("treemapView");
+  container.innerHTML = "";
+  const W = container.clientWidth;
+  const H = container.clientHeight;
+  if (!W || !H) return;
+
+  const focusNode = treemapFocusNode();
+
+  // Leaf level → show docs
+  if (!focusNode.children || focusNode.children.length === 0) {
+    renderLeafDocs(container, focusNode, W, H);
+    return;
+  }
+
+  // Build d3 hierarchy rooted at focusNode — tile area reflects BASE, not the live
+  // WORKING_SCOPE. Sizing off the committed corpus means clicks/queries repaint
+  // color instantly (via ns/hl below, which still read the live ledger) without
+  // the layout itself reflowing — tiles only resize on Go/Reset, when BASE moves.
+  const root = d3.hierarchy(focusNode)
+    .sum(d => {
+      if (d.children && d.children.length) return 0;
+      return nodeBaseCount(d.id);
+    })
+    .sort((a, b) => b.value - a.value);
+
+  const hasTwoLevels = focusNode.children.some(c => c.children && c.children.length > 0);
+
+  d3.treemap()
+    .size([W, H])
+    .paddingOuter(3)
+    .paddingTop(hasTwoLevels ? 22 : 4)
+    .paddingInner(2)
+    .round(true)
+    (root);
+
+  const svg = d3.select(container).append("svg")
+    .attr("width", W).attr("height", H).style("overflow","hidden");
+
+  // ── L1 background blocks (when 2-level view) ──
+  if (hasTwoLevels) {
+    (root.children || []).forEach(d1 => {
+      const working1 = nodeWorkingCount(d1.data.id);
+      // Clean-slate state: don't draw an empty category's background block at
+      // all — its leaf tiles are already hidden by the .sum() rule above.
+      if (working1 === 0 && LEDGER.length === 0) return;
+
+      const polarity = getNodeDisplayPolarity(d1.data.id);
+      const hl = S.highlighted[d1.data.id]; // legacy query highlight (Phase 5 will replace)
+      const emptyPreGo1 = working1 === 0 && LEDGER.length > 0;
+      let ns = polarity === "include" ? "pos" : polarity === "exclude" ? "neg" : null;
+      if (!ns && emptyPreGo1) ns = "neg";
+      const w = d1.x1 - d1.x0, h = d1.y1 - d1.y0;
+
+      const g1 = svg.append("g").style("cursor","pointer");
+      g1.append("rect")
+        .attr("x",d1.x0).attr("y",d1.y0).attr("width",w).attr("height",h)
+        .attr("rx",4).attr("fill",tmFill(ns,hl,1))
+        .attr("stroke",tmStroke(ns,hl)).attr("stroke-width",1);
+
+      if (w > 50) {
+        g1.append("text")
+          .attr("x",d1.x0+5).attr("y",d1.y0+14)
+          .attr("fill",tmLabelColor(ns,hl))
+          .attr("font-size","10px").attr("font-weight","800")
+          .attr("font-family","Inter,Segoe UI,sans-serif")
+          .attr("pointer-events","none")
+          .text(tmTrunc(d1.data.label.toUpperCase(), w - 10, 10));
+      }
+
+      g1.on("click", e => {
+        e.stopPropagation();
+        S.drillPath = [...S.drillPath, d1.data];
+        renderTreemap(); renderTreemapBreadcrumb();
+      }).on("contextmenu", e => {
+        e.preventDefault();
+        cycleNodePolarity(d1.data.id, "treemap");
+      }).on("mouseenter", e => showTooltip(d1.data, e, ns, hl))
+        .on("mousemove", e => moveTooltip(e))
+        .on("mouseleave", hideTooltip);
+    });
+  }
+
+  // ── Leaf tiles ──
+  root.leaves().forEach(d => {
+    const polarity = getNodeDisplayPolarity(d.data.id);
+    const hl = S.highlighted[d.data.id]; // legacy query highlight (Phase 5 will replace)
+    const workingLeaf = nodeWorkingCount(d.data.id);
+    const emptyPreGoLeaf = workingLeaf === 0 && LEDGER.length > 0;
+    let ns = polarity === "include" ? "pos" : polarity === "exclude" ? "neg" : null;
+    if (!ns && emptyPreGoLeaf) ns = "neg";
+    const x = d.x0+1, y = d.y0+1;
+    const w = Math.max(0, d.x1-d.x0-2);
+    const h = Math.max(0, d.y1-d.y0-2);
+    if (w < 5 || h < 5) return;
+
+    const fillPct = S.fillData[d.data.id] ?? 0;
+    const g = svg.append("g").style("cursor","pointer");
+
+    g.append("rect")
+      .attr("x",x).attr("y",y).attr("width",w).attr("height",h)
+      .attr("rx",2).attr("fill",tmFill(ns,hl,2))
+      .attr("stroke",tmStroke(ns,hl))
+      .attr("stroke-width",(ns||hl) ? 2 : 1);
+
+    // fill bar after execute
+    if (fillPct > 0 && h > 6) {
+      g.append("rect")
+        .attr("x",x).attr("y",y+h-4)
+        .attr("width",Math.round(w*fillPct/100)).attr("height",4)
+        .attr("fill","#00ff88").attr("opacity",0.75).attr("pointer-events","none");
+    }
+
+    if (h > 26 && w > 32) {
+      g.append("text")
+        .attr("x",x+4).attr("y",y+h-14)
+        .attr("fill",tmLabelColor(ns,hl))
+        .attr("font-size", Math.min(12, Math.max(9, w/9))+"px")
+        .attr("font-weight","700").attr("font-family","Inter,Segoe UI,sans-serif")
+        .attr("pointer-events","none")
+        .text(tmTrunc(d.data.label, w-8, Math.min(12, Math.max(9, w/9))));
+    }
+    if (h > 14 && w > 28) {
+      g.append("text")
+        .attr("x",x+4).attr("y",y+h-3)
+        .attr("fill","#7aaccc").attr("font-size","9px")
+        .attr("font-family","Inter,Segoe UI,sans-serif").attr("pointer-events","none")
+        .text(nodeCountLabel(d.data.id));
+    }
+
+    g.on("click", e => {
+      e.stopPropagation();
+      // Left-click always drills down (leaf → shows docs)
+      S.drillPath = [...S.drillPath, d.data];
+      renderTreemap(); renderTreemapBreadcrumb();
+    }).on("contextmenu", e => {
+      e.preventDefault();
+      cycleNodePolarity(d.data.id, "treemap");
+    }).on("mouseenter", e => showTooltip(d.data, e, ns, hl))
+      .on("mousemove", e => moveTooltip(e))
+      .on("mouseleave", hideTooltip);
+  });
+}
+
+// ── Treemap breadcrumb ──
+function renderTreemapBreadcrumb() {
+  const bar = document.getElementById("tmBreadcrumb");
+  bar.innerHTML = "";
+
+  const addCrumb = (label, cls, onclick) => {
+    const el = document.createElement("span");
+    el.className = "tm-crumb " + cls;
+    el.textContent = label;
+    if (onclick) el.onclick = onclick;
+    bar.appendChild(el);
+  };
+  const addSep = () => {
+    const el = document.createElement("span");
+    el.className = "tm-crumb-sep";
+    el.textContent = "›";
+    bar.appendChild(el);
+  };
+
+  if (S.drillPath.length === 0) {
+    addCrumb("All", "tm-crumb-current", null);
+    return;
+  }
+
+  // "All" root — always clickable to go back to root view
+  addCrumb("All", "", () => { S.drillPath=[]; renderTreemap(); renderTreemapBreadcrumb(); });
+
+  // Each item in drillPath: ancestors are clickable, last is current
+  S.drillPath.forEach((node, i) => {
+    addSep();
+    const isCurrent = i === S.drillPath.length - 1;
+    addCrumb(node.label, isCurrent ? "tm-crumb-current" : "", isCurrent ? null : () => {
+      S.drillPath = S.drillPath.slice(0, i + 1);
+      renderTreemap(); renderTreemapBreadcrumb();
+    });
+  });
+}
+
+// ════════════════════════════════════════════════════
+// EXECUTE
+// ════════════════════════════════════════════════════
+function executeSearch() {
+  snap();
+  const activeChips = S.chips.filter(c=>c.active);
+  const posC = new Set(), negC = new Set();
+  for (const chip of activeChips) {
+    const rel = CHIP_REL[chip.text.toLowerCase()];
+    if (!rel) continue;
+    if (chip.type==="positive") { rel.pos.forEach(id=>posC.add(id)); rel.neg.forEach(id=>negC.add(id)); }
+    else if (chip.type==="negative") rel.pos.forEach(id=>negC.add(id));
+  }
+  Object.entries(S.nodeStates).forEach(([id,st])=>{ if(st==="pos") posC.add(id); if(st==="neg") negC.add(id); });
+
+  const clusterField = S.treeMode === "function" ? "fnCluster" : "domCluster";
+  let results = DOCS.filter(doc=>{
+    const dc = doc[clusterField];
+    if ([...negC].some(nid=>dc.startsWith(nid)||nid===dc)) return false;
+    if (posC.size>0) return [...posC].some(pid=>dc.startsWith(pid)||pid.startsWith(dc)||dc===pid);
+    return true;
+  });
+  const terms = activeChips.filter(c=>c.type==="positive").map(c=>c.text);
+  S.results = results.map(doc=>({...doc,terms}));
+  S.executed = true;
+
+  S.fillData = {};
+  for (const n of currentTree().children) {
+    S.fillData[n.id]=results.length>0?Math.round(results.filter(d=>d[clusterField].startsWith(n.id)).length/results.length*100):0;
+    for (const c of n.children) S.fillData[c.id]=results.length>0?Math.round(results.filter(d=>d[clusterField].startsWith(c.id)).length/results.length*100):0;
+  }
+  document.getElementById("activeCount").textContent = results.length;
+  document.getElementById("centerHint").textContent = `${results.length} results — fill bars show distribution`;
+  renderAll();
+  setStatus(`${results.length} document${results.length!==1?"s":""} retrieved`);
+}
+
+// ════════════════════════════════════════════════════
+// RESULTS LIST RENDER
+// ════════════════════════════════════════════════════
+function renderList() {
+  const items = document.getElementById("listItems");
+  const countEl = document.getElementById("listCount");
+  const toggleBtn = document.getElementById("showExcludedBtn");
+  items.innerHTML = "";
+
+  const inScope = WORKING_SCOPE;
+  const inScopeIds = new Set(inScope.map(d => d.id));
+  const outScope = BASE.filter(d => !inScopeIds.has(d.id));
+
+  countEl.textContent = outScope.length
+    ? `${inScope.length} docs (${outScope.length} excluded)`
+    : `${inScope.length} docs`;
+
+  toggleBtn.style.display = outScope.length ? "inline-block" : "none";
+  toggleBtn.textContent = `${S.showExcluded ? "Hide" : "Show"} excluded (${outScope.length})`;
+
+  if (!inScope.length && !outScope.length) {
+    items.innerHTML = '<div class="no-results">No documents in scope</div>';
+    return;
+  }
+  if (!inScope.length) {
+    items.innerHTML = '<div class="no-results">No documents in scope</div>';
+  }
+
+  const renderItem = (doc, excluded) => {
+    const inH = HOPPER.has(doc.id);
+    const polarity = getDocLedgerPolarity(doc.id);
+    const dotColor = polarity==="include" ? "var(--green)" : polarity==="exclude" ? "var(--red)" : "var(--border-hi)";
+    const item = document.createElement("div");
+    item.className = "result-item" + (S.previewDoc?.id===doc.id?" selected":"") + (excluded?" excluded":"");
+    item.innerHTML = `
+      <div class="result-body">
+        <div class="result-title"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${dotColor};margin-right:7px;vertical-align:middle;"></span>${doc.title}</div>
+        <div class="result-path">${doc.path}</div>
+        <div class="result-snippet">${hlTerms(doc.body.slice(0,120)+"…",doc.terms||[])}</div>
+      </div>
+      <button class="hopper-btn${inH?" active":""}" onclick="toggleHopperDoc(${doc.id},event)" title="Add to hopper">⊕</button>
+    `;
+    item.addEventListener("click", e=>{ if(!e.target.closest(".hopper-btn")) openPreview(doc); });
+    item.addEventListener("contextmenu", e=>{ e.preventDefault(); cycleDocPolarity(doc.id); });
+    items.appendChild(item);
+  };
+
+  for (const doc of inScope) renderItem(doc, false);
+
+  if (outScope.length && S.showExcluded) {
+    const sep = document.createElement("div");
+    sep.style.cssText = "margin:14px 0 8px;font-size:12px;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:1.5px;";
+    sep.textContent = "Excluded from scope";
+    items.appendChild(sep);
+    for (const doc of outScope) renderItem(doc, true);
+  }
+}
+function toggleShowExcluded() {
+  S.showExcluded = !S.showExcluded;
+  renderList();
+}
+function hlTerms(text,terms) {
+  let out=text;
+  for (const t of terms) out=out.replace(new RegExp(`(${t.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")})`, "gi"), "<mark>$1</mark>");
+  return out;
+}
+
+// ════════════════════════════════════════════════════
+// VIEW SWITCHER
+// ════════════════════════════════════════════════════
+function setView(mode) {
+  S.viewMode = mode;
+  document.getElementById("btnTreemap").classList.toggle("active", mode==="treemap");
+  document.getElementById("btnList").classList.toggle("active",    mode==="list");
+  document.getElementById("treemapView").style.display  = mode==="treemap" ? "" : "none";
+  document.getElementById("tmBreadcrumb").style.display = mode==="treemap" ? "" : "none";
+  const lv = document.getElementById("listView");
+  lv.style.display = mode==="list" ? "block" : "none";
+  if (mode==="list") lv.classList.add("active"); else lv.classList.remove("active");
+}
+
+// ════════════════════════════════════════════════════
+// PREVIEW
+// ════════════════════════════════════════════════════
+function openPreview(doc) {
+  S.previewDoc = doc;
+  document.getElementById("pvTitle").textContent = doc.title;
+  document.getElementById("pvPath").textContent = doc.path;
+  document.getElementById("pvBody").innerHTML = hlTerms(doc.body, doc.terms||[]);
+  document.getElementById("previewPanel").classList.add("open");
+  renderList();
+}
+function closePreview() { S.previewDoc=null; document.getElementById("previewPanel").classList.remove("open"); renderList(); }
+function addToHopperFromPreview() { if(S.previewDoc) toggleHopperDoc(S.previewDoc.id,null); }
+
+// ════════════════════════════════════════════════════
+// HOPPER RENDER
+// ════════════════════════════════════════════════════
+function renderHopper() {
+  const body=document.getElementById("hopperBody");
+  const count=document.getElementById("hopperCount");
+  [...body.querySelectorAll(".hopper-chip")].forEach(c=>c.remove());
+  count.textContent=HOPPER.size;
+  document.getElementById("hopperEmpty").style.display=HOPPER.size?"none":"";
+  for (const id of HOPPER) {
+    const doc=DOCS.find(d=>d.id===id); if(!doc) continue;
+    const chip=document.createElement("div");
+    chip.className="hopper-chip";
+    chip.innerHTML=`<span>${doc.title}</span><span class="chip-x" onclick="toggleHopperDoc(${id},event)">×</span>`;
+    chip.addEventListener("click",e=>{ if(!e.target.classList.contains("chip-x")) openPreview(doc); });
+    body.appendChild(chip);
+  }
+}
+function toggleHopper() {
+  S.hopperOpen=!S.hopperOpen;
+  document.getElementById("hopper").classList.toggle("collapsed",!S.hopperOpen);
+  document.getElementById("hopperToggle").textContent=S.hopperOpen?"▲":"▼";
+}
+
+// ════════════════════════════════════════════════════
+// PRUNE
+// ════════════════════════════════════════════════════
+function pruneTree() {
+  snap(); S.pruned=!S.pruned;
+  document.getElementById("pruneBtn").style.background = S.pruned ? "var(--accent)" : "";
+  document.getElementById("pruneBtn").style.color = S.pruned ? "#000" : "";
+  renderAll(); setStatus(S.pruned?"Pruned — excluded clusters hidden":"Pruning off");
+}
+
+// ════════════════════════════════════════════════════
+// RESET
+// ════════════════════════════════════════════════════
+function resetAll() {
+  hideUndoConfirm();
+  UNDO_STACK.push({
+    type: "go_commit",
+    prevBase: [...BASE],
+    prevLedger: [...LEDGER],
+  });
+  BASE          = [...CORPUS];
+  LEDGER        = [];
+  WORKING_SCOPE = [...BASE];
+  // HOPPER intentionally untouched
+  document.getElementById("searchInput").value = "";
+  recompute();
+  setStatus("Reset to full corpus");
+}
+
+// ════════════════════════════════════════════════════
+// TOOLTIP
+// ════════════════════════════════════════════════════
+function showTooltip(node,e,ns,hl) {
+  const tt=document.getElementById("tooltip");
+  document.getElementById("ttTitle").textContent=node.label;
+  document.getElementById("ttCount").textContent=`${node.count} documents`;
+  const ch=document.getElementById("ttChildren"); ch.innerHTML="";
+  node.children.slice(0,6).forEach(c=>{
+    const d=document.createElement("div"); d.className="tt-child";
+    d.textContent=`${c.label} (${c.count})`; ch.appendChild(d);
+  });
+  document.getElementById("ttHint").textContent =
+    ns==="pos"?"✓ Included": ns==="neg"?"✕ Excluded":
+    hl==="pos"?"Query match — Go to retrieve":
+    "Left-click: include · Right-click: cycle state";
+  tt.classList.add("visible"); moveTooltip(e);
+}
+function moveTooltip(e) {
+  const tt=document.getElementById("tooltip");
+  tt.style.left=Math.min(e.clientX+14,window.innerWidth-290)+"px";
+  tt.style.top=Math.min(e.clientY+8,window.innerHeight-180)+"px";
+}
+function hideTooltip() { document.getElementById("tooltip").classList.remove("visible"); }
+
+// ════════════════════════════════════════════════════
+// DRAG HANDLE (sidebar resize)
+// ════════════════════════════════════════════════════
+(function() {
+  const handle=document.getElementById("dragHandle");
+  const sidebar=document.getElementById("sidebar");
+  let dragging=false, startX=0, startW=0;
+  handle.addEventListener("mousedown",e=>{
+    dragging=true; startX=e.clientX; startW=sidebar.offsetWidth;
+    handle.classList.add("dragging"); e.preventDefault();
+  });
+  document.addEventListener("mousemove",e=>{
+    if(!dragging) return;
+    const w=Math.max(160,Math.min(520,startW+(e.clientX-startX)));
+    sidebar.style.width=w+"px";
+  });
+  document.addEventListener("mouseup",()=>{ dragging=false; handle.classList.remove("dragging"); });
+  handle.addEventListener("dblclick",()=>{ sidebar.style.width="260px"; });
+})();
+
+// ════════════════════════════════════════════════════
+// UTILITIES
+// ════════════════════════════════════════════════════
+function findNode(id, tree) {
+  if(tree.id===id) return tree;
+  for(const c of tree.children||[]) { const f=findNode(id,c); if(f) return f; }
+  return null;
+}
+function setStatus(msg) { document.getElementById("statusMsg").textContent=msg; }
+
+// ════════════════════════════════════════════════════
+// RENDER ALL
+// ════════════════════════════════════════════════════
+function renderAll() {
+  renderChips();
+  renderSidebar();
+  renderTreemap();
+  renderTreemapBreadcrumb();
+  renderList();
+  renderHopper();
+  setView(S.viewMode);
+  updateHeader();
+}
+
+// ════════════════════════════════════════════════════
+// KEYBOARD
+// ════════════════════════════════════════════════════
+document.getElementById("searchInput").addEventListener("keydown",e=>{ if(e.key==="Enter") parseQuery(); });
+
+// ════════════════════════════════════════════════════
+// INIT
+// ════════════════════════════════════════════════════
+S.expanded = Object.fromEntries((DOMAIN_TREE.children || []).map(c => [c.id, true]));
+S.drillPath = [];
+
+// Re-render treemap on container resize (e.g. sidebar drag)
+new ResizeObserver(() => { if(S.viewMode==="treemap") renderTreemap(); })
+  .observe(document.getElementById("treemapView"));
+
+recompute();
+</script>
+</body>
+</html>
