@@ -1,0 +1,195 @@
+taxonomy:
+  name: CODE
+  source_framework: "Tiago Forte — Building a Second Brain"
+  purpose: >
+    A four-class perspective taxonomy for identifying which stage of the knowledge-to-output
+    process a passage primarily describes. Labels should reflect the dominant operation being
+    performed on information, not merely keywords mentioned in the passage.
+  labels:
+
+    - id: capture
+      label: Capture
+      definition: >
+        Capture is the selective intake of information judged worth retaining. It includes
+        noticing, collecting, recording, clipping, saving, or otherwise bringing potentially
+        valuable material into a trusted system. The emphasis is on deciding what deserves
+        attention and preserving it before it is lost.
+      distinguishing_features:
+        - "Information moves from the outside world or transient attention into a durable system."
+        - "Selection is more important than exhaustive collection."
+        - "Typical actions include save, clip, record, note, photograph, bookmark, or jot down."
+        - "The passage is primarily about what to keep, what resonates, or how to collect it."
+      contrastive_boundaries:
+        organize: >
+          Capture gets information into the system; Organize decides where it belongs and how
+          it should be positioned for future use.
+        distill: >
+          Capture preserves material; Distill reduces or emphasizes material already retained.
+        express: >
+          Capture brings information inward; Express turns accumulated knowledge outward into
+          a result, artifact, decision, or communication.
+      training_chunks:
+        - >
+          While reading, I do not try to save everything. I keep only the passages that surprise
+          me, clarify something I care about, or seem likely to matter later. The important step
+          is moving those fleeting observations into a trusted place before they disappear.
+        - >
+          A useful capture habit lowers the friction of recording ideas. A sentence from a book,
+          a photograph of a whiteboard, a voice memo during a walk, or a link sent by a colleague
+          can all become raw material if they are preserved quickly enough to be revisited.
+        - >
+          The challenge is not collecting more information but becoming more selective. Instead
+          of treating every source as equally valuable, notice what resonates and save only the
+          small portion that feels useful, surprising, or connected to an active concern.
+        - >
+          Ideas often arrive at inconvenient times. A reliable note system acts as an inbox for
+          these fragments so they do not need to remain in working memory. Recording them creates
+          the possibility of using them later.
+        - >
+          When consuming an article, podcast, meeting, or conversation, the first knowledge-management
+          decision is whether anything deserves to be retained. Capture is that moment of selection
+          and preservation.
+
+    - id: organize
+      label: Organize
+      definition: >
+        Organize is the placement of captured information into useful context so it can be found
+        and applied when needed. It emphasizes actionability, association, and retrieval rather
+        than abstract subject classification. Organizing changes the context or location of
+        information more than its substantive content.
+      distinguishing_features:
+        - "Information already exists in the system and is being placed, grouped, linked, or contextualized."
+        - "The organizing principle is often future use or actionability."
+        - "Typical actions include file, move, group, associate, tag, link, sort, or assign."
+        - "The passage is primarily about where knowledge belongs or how it will be retrieved."
+      contrastive_boundaries:
+        capture: >
+          Capture decides what enters the system; Organize arranges information that has already
+          been captured.
+        distill: >
+          Organize changes context and placement; Distill changes information density by surfacing
+          what matters most.
+        express: >
+          Organize prepares knowledge for use; Express is the act of applying or communicating it.
+      training_chunks:
+        - >
+          Once a note has been saved, the next question is not simply what topic it belongs to.
+          A more useful question is where it will be most actionable. Notes connected to a current
+          project should live near that project rather than disappearing into a large subject archive.
+        - >
+          Organizing information means placing it in a context that makes future retrieval easier.
+          A research note can be associated with a project, an ongoing responsibility, or a resource
+          area depending on how it is likely to be used.
+        - >
+          The value of a filing system comes from reducing the distance between information and
+          action. When related notes, sources, and plans are grouped around the work they support,
+          they become easier to rediscover at the moment they are needed.
+        - >
+          Good organization is not an attempt to create a perfect universal hierarchy. It is a
+          practical arrangement that helps the future self encounter the right material in the
+          right context.
+        - >
+          After collecting several useful notes, I connect them to the initiative they can support,
+          move inactive material out of the way, and keep the most relevant resources close to the
+          work currently underway.
+
+    - id: distill
+      label: Distill
+      definition: >
+        Distill is the reduction of retained information to its most relevant, useful, or essential
+        elements. It includes highlighting, summarizing, compressing, extracting key claims, and
+        progressively surfacing signal from a larger body of material. The goal is to make the
+        essence easier to perceive and reuse without rereading everything.
+      distinguishing_features:
+        - "Information is being compressed, filtered, emphasized, summarized, or reduced."
+        - "The key question is what matters most within material already captured."
+        - "Typical actions include highlight, summarize, extract, condense, emphasize, synthesize, or rank."
+        - "The passage decreases cognitive load by increasing the visibility of important signal."
+      contrastive_boundaries:
+        capture: >
+          Capture retains potentially valuable material; Distill works on retained material to
+          identify and surface its essence.
+        organize: >
+          Organize changes where information sits; Distill changes how much of the information
+          must be processed to recover the important part.
+        express: >
+          Distill prepares concise intellectual material; Express uses such material to produce
+          an external result.
+      training_chunks:
+        - >
+          Returning to a long note should not require reading every line from the beginning.
+          By bolding the most important passages, then highlighting the strongest ideas within
+          those passages, the note gradually becomes easier to scan and understand.
+        - >
+          Distillation is a process of preserving context while making the signal more visible.
+          Each pass through a note should leave behind a smaller layer of especially useful ideas
+          that can be grasped quickly in the future.
+        - >
+          A summary is valuable when it reduces the amount of material that must be reconsidered
+          without erasing the reasoning that made the source useful. The objective is not maximum
+          compression but faster recovery of the essence.
+        - >
+          Faced with ten pages of research, I identify the claims that change my understanding,
+          extract the supporting evidence that matters, and condense them into a small set of
+          points that can be reused without reopening every source.
+        - >
+          Highlighting, annotating, and summarizing are ways of increasing information density.
+          They transform a large body of captured material into a more compact representation of
+          what is most relevant.
+
+    - id: express
+      label: Express
+      definition: >
+        Express is the conversion of accumulated knowledge into a tangible outcome. It includes
+        writing, publishing, presenting, deciding, building, teaching, creating, or otherwise
+        applying what has been captured, organized, and distilled. The defining feature is that
+        knowledge leaves the private repository and becomes useful through action or communication.
+      distinguishing_features:
+        - "Knowledge is being turned into an artifact, decision, performance, product, or communication."
+        - "The emphasis is on completion, application, delivery, or impact."
+        - "Typical actions include write, publish, present, teach, build, decide, send, create, or ship."
+        - "The passage describes knowledge becoming externalized into something others—or the future self—can use."
+      contrastive_boundaries:
+        capture: >
+          Capture brings information into the system; Express sends transformed knowledge back
+          out into the world.
+        organize: >
+          Organize prepares knowledge for retrieval; Express uses it to accomplish something.
+        distill: >
+          Distill extracts the essence; Express combines and applies that essence in a finished
+          or actionable form.
+      training_chunks:
+        - >
+          The purpose of keeping notes is not to build an impressive archive. Their value appears
+          when they help create something: a proposal, article, lesson, decision, product, or
+          conversation that would otherwise have been harder to produce.
+        - >
+          When it is time to write, I assemble the most useful notes and intermediate pieces into
+          a draft. The emphasis shifts from collecting and refining ideas to combining them into
+          a coherent artifact that can be shared.
+        - >
+          Knowledge becomes meaningful through use. A set of research notes may culminate in a
+          presentation, a recommendation to a client, a new workflow, or a published explanation.
+          Those outputs are acts of expression.
+        - >
+          Instead of beginning a project from a blank page, I reuse previously developed ideas,
+          examples, and fragments, arrange them into a new structure, and turn them into a finished
+          deliverable.
+        - >
+          Expression closes the loop between learning and creating. The information stored in a
+          second brain becomes valuable when it supports a decision, changes behavior, teaches
+          someone else, or produces a concrete result.
+
+training_notes:
+  - >
+    These chunks are synthetic/paraphrased training examples written to reflect the semantics of
+    Tiago Forte's CODE framework; they are not verbatim excerpts from his copyrighted text.
+  - >
+    For classification, prefer the dominant operation in a chunk. A passage can mention multiple
+    CODE stages while still being primarily about one.
+  - >
+    Retain probabilistic scores when possible. CODE is a process, so boundary cases and mixed-stage
+    passages are expected.
+  - >
+    For stronger supervision, add real corpus chunks whose local headings or surrounding prose
+    explicitly identify Capture, Organize, Distill, or Express, while keeping provenance metadata.
