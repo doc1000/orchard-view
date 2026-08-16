@@ -1,0 +1,10 @@
+{
+  "node_id": "member_ebcb4e6fbec602b59749d0eaf1dbb8764454269b5456faf388b05838a7404698",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Information Management Principles",
+  "raw_text": "Information Management Principles",
+  "usage": {
+    "prompt_tokens": 113,
+    "completion_tokens": 3
+  }
+}

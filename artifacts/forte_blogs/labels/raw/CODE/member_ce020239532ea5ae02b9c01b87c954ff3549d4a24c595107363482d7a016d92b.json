@@ -1,0 +1,10 @@
+{
+  "node_id": "member_ce020239532ea5ae02b9c01b87c954ff3549d4a24c595107363482d7a016d92b",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Book Launch Updates",
+  "raw_text": "Book Launch Updates",
+  "usage": {
+    "prompt_tokens": 103,
+    "completion_tokens": 3
+  }
+}

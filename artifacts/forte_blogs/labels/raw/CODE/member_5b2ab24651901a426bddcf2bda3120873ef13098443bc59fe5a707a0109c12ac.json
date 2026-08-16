@@ -1,0 +1,10 @@
+{
+  "node_id": "member_5b2ab24651901a426bddcf2bda3120873ef13098443bc59fe5a707a0109c12ac",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Creative Writing Techniques",
+  "raw_text": "Creative Writing Techniques",
+  "usage": {
+    "prompt_tokens": 87,
+    "completion_tokens": 3
+  }
+}

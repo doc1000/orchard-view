@@ -1,0 +1,10 @@
+{
+  "node_id": "member_3bd3fc32661839af55966e20fce66ee0a8e93ed75f2fef94011b1aafe44274f2",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Global Knowledge Management Expansion",
+  "raw_text": "Global Knowledge Management Expansion",
+  "usage": {
+    "prompt_tokens": 117,
+    "completion_tokens": 4
+  }
+}

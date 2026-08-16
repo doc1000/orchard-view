@@ -1,0 +1,10 @@
+{
+  "node_id": "member_b575d57b3f9bc55d63aac67698d62c1bf52fc2b63c26dd78af9429eace780b12",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Project Management Frameworks",
+  "raw_text": "Project Management Frameworks",
+  "usage": {
+    "prompt_tokens": 159,
+    "completion_tokens": 4
+  }
+}

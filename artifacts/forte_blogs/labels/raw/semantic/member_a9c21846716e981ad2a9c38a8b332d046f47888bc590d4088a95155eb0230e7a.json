@@ -1,0 +1,10 @@
+{
+  "node_id": "member_a9c21846716e981ad2a9c38a8b332d046f47888bc590d4088a95155eb0230e7a",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Idea Inception and Inspiration",
+  "raw_text": "Idea Inception and Inspiration",
+  "usage": {
+    "prompt_tokens": 81,
+    "completion_tokens": 5
+  }
+}

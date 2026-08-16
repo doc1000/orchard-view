@@ -1,0 +1,10 @@
+{
+  "node_id": "member_f428d8d0c090432e1ac55dd926f7bda2f06bd2d85188ab7f0429a743a5229320",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Second Brain App Reviews",
+  "raw_text": "Second Brain App Reviews",
+  "usage": {
+    "prompt_tokens": 99,
+    "completion_tokens": 4
+  }
+}

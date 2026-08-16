@@ -1,0 +1,10 @@
+{
+  "node_id": "member_b1e4ca9ccc7a7d4bbc545545343b488e29849b91f19ad14895e1cbc862c1ae17",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Digital Organization Frameworks",
+  "raw_text": "Digital Organization Frameworks",
+  "usage": {
+    "prompt_tokens": 87,
+    "completion_tokens": 4
+  }
+}

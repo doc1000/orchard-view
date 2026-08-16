@@ -1,0 +1,10 @@
+{
+  "node_id": "member_b19d93c0a07cc05a9e3c300746ae0c9467f2e398f0a8a7ea033f313250f65bbc",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Digital Productivity Innovations",
+  "raw_text": "Digital Productivity Innovations",
+  "usage": {
+    "prompt_tokens": 75,
+    "completion_tokens": 3
+  }
+}

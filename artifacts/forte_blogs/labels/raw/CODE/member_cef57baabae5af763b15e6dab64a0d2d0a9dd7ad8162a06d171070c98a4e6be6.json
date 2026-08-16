@@ -1,0 +1,10 @@
+{
+  "node_id": "member_cef57baabae5af763b15e6dab64a0d2d0a9dd7ad8162a06d171070c98a4e6be6",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Second Brain App Selection",
+  "raw_text": "Second Brain App Selection",
+  "usage": {
+    "prompt_tokens": 267,
+    "completion_tokens": 4
+  }
+}

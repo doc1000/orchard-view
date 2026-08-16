@@ -1,0 +1,10 @@
+{
+  "node_id": "member_dd3770b60e53543bbcc27ecfc1169a4a6363914adf7c82cc5c6869fb7322456d",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Second Brain Foundations",
+  "raw_text": "Second Brain Foundations  \nDigital Knowledge Management  \nInformation Capture Techniques  \nPersonal Productivity Systems  \nCreative Process Optimization  \nKnowledge Offloading Strategies  \nFuture of Personal Knowledge  \nBuilding Sustainable Businesses  \nThought Leadership Development  \nOvercoming Information Overwhelm",
+  "usage": {
+    "prompt_tokens": 429,
+    "completion_tokens": 44
+  }
+}

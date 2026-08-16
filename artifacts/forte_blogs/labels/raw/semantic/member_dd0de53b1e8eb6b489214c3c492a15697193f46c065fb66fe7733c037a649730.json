@@ -1,0 +1,10 @@
+{
+  "node_id": "member_dd0de53b1e8eb6b489214c3c492a15697193f46c065fb66fe7733c037a649730",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Identity and Project Frameworks",
+  "raw_text": "Identity and Project Frameworks",
+  "usage": {
+    "prompt_tokens": 83,
+    "completion_tokens": 5
+  }
+}

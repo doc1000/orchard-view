@@ -1,0 +1,10 @@
+{
+  "node_id": "member_a8f8ea3277aca70e8634947cc021f8ef193a9e8c4f285b7a8bb40596c82c1f15",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Knowledge Worker Insights",
+  "raw_text": "Knowledge Worker Insights",
+  "usage": {
+    "prompt_tokens": 84,
+    "completion_tokens": 3
+  }
+}

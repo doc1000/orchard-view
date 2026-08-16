@@ -1,0 +1,10 @@
+{
+  "node_id": "member_0491730bcad85cb4435582311b4ea6e968a3e571cbdd0d1c932040dad60d8e1a",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Digital Organization and Productivity",
+  "raw_text": "Digital Organization and Productivity",
+  "usage": {
+    "prompt_tokens": 366,
+    "completion_tokens": 4
+  }
+}

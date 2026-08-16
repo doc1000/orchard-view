@@ -1,0 +1,10 @@
+{
+  "node_id": "member_74ca56a5d5f56ae87ba857f24f1243bcb64a6abe1c19f6700aec5ead7d9f4726",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Creative Podcast Conversations",
+  "raw_text": "Creative Podcast Conversations",
+  "usage": {
+    "prompt_tokens": 94,
+    "completion_tokens": 3
+  }
+}

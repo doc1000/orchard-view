@@ -1,0 +1,10 @@
+{
+  "node_id": "member_70a20673b064a33a112ace2137ff6e80cb2aee6539d5d5e0e6f9aef74567fc46",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Second Brain Events and Case Studies",
+  "raw_text": "Second Brain Events and Case Studies",
+  "usage": {
+    "prompt_tokens": 157,
+    "completion_tokens": 6
+  }
+}

@@ -1,6 +1,7 @@
-"""Build the Forte blogs orchard: CODE taxonomy + semantic TF-IDF, Calinski cuts, labels.
+"""Build the Forte blogs orchard: MiniLM semantic + ModernBERT CODE, Calinski cuts.
 
-orchard/ is import-only. Training chunks are not orchard leaves.
+orchard/ is import-only. Do not call TaxonomyModel.fit() (still TF-IDF).
+Training chunks are not orchard leaves.
 """
 
 from __future__ import annotations
@@ -8,6 +9,7 @@ from __future__ import annotations
 import json
 import os
 import re
+import shutil
 import sys
 from datetime import date, datetime
 from pathlib import Path
@@ -16,6 +18,7 @@ from typing import Any
 import numpy as np
 import yaml
 from dotenv import load_dotenv
+from sklearn.linear_model import LogisticRegression
 
 from orchard import (
     Document,
@@ -27,7 +30,14 @@ from orchard import (
     import_labels,
     validate_dynamic_cut,
 )
-from orchard.backends.tfidf import TfidfEmbeddingBackend
+from orchard.backends.fusion import fuse_to_dissimilarity
+from orchard.backends.minilm import embeddings_extra_available, missing_embeddings_error
+from orchard.backends.modernbert import (
+    ModernBERTFeatureBackend,
+    missing_taxonomy_ml_error,
+    taxonomy_ml_extra_available,
+)
+from orchard.backends.taxonomy_heads import HEAD_HYPERPARAMS
 
 VIEW_ROOT = Path(__file__).resolve().parents[1]
 WORKSPACE_ROOT = VIEW_ROOT.parent
@@ -46,6 +56,30 @@ LABEL_SET_NAME = "gpt41mini"
 LABEL_MODEL = "gpt-4.1-mini-2025-04-14"
 GOLD_STEM = "0027-building-a-second-brain-the-definitive-introductory-guide"
 CODE_STAGES = ("capture", "organize", "distill", "express")
+CODE_FUSION_WEIGHTS: dict[str, float] = {
+    "CODE_raw_js": 0.5,
+    "description_minilm_centered_cosine": 0.3,
+    "tfidf_cosine": 0.2,
+}
+SEMANTIC_FUSION_WEIGHTS: dict[str, float] = {
+    "description_minilm_centered_cosine": 0.66,
+    "tfidf_cosine": 0.34,
+}
+GENERATED_DIR_NAMES = (
+    "orchard",
+    "cuts",
+    "labels",
+    "training",
+    "view",
+    "standalone",
+)
+GENERATED_FILE_NAMES = (
+    "code_taxonomy.json",
+    "code_head.npz",
+    "node_descriptions.json",
+    "EXPORT.md",
+    "builder_params.json",
+)
 
 CUT_PARAMS: dict[str, Any] = {
     "top_criterion": "optimal",
@@ -270,29 +304,144 @@ def collect_training(
     return documents, labels_by_item_id, manifest
 
 
-def documents_in_item_order(
-    documents: list[Document], item_ids: list[str]
-) -> list[Document]:
-    by_id = {doc.item_id: doc for doc in documents}
-    missing = [item_id for item_id in item_ids if item_id not in by_id]
-    if missing:
-        raise SystemExit(f"{len(missing)} item_ids missing from documents, e.g. {missing[:3]}")
-    return [by_id[item_id] for item_id in item_ids]
+def require_neural_extras() -> None:
+    if not embeddings_extra_available():
+        raise missing_embeddings_error()
+    if not taxonomy_ml_extra_available():
+        raise missing_taxonomy_ml_error()
 
 
-def semantic_feature_matrix(documents: list[Document], item_ids: list[str]) -> np.ndarray:
-    ordered = documents_in_item_order(documents, item_ids)
-    return np.asarray(
-        TfidfEmbeddingBackend().encode([doc.text for doc in ordered]),
-        dtype=np.float64,
+def clear_generated_packet() -> None:
+    seed = SEED_YAML.resolve()
+    for name in GENERATED_DIR_NAMES:
+        path = OUT_ROOT / name
+        if path.is_dir():
+            shutil.rmtree(path)
+    for name in GENERATED_FILE_NAMES:
+        path = OUT_ROOT / name
+        if path.is_file():
+            path.unlink()
+    if not seed.is_file():
+        raise SystemExit(f"CODE seed missing after packet clear: {SEED_YAML}")
+
+
+def _document_title_text(document: Document) -> str:
+    return f"{document.title} {document.text}".strip()
+
+
+def train_code_modernbert(
+    definition: dict[str, Any],
+    train_docs: list[Document],
+    train_labels: dict[str, str],
+) -> TaxonomyModel:
+    model = TaxonomyModel.from_definition(definition)
+    encoder = ModernBERTFeatureBackend()
+    ordered = [doc for doc in train_docs if doc.item_id in train_labels]
+    if len(ordered) != len(train_labels):
+        raise SystemExit("training documents and labels are misaligned")
+    texts = [_document_title_text(doc) for doc in ordered]
+    y = [train_labels[doc.item_id] for doc in ordered]
+    if set(y) != set(CODE_STAGES):
+        raise SystemExit(f"CODE training labels {sorted(set(y))} != {list(CODE_STAGES)}")
+    print("encoding CODE training texts with ModernBERT...", flush=True)
+    features = np.asarray(encoder.encode(texts), dtype=np.float64)
+    if features.shape[0] != len(ordered):
+        raise SystemExit("ModernBERT row count must match CODE training documents")
+    print("fitting CODE logistic head (HEAD_HYPERPARAMS)...", flush=True)
+    classifier = LogisticRegression(**HEAD_HYPERPARAMS)
+    classifier.fit(features, y)
+    model.classifier = classifier
+    model.feature_encoder = encoder
+    model.vectorizer = None
+    model.taxonomy_transform = "modernbert_logistic"
+    return model
+
+
+def _weights_match(actual: dict[str, Any], expected: dict[str, float]) -> bool:
+    if set(actual) != set(expected):
+        return False
+    return all(
+        math_isclose(float(actual[name]), weight) for name, weight in expected.items()
     )
 
 
-def code_feature_matrix(
-    taxonomy: TaxonomyModel, documents: list[Document], item_ids: list[str]
+def math_isclose(left: float, right: float) -> bool:
+    return abs(left - right) <= 1e-12
+
+
+def assert_builder_params(builder: OrchardBuilder, orchard: Orchard) -> dict[str, Any]:
+    params = builder.get_params()
+    failures: list[str] = []
+    if params.get("embedding_backend") != "MiniLMEmbeddingBackend":
+        failures.append(f"embedding_backend={params.get('embedding_backend')!r}")
+    if params.get("taxonomy_transform") != "modernbert_logistic":
+        failures.append(f"taxonomy_transform={params.get('taxonomy_transform')!r}")
+    if params.get("fusion_mode") != "variance_calibrated":
+        failures.append(f"fusion_mode={params.get('fusion_mode')!r}")
+    if params.get("offline_fallback") is not False:
+        failures.append(f"offline_fallback={params.get('offline_fallback')!r}")
+    if params.get("allow_offline_fallback") is not False:
+        failures.append(
+            f"allow_offline_fallback={params.get('allow_offline_fallback')!r}"
+        )
+    semantic_weights = (params.get("profiles") or {}).get("semantic", {}).get("weights")
+    if not isinstance(semantic_weights, dict) or not _weights_match(
+        semantic_weights, SEMANTIC_FUSION_WEIGHTS
+    ):
+        failures.append(f"semantic weights={semantic_weights!r}")
+    code_weights = (params.get("profiles") or {}).get("CODE", {}).get("weights")
+    if not isinstance(code_weights, dict) or not _weights_match(
+        code_weights, CODE_FUSION_WEIGHTS
+    ):
+        failures.append(f"CODE weights={code_weights!r}")
+    if set(orchard.trees) != {"semantic", "CODE"}:
+        failures.append(f"trees={sorted(orchard.trees)}")
+    if failures:
+        raise SystemExit("builder get_params() failed:\n  " + "\n  ".join(failures))
+    return params
+
+
+def align_square_to_item_ids(
+    matrices: dict[str, np.ndarray],
+    source_ids: list[str],
+    target_ids: list[str],
+) -> dict[str, np.ndarray]:
+    source = list(source_ids)
+    target = list(target_ids)
+    aligned = {name: np.asarray(matrix, dtype=np.float64) for name, matrix in matrices.items()}
+    if source == target:
+        return aligned
+    index = {item_id: position for position, item_id in enumerate(source)}
+    missing = [item_id for item_id in target if item_id not in index]
+    if missing:
+        raise SystemExit(
+            f"{len(missing)} item_ids missing from layer matrices, e.g. {missing[:3]}"
+        )
+    perm = [index[item_id] for item_id in target]
+    return {name: matrix[np.ix_(perm, perm)] for name, matrix in aligned.items()}
+
+
+def fused_dissimilarity_for_tree(
+    builder: OrchardBuilder,
+    orchard: Orchard,
+    tree: Tree,
 ) -> np.ndarray:
-    ordered = documents_in_item_order(documents, item_ids)
-    return np.asarray(taxonomy.transform(ordered), dtype=np.float64)
+    profile = builder.profiles[tree.tree_id]
+    source_ids = [doc.item_id for doc in orchard.documents]
+    aligned = align_square_to_item_ids(
+        orchard.layer_matrices, source_ids, list(tree.item_ids)
+    )
+    missing = [name for name in profile.weights if name not in aligned]
+    if missing:
+        raise SystemExit(
+            f"{tree.tree_id}: fused cut missing layer matrices {missing}"
+        )
+    matrices = {name: aligned[name] for name in profile.weights}
+    return fuse_to_dissimilarity(
+        matrices,
+        profile.weights,
+        fusion_mode=profile.fusion_mode,
+    )
 
 
 def cut_tree(tree: Tree, feature_matrix: np.ndarray) -> dict[str, Any]:
@@ -457,16 +606,20 @@ def write_export_md(
     stats: list[dict[str, Any]],
     labeled: bool,
     label_calls: int,
+    builder_params: dict[str, Any],
 ) -> None:
     yaml_n = sum(1 for row in training_manifest if row["source"] == "yaml_chunk")
     heading_n = sum(1 for row in training_manifest if row["source"] == "heading_section")
+    semantic_weights = builder_params["profiles"]["semantic"]["weights"]
+    code_weights = builder_params["profiles"]["CODE"]["weights"]
     lines = [
         "# Forte blogs orchard export",
         "",
-        "Built a semantic TF-IDF tree and a CODE taxonomy tree over 279 Forte Labs",
-        '"Building a Second Brain" posts. CODE was fit with TaxonomyModel.fit() on',
-        "synthetic YAML chunks plus heading-explicit real sections. Both trees were",
-        "cut with the AppWorld Calinski-optimal parameters.",
+        "Built a fused MiniLM/TF-IDF semantic tree and a fused CODE taxonomy tree",
+        'over 279 Forte Labs "Building a Second Brain" posts. CODE was trained as',
+        "ModernBERT + logistic (`HEAD_HYPERPARAMS`); `TaxonomyModel.fit()` was not",
+        "called. Both trees were cut on the fused dissimilarity that produced each",
+        "tree's linkage (AppWorld Calinski-optimal parameters).",
         (
             f"Cut-visible internals were labeled with `{LABEL_MODEL}`."
             if labeled
@@ -480,6 +633,21 @@ def write_export_md(
         "  frontmatter title → `title`, body → `text`, `source=\"forte_blogs\"`)",
         "- CODE seed: `orchard-view/artifacts/forte_blogs/code_taxonomy_seed.yaml`",
         "- Converted definition: `orchard-view/artifacts/forte_blogs/code_taxonomy.json`",
+        "- CODE head: `orchard-view/artifacts/forte_blogs/code_head.npz`",
+        "",
+        "## Fusion",
+        "",
+        f"- `taxonomy_transform`: `{builder_params['taxonomy_transform']}`",
+        f"- `fusion_mode`: `{builder_params['fusion_mode']}`",
+        f"- `embedding_backend`: `{builder_params['embedding_backend']}`",
+        f"- `offline_fallback`: `{builder_params['offline_fallback']}`",
+        "- Semantic weights (library default): "
+        + ", ".join(f"`{name}` **{weight}**" for name, weight in semantic_weights.items()),
+        "- CODE weights (explicit; not packaged domain/function dicts): "
+        + ", ".join(f"`{name}` **{weight}**" for name, weight in code_weights.items()),
+        "- Cuts used `fuse_to_dissimilarity` on the builder's shared `layer_matrices`",
+        "  with that tree's profile weights and `fusion_mode`. Not raw TF-IDF and",
+        "  not raw CODE probability rows.",
         "",
         "## CODE training",
         "",
@@ -488,7 +656,8 @@ def write_export_md(
         f"- Training items total: {len(training_manifest)}",
         "- Synthetic chunks are training-only and are not orchard leaves.",
         f"- Gold post `{GOLD_STEM}` contributed all four CODE stages.",
-        "- Fitted classifier `transform()`s the full 279-post corpus.",
+        "- Fitted ModernBERT logistic `transform()`s the full 279-post corpus.",
+        f"- Logistic hyperparameters: `{HEAD_HYPERPARAMS}`",
         "",
         "## Cut parameters (both trees)",
         "",
@@ -517,7 +686,7 @@ def write_export_md(
         lines.append("")
         lines.append(f"- `top_partition_count`: **{row['top_partition_count']}**")
         lines.append(
-            f"- aligned feature matrix shape: `{row['aligned_shape']}`; "
+            f"- aligned fused D shape: `{row['aligned_shape']}`; "
             f"diag min/max `{row['diag_min']:.6g}` / `{row['diag_max']:.6g}`"
         )
         lines.append(f"- cut-visible internals labeled: {row['internal_count']}")
@@ -532,9 +701,11 @@ def write_export_md(
             "```",
             "orchard-view/artifacts/forte_blogs/",
             "  code_taxonomy.json",
+            "  code_taxonomy_seed.yaml",
+            "  code_head.npz",
             "  training/manifest.json",
-            "  orchard/          # Orchard.save()",
-            "  cuts/             # semantic + CODE Calinski-optimal JSON",
+            "  orchard/          # Orchard.save() + compressed layer_matrices",
+            "  cuts/             # semantic + CODE Calinski-optimal JSON (fused D)",
             "  labels/           # gpt-4.1-mini mappings + raw response cache",
             "  node_descriptions.json",
             "  view/mockup_data.js",
@@ -548,6 +719,10 @@ def write_export_md(
 
 
 def main() -> int:
+    require_neural_extras()
+    print("clearing previous generated Forte packet (keeping CODE YAML seed)...", flush=True)
+    clear_generated_packet()
+
     print("loading posts...", flush=True)
     documents = load_posts(POSTS_DIR)
     seed = yaml.safe_load(SEED_YAML.read_text(encoding="utf-8"))
@@ -571,38 +746,36 @@ def main() -> int:
         flush=True,
     )
 
-    print("fitting CODE TaxonomyModel...", flush=True)
-    fitted_code = TaxonomyModel.from_definition(definition).fit(train_docs, train_labels)
+    print("training CODE ModernBERT + logistic (not TaxonomyModel.fit)...", flush=True)
+    fitted_code = train_code_modernbert(definition, train_docs, train_labels)
+    head_path = fitted_code.save_head(OUT_ROOT / "code_head.npz")
+    print(f"  saved CODE head to {head_path.name}", flush=True)
+    if fitted_code.taxonomy_transform != "modernbert_logistic":
+        raise SystemExit("CODE taxonomy_transform is not modernbert_logistic")
 
-    print("building orchard (semantic + CODE)...", flush=True)
-    orchard = OrchardBuilder(
+    print("building orchard (MiniLM semantic + fused CODE)...", flush=True)
+    builder = OrchardBuilder(
         taxonomies=[fitted_code],
         include_semantic_with_taxonomies=True,
+        taxonomy_weights={"CODE": dict(CODE_FUSION_WEIGHTS)},
+        layer_matrix_persist="compressed",
         metadata={"source": SOURCE_NAME, "label_set": LABEL_SET_NAME},
-    ).build(documents)
-    if set(orchard.trees) != {"semantic", "CODE"}:
-        raise SystemExit(f"unexpected trees: {sorted(orchard.trees)}")
+    )
+    orchard = builder.build(documents)
+    builder_params = assert_builder_params(builder, orchard)
+    _write_json(OUT_ROOT / "builder_params.json", builder_params, sort_keys=True)
     if len(orchard.documents) != EXPECTED_DOCUMENT_COUNT:
         raise SystemExit(f"orchard has {len(orchard.documents)} docs")
 
     cuts: dict[str, dict[str, Any]] = {}
-    matrices: dict[str, np.ndarray] = {}
     stats: list[dict[str, Any]] = []
     for tree_id in ("semantic", "CODE"):
         tree = orchard.tree(tree_id)
-        print(f"cutting {tree_id} (Calinski optimal)...", flush=True)
-        if tree_id == "semantic":
-            matrix = semantic_feature_matrix(documents, list(tree.item_ids))
-        else:
-            matrix = code_feature_matrix(fitted_code, documents, list(tree.item_ids))
+        print(f"cutting {tree_id} on fused dissimilarity (Calinski optimal)...", flush=True)
+        matrix = fused_dissimilarity_for_tree(builder, orchard, tree)
         cut = cut_tree(tree, matrix)
         cuts[tree_id] = cut
-        matrices[tree_id] = matrix
-        diag = (
-            np.diag(matrix)
-            if matrix.ndim == 2 and matrix.shape[0] == matrix.shape[1]
-            else np.array([])
-        )
+        diag = np.diag(matrix)
         internal_ids = cut_internal_ids(cut["root"])
         stats.append(
             {
@@ -676,6 +849,7 @@ def main() -> int:
         stats=stats,
         labeled=labeled,
         label_calls=label_calls,
+        builder_params=builder_params,
     )
     print(f"wrote packet under {OUT_ROOT}", flush=True)
     if not labeled:

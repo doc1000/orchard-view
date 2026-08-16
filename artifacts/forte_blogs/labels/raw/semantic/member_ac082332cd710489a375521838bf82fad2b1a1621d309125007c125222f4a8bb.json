@@ -1,0 +1,10 @@
+{
+  "node_id": "member_ac082332cd710489a375521838bf82fad2b1a1621d309125007c125222f4a8bb",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Personal Knowledge Management Systems",
+  "raw_text": "Personal Knowledge Management Systems",
+  "usage": {
+    "prompt_tokens": 89,
+    "completion_tokens": 4
+  }
+}

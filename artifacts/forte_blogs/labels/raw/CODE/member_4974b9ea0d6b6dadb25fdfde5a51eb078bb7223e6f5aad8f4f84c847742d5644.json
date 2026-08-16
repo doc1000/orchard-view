@@ -1,0 +1,10 @@
+{
+  "node_id": "member_4974b9ea0d6b6dadb25fdfde5a51eb078bb7223e6f5aad8f4f84c847742d5644",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Personal Productivity Systems",
+  "raw_text": "Personal Productivity Systems",
+  "usage": {
+    "prompt_tokens": 115,
+    "completion_tokens": 3
+  }
+}

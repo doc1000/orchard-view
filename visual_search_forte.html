@@ -440,7 +440,7 @@ body {
     <span class="no-chips" id="noChips">Enter a query to parse conditions</span>
   </div>
   <!-- BEHAVIOR: Switches between taxonomy trees. Each tree organizes the same corpus differently.
-       Semantic tree = TF-IDF clusters. CODE tree = Capture / Organize / Distill / Express.
+       Semantic tree = MiniLM 0.66 / TF-IDF 0.34. CODE tree = Capture / Organize / Distill / Express.
        In production: loads a different tree-z artifact. -->
   <div class="chip-tray-right">
     <select class="history-select" id="historySelect" onchange="showHistoryOverlay(this.value)" title="Session history — provenance only, does not restore">

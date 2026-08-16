@@ -1,0 +1,10 @@
+{
+  "node_id": "member_6ee2a3d4a13ff565983579a5ca72e1f2b4219fb2dd2b5f6d14d0f7bf6a8e4544",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Second Brain Interviews and History",
+  "raw_text": "Second Brain Interviews and History",
+  "usage": {
+    "prompt_tokens": 95,
+    "completion_tokens": 5
+  }
+}

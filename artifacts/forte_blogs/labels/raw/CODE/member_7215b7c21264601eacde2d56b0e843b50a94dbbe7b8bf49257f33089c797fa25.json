@@ -1,0 +1,10 @@
+{
+  "node_id": "member_7215b7c21264601eacde2d56b0e843b50a94dbbe7b8bf49257f33089c797fa25",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Book Publishing Strategies",
+  "raw_text": "Book Publishing Strategies",
+  "usage": {
+    "prompt_tokens": 85,
+    "completion_tokens": 3
+  }
+}

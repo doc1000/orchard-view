@@ -1,0 +1,10 @@
+{
+  "node_id": "member_65432cf16ba4b94d42b4c87f6815075eab928edde39ede9b70fffa7bda8f963d",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Second Brain Project Management",
+  "raw_text": "Second Brain Project Management",
+  "usage": {
+    "prompt_tokens": 387,
+    "completion_tokens": 4
+  }
+}

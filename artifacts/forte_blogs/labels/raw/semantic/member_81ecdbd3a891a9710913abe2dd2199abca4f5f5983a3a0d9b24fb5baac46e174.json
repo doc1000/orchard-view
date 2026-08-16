@@ -1,0 +1,10 @@
+{
+  "node_id": "member_81ecdbd3a891a9710913abe2dd2199abca4f5f5983a3a0d9b24fb5baac46e174",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Memory and Cognitive Extension",
+  "raw_text": "Memory and Cognitive Extension",
+  "usage": {
+    "prompt_tokens": 135,
+    "completion_tokens": 4
+  }
+}

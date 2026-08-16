@@ -1,0 +1,10 @@
+{
+  "node_id": "member_b7988787cee2cea44b3d8f2eb8c871106b8d7cc1dd9da196bec8b9a04b74dce9",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Artificial Intelligence Integration",
+  "raw_text": "Artificial Intelligence Integration",
+  "usage": {
+    "prompt_tokens": 105,
+    "completion_tokens": 3
+  }
+}

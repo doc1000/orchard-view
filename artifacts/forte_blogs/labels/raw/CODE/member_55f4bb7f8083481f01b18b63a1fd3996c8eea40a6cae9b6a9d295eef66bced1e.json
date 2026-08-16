@@ -1,0 +1,10 @@
+{
+  "node_id": "member_55f4bb7f8083481f01b18b63a1fd3996c8eea40a6cae9b6a9d295eef66bced1e",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Digital Note-Taking Strategies",
+  "raw_text": "Digital Note-Taking Strategies",
+  "usage": {
+    "prompt_tokens": 121,
+    "completion_tokens": 5
+  }
+}

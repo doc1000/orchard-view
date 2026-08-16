@@ -1,0 +1,10 @@
+{
+  "node_id": "member_bb5dc8dd581cbac52ea6eab2436b4e04f94ccfc82ee44817688add7109d5cf52",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Second Brain Foundations",
+  "raw_text": "Second Brain Foundations  \nPersonal Knowledge Management  \nDigital Organization Strategies  \nCreative Productivity Techniques  \nMemory and Learning Insights  \nInformation Overwhelm Solutions  \nKnowledge Worker Identity  \nThought Leadership Development  \nSoftware and Tools Integration  \nLong-Term Knowledge Building",
+  "usage": {
+    "prompt_tokens": 430,
+    "completion_tokens": 44
+  }
+}

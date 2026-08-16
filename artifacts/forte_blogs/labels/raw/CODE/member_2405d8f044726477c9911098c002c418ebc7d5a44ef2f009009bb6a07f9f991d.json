@@ -1,0 +1,10 @@
+{
+  "node_id": "member_2405d8f044726477c9911098c002c418ebc7d5a44ef2f009009bb6a07f9f991d",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Creative Process Dynamics",
+  "raw_text": "Creative Process Dynamics",
+  "usage": {
+    "prompt_tokens": 99,
+    "completion_tokens": 3
+  }
+}

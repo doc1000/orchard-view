@@ -1,0 +1,10 @@
+{
+  "node_id": "member_fdc022b150436b375ae3643d12908776c8797140afef8d899009a59910319332",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Creative Project Documentation",
+  "raw_text": "Creative Project Documentation",
+  "usage": {
+    "prompt_tokens": 73,
+    "completion_tokens": 3
+  }
+}

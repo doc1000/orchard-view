@@ -1,0 +1,10 @@
+{
+  "node_id": "member_5294be207a96c0fdf7d3cef82303603c7d2d1054695a5ac387a5e6c71b776189",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Information Architecture Evolution",
+  "raw_text": "Information Architecture Evolution",
+  "usage": {
+    "prompt_tokens": 80,
+    "completion_tokens": 3
+  }
+}

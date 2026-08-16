@@ -1,0 +1,10 @@
+{
+  "node_id": "member_7531441665fd91710f405def760bd90fe712f6c3f4623a4192d9f9d7dbde65fc",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Writing Process and Reflection",
+  "raw_text": "Writing Process and Reflection",
+  "usage": {
+    "prompt_tokens": 169,
+    "completion_tokens": 4
+  }
+}

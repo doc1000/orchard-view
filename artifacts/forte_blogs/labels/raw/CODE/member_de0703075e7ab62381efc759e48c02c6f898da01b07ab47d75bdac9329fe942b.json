@@ -1,0 +1,10 @@
+{
+  "node_id": "member_de0703075e7ab62381efc759e48c02c6f898da01b07ab47d75bdac9329fe942b",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Global Building a Second Brain",
+  "raw_text": "Global Building a Second Brain",
+  "usage": {
+    "prompt_tokens": 92,
+    "completion_tokens": 5
+  }
+}

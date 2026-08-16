@@ -1,0 +1,10 @@
+{
+  "node_id": "member_d281444ee549ea2618e9ec62fcf711d10f10e86a60d25d4f7daecbb2c12ba3ce",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Second Brain Evolution",
+  "raw_text": "Second Brain Evolution",
+  "usage": {
+    "prompt_tokens": 82,
+    "completion_tokens": 3
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "node_id": "member_fa3ae54a7efaa0b80a428bfd5f2a36451c75c6c3cd5433b757456f4e485861ed",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Personal Productivity Frameworks",
+  "raw_text": "Personal Productivity Frameworks",
+  "usage": {
+    "prompt_tokens": 361,
+    "completion_tokens": 4
+  }
+}

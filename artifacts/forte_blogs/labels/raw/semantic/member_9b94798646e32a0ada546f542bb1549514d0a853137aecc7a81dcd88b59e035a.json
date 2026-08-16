@@ -1,0 +1,10 @@
+{
+  "node_id": "member_9b94798646e32a0ada546f542bb1549514d0a853137aecc7a81dcd88b59e035a",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Knowledge Capture Techniques",
+  "raw_text": "Knowledge Capture Techniques",
+  "usage": {
+    "prompt_tokens": 305,
+    "completion_tokens": 3
+  }
+}

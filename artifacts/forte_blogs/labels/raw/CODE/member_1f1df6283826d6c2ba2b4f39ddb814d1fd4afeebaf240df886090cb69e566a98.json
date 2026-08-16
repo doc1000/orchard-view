@@ -1,0 +1,10 @@
+{
+  "node_id": "member_1f1df6283826d6c2ba2b4f39ddb814d1fd4afeebaf240df886090cb69e566a98",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Flow and Productivity Techniques",
+  "raw_text": "Flow and Productivity Techniques",
+  "usage": {
+    "prompt_tokens": 105,
+    "completion_tokens": 4
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "node_id": "member_202ac1f2b4f0854b1dd550233533484c9f4c51e2e48b7dae8dd96d3d6acef900",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Book Publishing and Promotion",
+  "raw_text": "Book Publishing and Promotion",
+  "usage": {
+    "prompt_tokens": 403,
+    "completion_tokens": 4
+  }
+}

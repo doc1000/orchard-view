@@ -1,0 +1,10 @@
+{
+  "node_id": "member_549b08abbc4e6a3fa44926363231a6b3a38b7ac28eee90a5d106809a5dce2b5a",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Distributed Cognition Insights",
+  "raw_text": "Distributed Cognition Insights",
+  "usage": {
+    "prompt_tokens": 91,
+    "completion_tokens": 4
+  }
+}

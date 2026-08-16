@@ -1,0 +1,10 @@
+{
+  "node_id": "member_17fe7904f2217893d5c44c64752f98620d128ca89afa0fa6d66c6f3729d8acec",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Note-Taking and Summarization Techniques",
+  "raw_text": "Note-Taking and Summarization Techniques",
+  "usage": {
+    "prompt_tokens": 136,
+    "completion_tokens": 8
+  }
+}

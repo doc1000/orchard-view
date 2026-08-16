@@ -1,0 +1,10 @@
+{
+  "node_id": "member_d9b03732aa5012aecc3978dd7d5fa2c3e77abe6be7a3f2423788e0559f957ae8",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Digital Note-Taking Techniques",
+  "raw_text": "Digital Note-Taking Techniques",
+  "usage": {
+    "prompt_tokens": 126,
+    "completion_tokens": 5
+  }
+}

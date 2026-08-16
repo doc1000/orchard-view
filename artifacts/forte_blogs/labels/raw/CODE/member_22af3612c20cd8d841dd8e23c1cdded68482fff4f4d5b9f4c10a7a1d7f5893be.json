@@ -1,0 +1,10 @@
+{
+  "node_id": "member_22af3612c20cd8d841dd8e23c1cdded68482fff4f4d5b9f4c10a7a1d7f5893be",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Personal Productivity Networks",
+  "raw_text": "Personal Productivity Networks",
+  "usage": {
+    "prompt_tokens": 125,
+    "completion_tokens": 3
+  }
+}

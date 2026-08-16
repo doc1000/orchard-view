@@ -1,0 +1,10 @@
+{
+  "node_id": "member_bbce03e9236c442d28762884a6080028ef0a1db635cf899a328cd0e32292311b",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Building a Second Brain Updates",
+  "raw_text": "Building a Second Brain Updates",
+  "usage": {
+    "prompt_tokens": 363,
+    "completion_tokens": 5
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "node_id": "member_e58c44a3c46ae599a06beb04dc7087a370265369c62542a80ccd7b891904f113",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Creative Knowledge and Learning",
+  "raw_text": "Creative Knowledge and Learning",
+  "usage": {
+    "prompt_tokens": 153,
+    "completion_tokens": 4
+  }
+}

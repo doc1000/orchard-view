@@ -1,0 +1,10 @@
+{
+  "node_id": "member_359539557e65e45fe19a10075e7ce2bb002e601092ea080786aaf5bb5d91af4f",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Digital Note-Taking Evolution",
+  "raw_text": "Digital Note-Taking Evolution",
+  "usage": {
+    "prompt_tokens": 95,
+    "completion_tokens": 5
+  }
+}

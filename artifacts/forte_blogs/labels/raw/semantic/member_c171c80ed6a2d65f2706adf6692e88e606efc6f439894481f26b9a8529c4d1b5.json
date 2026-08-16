@@ -1,0 +1,10 @@
+{
+  "node_id": "member_c171c80ed6a2d65f2706adf6692e88e606efc6f439894481f26b9a8529c4d1b5",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Digital Note-Taking Tools",
+  "raw_text": "Digital Note-Taking Tools",
+  "usage": {
+    "prompt_tokens": 346,
+    "completion_tokens": 5
+  }
+}

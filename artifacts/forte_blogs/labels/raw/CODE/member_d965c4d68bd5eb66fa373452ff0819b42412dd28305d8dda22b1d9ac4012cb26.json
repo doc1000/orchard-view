@@ -1,0 +1,10 @@
+{
+  "node_id": "member_d965c4d68bd5eb66fa373452ff0819b42412dd28305d8dda22b1d9ac4012cb26",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "PARA Method and Project Management",
+  "raw_text": "PARA Method and Project Management",
+  "usage": {
+    "prompt_tokens": 196,
+    "completion_tokens": 6
+  }
+}

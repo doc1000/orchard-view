@@ -1,0 +1,10 @@
+{
+  "node_id": "member_b73e7c1e0c0e5e512df1351703e04e1fbba027d6f0158a885e2d94d82de340c4",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Productivity and Personal Development",
+  "raw_text": "Productivity and Personal Development",
+  "usage": {
+    "prompt_tokens": 201,
+    "completion_tokens": 5
+  }
+}

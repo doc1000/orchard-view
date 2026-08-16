@@ -1,0 +1,10 @@
+{
+  "node_id": "member_00a8deddfb9031a6b89b9d1933e91dbda970107d8ea9762b09588445151b138a",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Second Brain AI Integration",
+  "raw_text": "Second Brain AI Integration  \nBook Publishing and Promotion  \nSecond Brain App Reviews  \nProject and Writing Management  \nSecond Brain Community Events  \nPARA Method Applications",
+  "usage": {
+    "prompt_tokens": 368,
+    "completion_tokens": 29
+  }
+}

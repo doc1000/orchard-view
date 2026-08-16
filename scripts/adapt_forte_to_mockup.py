@@ -1,13 +1,17 @@
 """Adapt Forte orchard cuts into the visual-search mockup JS shape.
 
 semantic → domain slot, CODE → function slot.
-Read-only over artifacts/forte_blogs/{cuts,orchard}. Writes view/mockup_data.js.
+Read-only over artifacts/forte_blogs/{cuts,orchard}. Writes view/mockup_data.js
+and packs standalone HTML.
 """
 
 from __future__ import annotations
 
 import json
+import re
+import shutil
 import sys
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 
@@ -149,6 +153,57 @@ def _doc_body(doc: dict[str, Any]) -> str:
     return str(doc.get("text") or "")
 
 
+def _update_forte_html(semantic_top: int) -> None:
+    path = VIEW_ROOT / "visual_search_forte.html"
+    text = path.read_text(encoding="utf-8")
+    updated, count_n = re.subn(
+        r"279 docs · \d+ top-level clusters",
+        f"279 docs · {semantic_top} top-level clusters",
+        text,
+        count=1,
+    )
+    if count_n != 1:
+        raise SystemExit("could not update live top-level cluster count in HTML")
+    updated = updated.replace(
+        "Semantic tree = TF-IDF clusters. CODE tree = Capture / Organize / Distill / Express.",
+        "Semantic tree = MiniLM 0.66 / TF-IDF 0.34. CODE tree = Capture / Organize / Distill / Express.",
+    )
+    path.write_text(updated, encoding="utf-8", newline="\n")
+
+
+def _standalone_d3_src() -> Path:
+    matches = sorted(
+        (VIEW_ROOT / "artifacts" / "appworld" / "standalone").glob("*/d3.min.js")
+    )
+    if not matches:
+        raise SystemExit("AppWorld standalone d3.min.js not found")
+    return matches[-1]
+
+
+def pack_standalone() -> Path:
+    stamp = datetime.now().strftime("%Y%d%m%H%M")
+    standalone_root = PACKET / "standalone"
+    if standalone_root.is_dir():
+        shutil.rmtree(standalone_root)
+    dest = standalone_root / f"orchard_view_forte_{stamp}"
+    dest.mkdir(parents=True)
+    html = (VIEW_ROOT / "visual_search_forte.html").read_text(encoding="utf-8")
+    html = html.replace(
+        'src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"',
+        'src="d3.min.js"',
+    )
+    html = html.replace(
+        'src="artifacts/forte_blogs/view/mockup_data.js"',
+        'src="mockup_data.js"',
+    )
+    if 'src="d3.min.js"' not in html or 'src="mockup_data.js"' not in html:
+        raise SystemExit("standalone HTML still has remote or nested script src")
+    (dest / "visual_search_forte.html").write_text(html, encoding="utf-8", newline="\n")
+    shutil.copy2(OUT_PATH, dest / "mockup_data.js")
+    shutil.copy2(_standalone_d3_src(), dest / "d3.min.js")
+    return dest
+
+
 def main() -> int:
     documents = _read_json(PACKET / "orchard" / "documents.json")
     if not isinstance(documents, list):
@@ -248,11 +303,14 @@ def main() -> int:
     )
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUT_PATH.write_text(js, encoding="utf-8", newline="\n")
+    _update_forte_html(semantic_top)
+    packed = pack_standalone()
     print(
         f"wrote {OUT_PATH.relative_to(VIEW_ROOT)} "
         f"({EXPECTED_DOCS} docs, semantic top={semantic_top}, "
         f"CODE top={code_top})"
     )
+    print(f"packed {packed.relative_to(VIEW_ROOT)}", flush=True)
     return 0
 
 

@@ -1,0 +1,10 @@
+{
+  "node_id": "member_594b608c339ea72c778623a99ddde4790306bf6c4a8aa9463cd8d8b144a2d571",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Second Brain Organization Methods",
+  "raw_text": "Second Brain Organization Methods",
+  "usage": {
+    "prompt_tokens": 156,
+    "completion_tokens": 4
+  }
+}

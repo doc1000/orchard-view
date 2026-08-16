@@ -1,0 +1,10 @@
+{
+  "node_id": "member_13b84bd5a437247fe2b60e9df878b94e44ef017191f76f0e48ca1cd1059de4a3",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Problem Identification and Exploration",
+  "raw_text": "Problem Identification and Exploration",
+  "usage": {
+    "prompt_tokens": 96,
+    "completion_tokens": 4
+  }
+}

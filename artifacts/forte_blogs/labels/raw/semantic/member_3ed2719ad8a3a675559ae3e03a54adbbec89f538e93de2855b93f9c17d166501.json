@@ -1,0 +1,10 @@
+{
+  "node_id": "member_3ed2719ad8a3a675559ae3e03a54adbbec89f538e93de2855b93f9c17d166501",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Personal Development Strategies",
+  "raw_text": "Personal Development Strategies",
+  "usage": {
+    "prompt_tokens": 110,
+    "completion_tokens": 3
+  }
+}

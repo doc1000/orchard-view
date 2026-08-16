@@ -1,0 +1,10 @@
+{
+  "node_id": "member_383b964e3f2e8c9e7f2a8c640ac00b18972a1c540cfa43a102ed34aa3cc689ec",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Second Brain Frameworks",
+  "raw_text": "Second Brain Frameworks",
+  "usage": {
+    "prompt_tokens": 87,
+    "completion_tokens": 4
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "node_id": "member_4fbc080b543002e1c689fc93ffb011e14a71bce9396b6e6c3a3159b283da8849",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "PARA Method and Tagging Systems",
+  "raw_text": "PARA Method and Tagging Systems",
+  "usage": {
+    "prompt_tokens": 192,
+    "completion_tokens": 7
+  }
+}

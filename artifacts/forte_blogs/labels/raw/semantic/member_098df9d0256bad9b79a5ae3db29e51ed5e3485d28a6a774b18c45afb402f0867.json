@@ -1,0 +1,10 @@
+{
+  "node_id": "member_098df9d0256bad9b79a5ae3db29e51ed5e3485d28a6a774b18c45afb402f0867",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "PARA Organization Framework",
+  "raw_text": "PARA Organization Framework",
+  "usage": {
+    "prompt_tokens": 123,
+    "completion_tokens": 4
+  }
+}

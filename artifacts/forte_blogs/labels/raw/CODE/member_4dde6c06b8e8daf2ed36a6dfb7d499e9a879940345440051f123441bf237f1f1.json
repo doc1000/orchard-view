@@ -1,0 +1,10 @@
+{
+  "node_id": "member_4dde6c06b8e8daf2ed36a6dfb7d499e9a879940345440051f123441bf237f1f1",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Progressive Summarization Techniques",
+  "raw_text": "Progressive Summarization Techniques",
+  "usage": {
+    "prompt_tokens": 169,
+    "completion_tokens": 6
+  }
+}

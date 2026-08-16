@@ -1,0 +1,10 @@
+{
+  "node_id": "member_9e2670e402f151efdbf165799c6fb1614be17135338496921c73a4bb7cb32cbc",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Note-Taking Foundations",
+  "raw_text": "Note-Taking Foundations",
+  "usage": {
+    "prompt_tokens": 82,
+    "completion_tokens": 4
+  }
+}

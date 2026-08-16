@@ -1,0 +1,10 @@
+{
+  "node_id": "member_e351c96a22931c9bf51ea2821d056c787d8987c47b39acc11806772e194063e2",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Digital Workflow Optimization",
+  "raw_text": "Digital Workflow Optimization",
+  "usage": {
+    "prompt_tokens": 77,
+    "completion_tokens": 3
+  }
+}

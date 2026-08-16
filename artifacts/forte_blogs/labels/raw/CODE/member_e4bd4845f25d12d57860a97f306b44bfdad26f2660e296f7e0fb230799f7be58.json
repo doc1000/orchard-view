@@ -1,0 +1,10 @@
+{
+  "node_id": "member_e4bd4845f25d12d57860a97f306b44bfdad26f2660e296f7e0fb230799f7be58",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Productivity and Knowledge Management",
+  "raw_text": "Productivity and Knowledge Management",
+  "usage": {
+    "prompt_tokens": 275,
+    "completion_tokens": 5
+  }
+}

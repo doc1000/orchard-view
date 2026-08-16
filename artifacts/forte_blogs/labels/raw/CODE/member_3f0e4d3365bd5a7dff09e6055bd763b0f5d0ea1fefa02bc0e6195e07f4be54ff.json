@@ -1,0 +1,10 @@
+{
+  "node_id": "member_3f0e4d3365bd5a7dff09e6055bd763b0f5d0ea1fefa02bc0e6195e07f4be54ff",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Second Brain Foundations",
+  "raw_text": "Second Brain Foundations",
+  "usage": {
+    "prompt_tokens": 91,
+    "completion_tokens": 3
+  }
+}

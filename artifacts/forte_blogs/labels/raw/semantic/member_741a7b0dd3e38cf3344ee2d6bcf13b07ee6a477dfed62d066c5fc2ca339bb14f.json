@@ -1,0 +1,10 @@
+{
+  "node_id": "member_741a7b0dd3e38cf3344ee2d6bcf13b07ee6a477dfed62d066c5fc2ca339bb14f",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Digital Knowledge Ecosystem",
+  "raw_text": "Digital Knowledge Ecosystem",
+  "usage": {
+    "prompt_tokens": 106,
+    "completion_tokens": 4
+  }
+}

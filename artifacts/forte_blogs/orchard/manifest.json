@@ -2,22 +2,105 @@
   "document_count": 279,
   "document_schema_version": "orchard_document_v1",
   "metadata": {
+    "app_exact_match_active": false,
     "builder": {
-      "embedding_backend": "TfidfEmbeddingBackend",
+      "active_layers": {
+        "CODE": [
+          "CODE_raw_js",
+          "description_minilm_centered_cosine",
+          "tfidf_cosine"
+        ],
+        "semantic": [
+          "description_minilm_centered_cosine",
+          "tfidf_cosine"
+        ]
+      },
+      "allow_offline_fallback": false,
+      "app_exact_match_active": false,
+      "description_transform": "centered",
+      "embedding_backend": "MiniLMEmbeddingBackend",
+      "family_metadata_key": null,
+      "fusion_mode": "variance_calibrated",
       "include_semantic_with_taxonomies": true,
+      "layer_matrix_persist": "compressed",
+      "lexical_backend": "TfidfEmbeddingBackend",
       "linkage_method": "average",
       "metadata": {
         "label_set": "gpt41mini",
         "source": "forte_blogs"
       },
+      "model_id": "sentence-transformers/all-MiniLM-L6-v2",
+      "model_revision": "c9745ed1d9f207416be6d2e6f8de32d1f16199bf",
+      "offline_fallback": false,
+      "pooling": "attention-mask-aware mean pooling",
+      "profiles": {
+        "CODE": {
+          "fusion_mode": "variance_calibrated",
+          "name": "CODE",
+          "weights": {
+            "CODE_raw_js": 0.5,
+            "description_minilm_centered_cosine": 0.3,
+            "tfidf_cosine": 0.2
+          }
+        },
+        "semantic": {
+          "fusion_mode": "variance_calibrated",
+          "name": "semantic",
+          "weights": {
+            "description_minilm_centered_cosine": 0.66,
+            "tfidf_cosine": 0.34
+          }
+        }
+      },
       "semantic_signed_cosine": false,
+      "semantic_weights": null,
       "taxonomies": [
         "CODE"
       ],
-      "taxonomy_similarity": "jensen_shannon"
+      "taxonomy_classifier_backend": "ModernBERTFeatureBackend",
+      "taxonomy_model_id": "answerdotai/ModernBERT-base",
+      "taxonomy_model_revision": "8949b909ec900327062f0ebf497f51aef5e6f0c8",
+      "taxonomy_pooling": "attention-mask-aware mean pooling",
+      "taxonomy_similarity": "jensen_shannon",
+      "taxonomy_transform": "modernbert_logistic",
+      "taxonomy_weights": {
+        "CODE": {
+          "CODE_raw_js": 0.5,
+          "description_minilm_centered_cosine": 0.3,
+          "tfidf_cosine": 0.2
+        }
+      }
     },
+    "family_metadata_key": null,
+    "fusion_mode": "variance_calibrated",
     "label_set": "gpt41mini",
-    "source": "forte_blogs"
+    "layer_checksums": {
+      "CODE_raw_js": "00adc5b3f210aa82e1ab8281d89b04e3bedc0d23f15d362090865272153ca0a0",
+      "description_minilm_centered_cosine": "d6b616b5772316e9cc24e7067620c131d58a571c5e76dfc618b282e5841eca0f",
+      "tfidf_cosine": "d613ad1c6cc653aa9118a30035a54eb38cdc5eaffaf998505ec6f51a865cca85"
+    },
+    "layer_matrix_persist": "compressed",
+    "profiles": {
+      "CODE": {
+        "fusion_mode": "variance_calibrated",
+        "name": "CODE",
+        "weights": {
+          "CODE_raw_js": 0.5,
+          "description_minilm_centered_cosine": 0.3,
+          "tfidf_cosine": 0.2
+        }
+      },
+      "semantic": {
+        "fusion_mode": "variance_calibrated",
+        "name": "semantic",
+        "weights": {
+          "description_minilm_centered_cosine": 0.66,
+          "tfidf_cosine": 0.34
+        }
+      }
+    },
+    "source": "forte_blogs",
+    "taxonomy_transform": "modernbert_logistic"
   },
   "schema_version": "orchard_artifact_v1",
   "tree_ids": [

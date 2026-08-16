@@ -1,0 +1,10 @@
+{
+  "node_id": "member_42ed33f3b615109da08da9a1d23820285e170d34a7e66b49787460b64282ed02",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Second Brain Knowledge Management",
+  "raw_text": "Second Brain Knowledge Management",
+  "usage": {
+    "prompt_tokens": 431,
+    "completion_tokens": 4
+  }
+}

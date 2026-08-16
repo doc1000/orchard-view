@@ -1,0 +1,10 @@
+{
+  "node_id": "member_a3f30d167a773ed0e42126ed06a0e59e09237f23d60bf24dbc43e679708c45a4",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Book Announcements and Updates",
+  "raw_text": "Book Announcements and Updates",
+  "usage": {
+    "prompt_tokens": 79,
+    "completion_tokens": 5
+  }
+}

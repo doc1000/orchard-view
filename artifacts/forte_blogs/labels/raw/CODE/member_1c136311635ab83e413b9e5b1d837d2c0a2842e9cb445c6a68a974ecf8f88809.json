@@ -1,0 +1,10 @@
+{
+  "node_id": "member_1c136311635ab83e413b9e5b1d837d2c0a2842e9cb445c6a68a974ecf8f88809",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Book Publishing Financials",
+  "raw_text": "Book Publishing Financials",
+  "usage": {
+    "prompt_tokens": 112,
+    "completion_tokens": 4
+  }
+}

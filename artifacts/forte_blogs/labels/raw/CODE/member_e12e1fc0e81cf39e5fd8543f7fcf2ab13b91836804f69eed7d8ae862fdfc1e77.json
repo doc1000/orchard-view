@@ -1,0 +1,10 @@
+{
+  "node_id": "member_e12e1fc0e81cf39e5fd8543f7fcf2ab13b91836804f69eed7d8ae862fdfc1e77",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Second Brain Foundations and Sharing",
+  "raw_text": "Second Brain Foundations and Sharing",
+  "usage": {
+    "prompt_tokens": 137,
+    "completion_tokens": 5
+  }
+}

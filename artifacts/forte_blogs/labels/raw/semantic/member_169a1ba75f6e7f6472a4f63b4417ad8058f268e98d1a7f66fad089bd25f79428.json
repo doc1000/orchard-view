@@ -1,0 +1,10 @@
+{
+  "node_id": "member_169a1ba75f6e7f6472a4f63b4417ad8058f268e98d1a7f66fad089bd25f79428",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "label": "Digital Nomad Insights",
+  "raw_text": "Digital Nomad Insights",
+  "usage": {
+    "prompt_tokens": 95,
+    "completion_tokens": 4
+  }
+}
