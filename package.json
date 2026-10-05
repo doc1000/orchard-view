@@ -1,0 +1,13 @@
+{
+  "name": "orchard-view-demo",
+  "private": true,
+  "description": "Playwright demo recording + agent walkthrough for the Orchard AppWorld visual search UI",
+  "scripts": {
+    "demo": "node demo/record_demo.js",
+    "demo:agent": "node demo/agent_walkthrough.js",
+    "setup": "playwright install chromium"
+  },
+  "devDependencies": {
+    "playwright": "^1.63.0"
+  }
+}

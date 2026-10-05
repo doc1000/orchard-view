@@ -9,6 +9,12 @@ project (cultivated data partitions for reducing decision space). Full planning 
 proposals, decision sheets, phased implementation plans, handoff docs — lives in that Orchard
 folder, not here. This repo stays down to the artifact itself plus whatever's needed to run it.
 
+## Demo
+
+▶ **Video:** https://youtu.be/cxSrKvUfdAY. It shows the AppWorld tool search going from 457 tools to `amazon.login`.
+`npm install && npm run setup && npm run demo` re-records it locally. See [demo/README.md](demo/README.md)
+for the scene list and the agent-facing `window.orchard` API.
+
 ## Layout
 
 - `visual_search_mockup.html` — the mockup. Single self-contained file (HTML/CSS/JS).
