@@ -4,3 +4,7 @@ __pycache__/
 .DS_Store
 .ipynb_checkpoints/
 .env
+node_modules/
+demo/.video-tmp/
+demo/*.webm
+demo/*.mp4

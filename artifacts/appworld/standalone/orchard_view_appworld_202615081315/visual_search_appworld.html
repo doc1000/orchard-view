@@ -859,6 +859,27 @@ function cycleNodePolarity(nodeId, source) {
   setStatus(`${nodeId}: ${next}`);
 }
 
+// Set a node's polarity directly (Shift+right-click = exclude; also the
+// programmatic entry point used by orchard_api.js). No-op if already set.
+function setNodePolarity(nodeId, polarity, source) {
+  if (getNodeLedgerPolarity(nodeId) === polarity) return;
+  UNDO_STACK.push({ type: "ledger_pop" });
+  writeLedger({
+    source,
+    target_type: "node",
+    target_id: nodeId,
+    polarity,
+  });
+  setStatus(`${nodeId}: ${polarity}`);
+}
+
+// Right-click handler shared by sidebar + treemap: Shift excludes directly,
+// plain right-click cycles neutral → include → exclude → neutral.
+function nodeContextAction(nodeId, source, e) {
+  if (e && e.shiftKey) setNodePolarity(nodeId, "exclude", source);
+  else cycleNodePolarity(nodeId, source);
+}
+
 // Returns the polarity of the most recent ledger entry for this exact node
 // (not considering propagation — just what was explicitly set on this node)
 function getNodeLedgerPolarity(nodeId) {
@@ -1442,6 +1463,7 @@ function renderTreeNodes(nodes, depth, container) {
     const row = document.createElement("div");
     row.className = rowCls;
     row.dataset.id = node.id;
+    row.dataset.nodeLabel = node.label;
     row.style.paddingLeft = (depth * 16 + 8) + "px";
 
     const stateIcon = polarity==="include" ? "✓" : polarity==="exclude" ? "✕" : "";
@@ -1468,7 +1490,7 @@ function renderTreeNodes(nodes, depth, container) {
     // Right-click: cycle neutral → include → exclude → neutral (node STAYS VISIBLE)
     row.addEventListener("contextmenu", e => {
       e.preventDefault();
-      cycleNodePolarity(node.id, S.treeMode === "function" ? "function_tree" : "domain_tree");
+      nodeContextAction(node.id, S.treeMode === "function" ? "function_tree" : "domain_tree", e);
     });
 
     row.addEventListener("mouseenter", e => showTooltip(node, e, ns, hl));
@@ -1553,7 +1575,8 @@ function renderLeafDocs(container, node, W, H) {
     const y = row * (cellH + 4) + 4;
     const inH = HOPPER.has(doc.id);
 
-    const g = svg.append("g").style("cursor","pointer");
+    const g = svg.append("g").style("cursor","pointer")
+      .attr("data-testid","tm-doc").attr("data-doc-id",doc.id);
     g.append("rect")
       .attr("x",x).attr("y",y).attr("width",cellW).attr("height",cellH)
       .attr("rx",4)
@@ -1641,7 +1664,9 @@ function renderTreemap() {
       if (!ns && emptyPreGo1) ns = "neg";
       const w = d1.x1 - d1.x0, h = d1.y1 - d1.y0;
 
-      const g1 = svg.append("g").style("cursor","pointer");
+      const g1 = svg.append("g").style("cursor","pointer")
+        .attr("data-testid","tm-node").attr("data-level","block")
+        .attr("data-node-id",d1.data.id).attr("data-node-label",d1.data.label);
       g1.append("rect")
         .attr("x",d1.x0).attr("y",d1.y0).attr("width",w).attr("height",h)
         .attr("rx",4).attr("fill",tmFill(ns,hl,1))
@@ -1663,7 +1688,7 @@ function renderTreemap() {
         renderTreemap(); renderTreemapBreadcrumb();
       }).on("contextmenu", e => {
         e.preventDefault();
-        cycleNodePolarity(d1.data.id, "treemap");
+        nodeContextAction(d1.data.id, "treemap", e);
       }).on("mouseenter", e => showTooltip(d1.data, e, ns, hl))
         .on("mousemove", e => moveTooltip(e))
         .on("mouseleave", hideTooltip);
@@ -1684,7 +1709,9 @@ function renderTreemap() {
     if (w < 5 || h < 5) return;
 
     const fillPct = S.fillData[d.data.id] ?? 0;
-    const g = svg.append("g").style("cursor","pointer");
+    const g = svg.append("g").style("cursor","pointer")
+      .attr("data-testid","tm-node").attr("data-level","tile")
+      .attr("data-node-id",d.data.id).attr("data-node-label",d.data.label);
 
     g.append("rect")
       .attr("x",x).attr("y",y).attr("width",w).attr("height",h)
@@ -1724,7 +1751,7 @@ function renderTreemap() {
       renderTreemap(); renderTreemapBreadcrumb();
     }).on("contextmenu", e => {
       e.preventDefault();
-      cycleNodePolarity(d.data.id, "treemap");
+      nodeContextAction(d.data.id, "treemap", e);
     }).on("mouseenter", e => showTooltip(d.data, e, ns, hl))
       .on("mousemove", e => moveTooltip(e))
       .on("mouseleave", hideTooltip);
@@ -2040,5 +2067,6 @@ new ResizeObserver(() => { if(S.viewMode==="treemap") renderTreemap(); })
 
 recompute();
 </script>
+<script src="orchard_api.js"></script>
 </body>
 </html>
