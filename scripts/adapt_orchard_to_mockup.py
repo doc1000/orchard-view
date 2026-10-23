@@ -36,6 +36,11 @@ def _view_id(tree_letter: str, segments: list[str]) -> str:
     return tree_letter + "/" + "/".join(segments)
 
 
+def _summary(descriptions: dict[str, dict[str, Any]], canonical_id: str) -> str:
+    entry = descriptions.get(canonical_id) or {}
+    return str(entry.get("intrinsic_description") or "")
+
+
 def _leaf_item_ids(canonical: dict[str, Any]) -> dict[str, str]:
     mapping: dict[str, str] = {}
     for node_id, node in canonical["nodes"].items():
@@ -53,6 +58,7 @@ def _adapt_tree(
     *,
     tree_letter: str,
     labels: dict[str, str],
+    descriptions: dict[str, dict[str, Any]],
     leaf_item_ids: dict[str, str],
     docs_by_id: dict[str, dict[str, Any]],
 ) -> tuple[dict[str, Any], dict[str, str], dict[str, str]]:
@@ -89,7 +95,13 @@ def _adapt_tree(
         item_to_view[item_id] = view_id
         trail = ancestor_labels + [label]
         item_to_path[item_id] = " → ".join(trail)
-        return {"id": view_id, "label": label, "count": 1, "children": []}
+        return {
+            "id": view_id,
+            "label": label,
+            "summary": _summary(descriptions, canonical_id) or str(doc.get("text") or ""),
+            "count": 1,
+            "children": [],
+        }
 
     def walk(
         node: dict[str, Any],
@@ -127,6 +139,7 @@ def _adapt_tree(
         return {
             "id": view_id,
             "label": label,
+            "summary": "" if is_root else _summary(descriptions, canonical_id),
             "count": int(node["descendant_count"]),
             "children": children,
         }
@@ -172,6 +185,7 @@ def main() -> int:
     function_labels = _read_json(
         PACKET / "orchard" / "trees" / "function" / "labels" / "phase5a_intrinsic.json"
     )["labels"]
+    node_descriptions = _read_json(PACKET / "node_descriptions.json")
     leaf_item_ids = _leaf_item_ids(
         _read_json(PACKET / "orchard" / "trees" / "domain" / "canonical_tree.json")
     )
@@ -182,6 +196,7 @@ def main() -> int:
         domain_cut["root"],
         tree_letter="d",
         labels=domain_labels,
+        descriptions=node_descriptions["domain"],
         leaf_item_ids=leaf_item_ids,
         docs_by_id=docs_by_id,
     )
@@ -189,6 +204,7 @@ def main() -> int:
         function_cut["root"],
         tree_letter="f",
         labels=function_labels,
+        descriptions=node_descriptions["function"],
         leaf_item_ids=leaf_item_ids,
         docs_by_id=docs_by_id,
     )

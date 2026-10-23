@@ -78,6 +78,25 @@ body {
   transition: filter 0.1s;
 }
 .btn:hover { filter: brightness(1.18); }
+/* Hover tips on header buttons — appear only after a 1s hover */
+.btn[data-tip] { position: relative; }
+.btn[data-tip]::after {
+  content: attr(data-tip);
+  position: absolute; top: calc(100% + 8px); left: 50%; z-index: 10000;
+  transform: translateX(-50%);
+  width: max-content; max-width: 220px; white-space: normal;
+  padding: 6px 9px; border-radius: var(--radius);
+  background: var(--surface3); border: 1px solid var(--border-hi);
+  color: var(--text-dim); font-size: 12px; font-weight: 600; letter-spacing: 0; text-align: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 0.12s, visibility 0s linear 0.12s;
+}
+.btn[data-tip]:hover::after {
+  opacity: 1; visibility: visible;
+  transition: opacity 0.12s 1s, visibility 0s linear 1s;
+}
+#goBtn[data-tip]::after { left: auto; right: 0; transform: none; }
 .btn:active { filter: brightness(0.88); }
 .btn-ghost { background: var(--surface2); color: var(--text-dim); border-color: var(--border-hi); }
 .btn-go    { background: var(--green);    color: #000; font-size: 15px; font-weight: 900; padding: 7px 22px; }
@@ -279,6 +298,37 @@ body {
 
 /* ─── TREEMAP VIEW ─── */
 .treemap-view { flex: 1; overflow: hidden; position: relative; }
+.tm-card {
+  position: absolute; box-sizing: border-box; overflow: hidden; cursor: pointer;
+  display: flex; flex-direction: column; gap: 7px; padding: 10px 12px;
+  background: var(--surface2); border: 1px solid var(--border); border-radius: 6px;
+  transition: border-color 0.15s, background 0.15s;
+}
+.tm-card:hover { background: var(--surface3); border-color: var(--accent); }
+.tm-card.all-in  { border-color: var(--green); box-shadow: inset 0 0 0 1px var(--green); }
+.tm-card.all-out { border-color: var(--red);   box-shadow: inset 0 0 0 1px var(--red); }
+.tm-card.all-out-implicit { border-color: rgba(255,85,85,0.35); }
+.tm-card.all-out-implicit > * { opacity: 0.55; }
+.tm-card-head { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 8px; row-gap: 2px; flex: none; }
+.tm-card-title {
+  flex: 1 1 130px; min-width: 0; font-size: 14px; font-weight: 800; color: var(--text); line-height: 1.25;
+  overflow-wrap: anywhere;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
+}
+.tm-card-count { flex: none; font-size: 12px; font-weight: 700; color: var(--accent); white-space: nowrap; }
+.tm-bar {
+  position: relative; flex: none; height: 6px; overflow: hidden;
+  background: var(--bg); border: 1px solid var(--border); border-radius: 3px;
+}
+.tm-bar > div { position: absolute; top: 0; bottom: 0; transition: width 0.2s, left 0.2s; }
+.tm-bar-red   { left: 0;  background: var(--red); }
+.tm-bar-dim   { background: rgba(255,85,85,0.3); }
+.tm-bar-green { right: 0; background: var(--green); }
+.tm-card-summary {
+  flex: 1 1 0; min-height: 0; overflow: hidden;
+  font-size: 12.5px; line-height: 1.4; color: var(--text-muted);
+  display: -webkit-box; -webkit-box-orient: vertical;
+}
 
 /* ─── LIST VIEW ─── */
 .list-view { flex: 1; overflow-y: auto; padding: 10px 16px; display: none; }
@@ -380,6 +430,8 @@ body {
 .tooltip.visible { display: block; }
 .tt-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
 .tt-count { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+.tt-summary { font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
+.tt-summary:empty { display: none; }
 .tt-child { font-size: 13px; font-weight: 600; color: var(--text-dim); padding: 4px 0; border-top: 1px solid var(--border); }
 .tt-hint  { font-size: 12px; font-weight: 700; color: var(--yellow); margin-top: 8px; }
 
@@ -422,12 +474,12 @@ body {
   <input class="search-input" id="searchInput" type="text" list="queryHistory"
     placeholder='"beach vacation" -hawaii   or   remote ML fintech jobs' autocomplete="off"/>
   <datalist id="queryHistory"></datalist>
-  <button class="btn btn-ghost" onclick="parseQuery()">Parse</button>
-  <button class="btn btn-undo"  onclick="undo()">↩ Undo</button>
-  <button class="btn btn-prune" onclick="pruneTree()" id="pruneBtn">Prune</button>
-  <button class="btn btn-ghost" onclick="resetAll()">Reset</button>
+  <button class="btn btn-ghost" onclick="parseQuery()" data-tip="Turn the search text into include/exclude conditions">Parse</button>
+  <button class="btn btn-undo"  onclick="undo()" data-tip="Undo the last change">↩ Undo</button>
+  <button class="btn btn-prune" onclick="pruneTree()" id="pruneBtn" data-tip="Hide excluded branches in the tree">Prune</button>
+  <button class="btn btn-ghost" onclick="resetAll()" data-tip="Clear all conditions and return to the full corpus">Reset</button>
   <div class="doc-badge"><strong id="activeCount">457</strong> in scope</div>
-  <button class="btn btn-go" id="goBtn" onclick="go()">Go ▶</button>
+  <button class="btn btn-go" id="goBtn" onclick="go()" data-tip="Commit the current selection as the new starting set">Go ▶</button>
 </header>
 
 <!-- UNDO GO CONFIRMATION -->
@@ -535,6 +587,7 @@ body {
 <div class="tooltip" id="tooltip">
   <div class="tt-title" id="ttTitle"></div>
   <div class="tt-count" id="ttCount"></div>
+  <div class="tt-summary" id="ttSummary"></div>
   <div id="ttChildren"></div>
   <div class="tt-hint"  id="ttHint"></div>
 </div>
@@ -832,6 +885,7 @@ function recompute() {
   WORKING_SCOPE = evaluate(BASE, LEDGER);
   WORKING_COUNT_CACHE = buildCountCache(WORKING_SCOPE);
   BASE_COUNT_CACHE = buildCountCache(BASE);
+  SELECTION_CACHE = buildSelectionCache(BASE, LEDGER);
   renderAll();
 }
 
@@ -945,6 +999,49 @@ function buildCountCache(docs) {
     }
   }
   return cache;
+}
+
+// Like resolveDoc, but says *why* a doc landed where it did, for the treemap's
+// selection bar: "include" | "exclude" | "implicit" | "neutral".
+// - "include":  a node/doc include reached it, or it matched an include term
+// - "exclude":  a node/doc exclude or a term excluded it
+// - "implicit": excluded only by the default-exclude that kicks in once some node
+//               is included elsewhere — drawn dimmer than a deliberate exclusion
+function classifyDoc(doc, ledger, orGroups, nodeIncludeActive, hasIncludeTerms) {
+  const polarity = resolveDoc(doc, ledger, orGroups, nodeIncludeActive);
+  if (polarity === "exclude") {
+    const withoutDefault = nodeIncludeActive && resolveDoc(doc, ledger, orGroups, false);
+    return withoutDefault === "neutral" ? "implicit" : "exclude";
+  }
+  if (polarity === "neutral" && hasIncludeTerms) return "include";
+  return polarity;
+}
+
+// nodeId → {include, exclude, implicit} doc counts over BASE, rebuilt in recompute()
+let SELECTION_CACHE = new Map();
+
+function buildSelectionCache(base, ledger) {
+  const cache = new Map();
+  if (!ledger.length) return cache;
+  const orGroups = groupBy(ledger.filter(e => e.target_type === "term"), e => e.group_id);
+  const nodeIncludeActive = ledgerHasActiveNodeInclude(ledger);
+  const hasIncludeTerms = ledger.some(e => e.target_type === "term" && e.polarity === "include");
+  for (const doc of base) {
+    const cls = classifyDoc(doc, ledger, orGroups, nodeIncludeActive, hasIncludeTerms);
+    if (cls === "neutral") continue;
+    const p = DOC_PATHS.get(doc.id);
+    if (!p) continue;
+    for (const id of [...p.domPath, ...p.fnPath]) {
+      let c = cache.get(id);
+      if (!c) cache.set(id, c = { include: 0, exclude: 0, implicit: 0 });
+      c[cls]++;
+    }
+  }
+  return cache;
+}
+
+function nodeSelection(nodeId) {
+  return SELECTION_CACHE.get(nodeId) ?? { include: 0, exclude: 0, implicit: 0 };
 }
 
 function nodeWorkingCount(nodeId) { return WORKING_COUNT_CACHE.get(nodeId) ?? 0; }
@@ -1515,27 +1612,6 @@ function treemapFocusNode() {
   return S.drillPath.length > 0 ? S.drillPath[S.drillPath.length - 1] : currentTree();
 }
 
-// Color helpers
-function tmFill(ns, hl, depth) {
-  if (ns==="pos") return depth===1 ? "rgba(0,70,35,0.75)"  : "rgba(0,100,50,0.88)";
-  if (ns==="neg") return depth===1 ? "rgba(65,10,10,0.75)" : "rgba(90,14,14,0.88)";
-  if (hl==="pos") return depth===1 ? "rgba(0,60,30,0.50)"  : "rgba(0,80,40,0.72)";
-  if (hl==="neg") return depth===1 ? "rgba(55,10,10,0.50)" : "rgba(70,12,12,0.65)";
-  if (hl==="weak") return depth===1 ? "rgba(0,38,60,0.50)" : "rgba(0,50,78,0.78)";
-  return depth===1 ? "rgba(13,21,32,0.88)" : "rgba(19,31,48,0.94)";
-}
-function tmStroke(ns, hl) {
-  if (ns==="pos"||hl==="pos") return "#00ff88";
-  if (ns==="neg"||hl==="neg") return "#ff5555";
-  if (hl==="weak") return "#00d8ff";
-  return "#4a6888";
-}
-function tmLabelColor(ns, hl) {
-  if (ns==="pos"||hl==="pos") return "#00ff88";
-  if (ns==="neg"||hl==="neg") return "#ff5555";
-  if (hl==="weak") return "#00d8ff";
-  return "#d0eaff";
-}
 function cycleNodeState(id) {
   const cur = S.nodeStates[id]||null;
   const next = cur==="pos" ? null : cur===null ? "neg" : "pos";
@@ -1625,136 +1701,76 @@ function renderTreemap() {
     return;
   }
 
-  // Build d3 hierarchy rooted at focusNode — tile area reflects BASE, not the live
-  // WORKING_SCOPE. Sizing off the committed corpus means clicks/queries repaint
-  // color instantly (via ns/hl below, which still read the live ledger) without
-  // the layout itself reflowing — tiles only resize on Go/Reset, when BASE moves.
-  const root = d3.hierarchy(focusNode)
-    .sum(d => {
-      if (d.children && d.children.length) return 0;
-      return nodeBaseCount(d.id);
-    })
+  // One card per child of the focus node — grandchildren are left to hover and
+  // drill-down. Area follows sqrt(BASE count) so bigger categories still read
+  // bigger without swamping small ones; a floor at 35% of the largest keeps the
+  // smallest cards wide enough to read. Sizing off BASE (not WORKING_SCOPE)
+  // keeps the layout still while clicks/queries repaint the selection bars;
+  // cards only resize on Go/Reset, when BASE moves.
+  const kids = focusNode.children.filter(c => nodeBaseCount(c.id) > 0);
+  const area = node => Math.sqrt(nodeBaseCount(node.id));
+  const minArea = 0.35 * Math.max(0, ...kids.map(area));
+  const root = d3.hierarchy({ children: kids.map(node => ({ node })) })
+    .sum(d => d.node ? Math.max(area(d.node), minArea) : 0)
     .sort((a, b) => b.value - a.value);
 
-  const hasTwoLevels = focusNode.children.some(c => c.children && c.children.length > 0);
+  d3.treemap().size([W, H]).padding(6).round(true)(root);
 
-  d3.treemap()
-    .size([W, H])
-    .paddingOuter(3)
-    .paddingTop(hasTwoLevels ? 22 : 4)
-    .paddingInner(2)
-    .round(true)
-    (root);
+  (root.children || []).forEach(d => {
+    const node = d.data.node;
+    const total = nodeBaseCount(node.id);
+    const sel = nodeSelection(node.id);
+    const red = sel.exclude / total, dim = sel.implicit / total, green = sel.include / total;
 
-  const svg = d3.select(container).append("svg")
-    .attr("width", W).attr("height", H).style("overflow","hidden");
-
-  // ── L1 background blocks (when 2-level view) ──
-  if (hasTwoLevels) {
-    (root.children || []).forEach(d1 => {
-      const working1 = nodeWorkingCount(d1.data.id);
-      // Clean-slate state: don't draw an empty category's background block at
-      // all — its leaf tiles are already hidden by the .sum() rule above.
-      if (working1 === 0 && LEDGER.length === 0) return;
-
-      const polarity = getNodeDisplayPolarity(d1.data.id);
-      const hl = S.highlighted[d1.data.id]; // legacy query highlight (Phase 5 will replace)
-      const emptyPreGo1 = working1 === 0 && LEDGER.length > 0;
-      let ns = polarity === "include" ? "pos" : polarity === "exclude" ? "neg" : null;
-      if (!ns && emptyPreGo1) ns = "neg";
-      const w = d1.x1 - d1.x0, h = d1.y1 - d1.y0;
-
-      const g1 = svg.append("g").style("cursor","pointer")
-        .attr("data-testid","tm-node").attr("data-level","block")
-        .attr("data-node-id",d1.data.id).attr("data-node-label",d1.data.label);
-      g1.append("rect")
-        .attr("x",d1.x0).attr("y",d1.y0).attr("width",w).attr("height",h)
-        .attr("rx",4).attr("fill",tmFill(ns,hl,1))
-        .attr("stroke",tmStroke(ns,hl)).attr("stroke-width",1);
-
-      if (w > 50) {
-        g1.append("text")
-          .attr("x",d1.x0+5).attr("y",d1.y0+14)
-          .attr("fill",tmLabelColor(ns,hl))
-          .attr("font-size","10px").attr("font-weight","800")
-          .attr("font-family","Inter,Segoe UI,sans-serif")
-          .attr("pointer-events","none")
-          .text(tmTrunc(d1.data.label.toUpperCase(), w - 10, 10));
-      }
-
-      g1.on("click", e => {
-        e.stopPropagation();
-        S.drillPath = [...S.drillPath, d1.data];
-        renderTreemap(); renderTreemapBreadcrumb();
-      }).on("contextmenu", e => {
-        e.preventDefault();
-        nodeContextAction(d1.data.id, "treemap", e);
-      }).on("mouseenter", e => showTooltip(d1.data, e, ns, hl))
-        .on("mousemove", e => moveTooltip(e))
-        .on("mouseleave", hideTooltip);
+    const card = document.createElement("div");
+    card.className = "tm-card";
+    if (sel.include === total) card.classList.add("all-in");
+    else if (sel.exclude + sel.implicit === total) {
+      card.classList.add(sel.exclude ? "all-out" : "all-out-implicit");
+    }
+    card.dataset.testid = "tm-node";
+    card.dataset.nodeId = node.id;
+    card.dataset.nodeLabel = node.label;
+    Object.assign(card.style, {
+      left: d.x0 + "px", top: d.y0 + "px",
+      width: (d.x1 - d.x0) + "px", height: (d.y1 - d.y0) + "px",
     });
-  }
+    card.innerHTML = `
+      <div class="tm-card-head">
+        <div class="tm-card-title"></div>
+        <div class="tm-card-count">${sel.include ? `${sel.include} / ${total}` : `${total} doc${total === 1 ? "" : "s"}`}</div>
+      </div>
+      <div class="tm-bar">
+        <div class="tm-bar-red"   style="width:${red * 100}%"></div>
+        <div class="tm-bar-dim"   style="left:${red * 100}%;width:${dim * 100}%"></div>
+        <div class="tm-bar-green" style="width:${green * 100}%"></div>
+      </div>
+      <div class="tm-card-summary"></div>`;
+    card.querySelector(".tm-card-title").textContent = node.label;
+    card.querySelector(".tm-card-summary").textContent = node.summary || "";
+    container.appendChild(card);
 
-  // ── Leaf tiles ──
-  root.leaves().forEach(d => {
-    const polarity = getNodeDisplayPolarity(d.data.id);
-    const hl = S.highlighted[d.data.id]; // legacy query highlight (Phase 5 will replace)
-    const workingLeaf = nodeWorkingCount(d.data.id);
-    const emptyPreGoLeaf = workingLeaf === 0 && LEDGER.length > 0;
-    let ns = polarity === "include" ? "pos" : polarity === "exclude" ? "neg" : null;
-    if (!ns && emptyPreGoLeaf) ns = "neg";
-    const x = d.x0+1, y = d.y0+1;
-    const w = Math.max(0, d.x1-d.x0-2);
-    const h = Math.max(0, d.y1-d.y0-2);
-    if (w < 5 || h < 5) return;
+    // Clamp the summary to the whole lines that fit what's left of the card
+    const summary = card.querySelector(".tm-card-summary");
+    const lines = Math.floor(summary.clientHeight / parseFloat(getComputedStyle(summary).lineHeight));
+    if (lines < 1) summary.remove();
+    else summary.style.webkitLineClamp = lines;
 
-    const fillPct = S.fillData[d.data.id] ?? 0;
-    const g = svg.append("g").style("cursor","pointer")
-      .attr("data-testid","tm-node").attr("data-level","tile")
-      .attr("data-node-id",d.data.id).attr("data-node-label",d.data.label);
-
-    g.append("rect")
-      .attr("x",x).attr("y",y).attr("width",w).attr("height",h)
-      .attr("rx",2).attr("fill",tmFill(ns,hl,2))
-      .attr("stroke",tmStroke(ns,hl))
-      .attr("stroke-width",(ns||hl) ? 2 : 1);
-
-    // fill bar after execute
-    if (fillPct > 0 && h > 6) {
-      g.append("rect")
-        .attr("x",x).attr("y",y+h-4)
-        .attr("width",Math.round(w*fillPct/100)).attr("height",4)
-        .attr("fill","#00ff88").attr("opacity",0.75).attr("pointer-events","none");
-    }
-
-    if (h > 26 && w > 32) {
-      g.append("text")
-        .attr("x",x+4).attr("y",y+h-14)
-        .attr("fill",tmLabelColor(ns,hl))
-        .attr("font-size", Math.min(12, Math.max(9, w/9))+"px")
-        .attr("font-weight","700").attr("font-family","Inter,Segoe UI,sans-serif")
-        .attr("pointer-events","none")
-        .text(tmTrunc(d.data.label, w-8, Math.min(12, Math.max(9, w/9))));
-    }
-    if (h > 14 && w > 28) {
-      g.append("text")
-        .attr("x",x+4).attr("y",y+h-3)
-        .attr("fill","#7aaccc").attr("font-size","9px")
-        .attr("font-family","Inter,Segoe UI,sans-serif").attr("pointer-events","none")
-        .text(nodeCountLabel(d.data.id));
-    }
-
-    g.on("click", e => {
+    card.addEventListener("click", e => {
       e.stopPropagation();
-      // Left-click always drills down (leaf → shows docs)
-      S.drillPath = [...S.drillPath, d.data];
+      hideTooltip();
+      S.drillPath = [...S.drillPath, node];
       renderTreemap(); renderTreemapBreadcrumb();
-    }).on("contextmenu", e => {
+    });
+    card.addEventListener("contextmenu", e => {
       e.preventDefault();
-      nodeContextAction(d.data.id, "treemap", e);
-    }).on("mouseenter", e => showTooltip(d.data, e, ns, hl))
-      .on("mousemove", e => moveTooltip(e))
-      .on("mouseleave", hideTooltip);
+      nodeContextAction(node.id, "treemap", e);
+    });
+    const own = getNodeDisplayPolarity(node.id);
+    const ns = own === "include" ? "pos" : own === "exclude" ? "neg" : null;
+    card.addEventListener("mouseenter", e => showTooltip(node, e, ns));
+    card.addEventListener("mousemove", moveTooltip);
+    card.addEventListener("mouseleave", hideTooltip);
   });
 }
 
@@ -1988,6 +2004,7 @@ function showTooltip(node,e,ns,hl) {
   const tt=document.getElementById("tooltip");
   document.getElementById("ttTitle").textContent=node.label;
   document.getElementById("ttCount").textContent=`${node.count} documents`;
+  document.getElementById("ttSummary").textContent=node.summary||"";
   const ch=document.getElementById("ttChildren"); ch.innerHTML="";
   node.children.slice(0,6).forEach(c=>{
     const d=document.createElement("div"); d.className="tt-child";
@@ -1996,7 +2013,7 @@ function showTooltip(node,e,ns,hl) {
   document.getElementById("ttHint").textContent =
     ns==="pos"?"✓ Included": ns==="neg"?"✕ Excluded":
     hl==="pos"?"Query match — Go to retrieve":
-    "Left-click: include · Right-click: cycle state";
+    "Right-click: include → exclude → clear";
   tt.classList.add("visible"); moveTooltip(e);
 }
 function moveTooltip(e) {
@@ -2058,7 +2075,6 @@ document.getElementById("searchInput").addEventListener("keydown",e=>{ if(e.key=
 // ════════════════════════════════════════════════════
 // INIT
 // ════════════════════════════════════════════════════
-S.expanded = Object.fromEntries((DOMAIN_TREE.children || []).map(c => [c.id, true]));
 S.drillPath = [];
 
 // Re-render treemap on container resize (e.g. sidebar drag)
