@@ -144,7 +144,7 @@ body {
   padding: 5px 10px; border-radius: var(--radius); border: 2px solid var(--border-hi);
   font-size: 13px; font-weight: 700; cursor: pointer;
   background: var(--surface2); color: var(--text-dim);
-  margin-right: 4px;
+  margin-right: 4px; width: 110px;
 }
 .history-select:hover { border-color: var(--accent); color: var(--text); }
 .chip {
@@ -214,6 +214,9 @@ body {
 .tree-row:hover { background: var(--surface2); }
 .tree-row.pos-selected { background: var(--green-dim); border-left-color: var(--green); }
 .tree-row.neg-selected { background: var(--red-dim);   border-left-color: var(--red); opacity: 0.8; }
+.tree-row.implicit-out { border-left-color: rgba(255,85,85,0.3); }
+.tree-row.implicit-out .row-label, .tree-row.implicit-out .row-count { opacity: 0.45; }
+.tree-row.implicit-out .row-dot { background: rgba(255,85,85,0.45); }
 .tree-row.highlight-pos  { border-left-color: var(--green); background: rgba(0,255,136,0.08); }
 .tree-row.highlight-neg  { border-left-color: var(--red);   background: rgba(255,85,85,0.07); opacity: 0.75; }
 .tree-row.highlight-weak { border-left-color: var(--accent); background: rgba(0,216,255,0.06); }
@@ -308,12 +311,28 @@ body {
 .tm-card.all-in  { border-color: var(--green); box-shadow: inset 0 0 0 1px var(--green); }
 .tm-card.all-out { border-color: var(--red);   box-shadow: inset 0 0 0 1px var(--red); }
 .tm-card.all-out-implicit { border-color: rgba(255,85,85,0.35); }
-.tm-card.all-out-implicit > * { opacity: 0.55; }
+.tm-card.all-out-implicit > :not(.tm-bar) { opacity: 0.55; }
+.tm-card.all-out-implicit .tm-bar-dim { background: var(--red); }
 .tm-card-head { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 8px; row-gap: 2px; flex: none; }
 .tm-card-title {
   flex: 1 1 130px; min-width: 0; font-size: 14px; font-weight: 800; color: var(--text); line-height: 1.25;
   overflow-wrap: anywhere;
   display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
+}
+.tm-card-meta { flex: none; display: flex; align-items: center; gap: 6px; }
+.tm-hop {
+  flex: none; width: 20px; height: 20px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: transparent; border: 1px solid var(--border-hi); color: var(--text-muted);
+  font-size: 12px; line-height: 1; cursor: pointer; padding: 0;
+}
+.tm-hop:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+.tm-hop.active { background: var(--accent); border-color: var(--accent); color: #000; }
+.tm-hop:disabled { opacity: 0.3; cursor: default; }
+.tm-hop:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.tm-empty {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted); font-size: 14px; font-weight: 600;
 }
 .tm-card-count { flex: none; font-size: 12px; font-weight: 700; color: var(--accent); white-space: nowrap; }
 .tm-bar {
@@ -476,7 +495,7 @@ body {
   <datalist id="queryHistory"></datalist>
   <button class="btn btn-ghost" onclick="parseQuery()" data-tip="Turn the search text into include/exclude conditions">Parse</button>
   <button class="btn btn-undo"  onclick="undo()" data-tip="Undo the last change">↩ Undo</button>
-  <button class="btn btn-prune" onclick="pruneTree()" id="pruneBtn" data-tip="Hide excluded branches in the tree">Prune</button>
+  <button class="btn btn-prune" onclick="pruneTree()" id="pruneBtn" data-tip="Hide fully excluded categories in the tree and treemap">Prune</button>
   <button class="btn btn-ghost" onclick="resetAll()" data-tip="Clear all conditions and return to the full corpus">Reset</button>
   <div class="doc-badge"><strong id="activeCount">457</strong> in scope</div>
   <button class="btn btn-go" id="goBtn" onclick="go()" data-tip="Commit the current selection as the new starting set">Go ▶</button>
@@ -910,7 +929,7 @@ function cycleNodePolarity(nodeId, source) {
     polarity: next,
   });
 
-  setStatus(`${nodeId}: ${next}`);
+  setStatus(`${nodeLabel(nodeId)}: ${next}`);
 }
 
 // Set a node's polarity directly (Shift+right-click = exclude; also the
@@ -924,7 +943,7 @@ function setNodePolarity(nodeId, polarity, source) {
     target_id: nodeId,
     polarity,
   });
-  setStatus(`${nodeId}: ${polarity}`);
+  setStatus(`${nodeLabel(nodeId)}: ${polarity}`);
 }
 
 // Right-click handler shared by sidebar + treemap: Shift excludes directly,
@@ -1073,8 +1092,15 @@ function go() {
   hideUndoConfirm();
 
   // Archive current state for session history
+  // Name the cycle by its first condition so the dropdown says what happened
+  const decisions = LEDGER.filter(e => e.polarity !== "neutral");
+  const first = decisions.length ? ledgerTargetLabel(decisions[0]) : "";
+  const gist = decisions.length
+    ? ` · ${decisions[0].polarity === "include" ? "+" : "−"}${first.length > 26 ? first.slice(0, 25) + "…" : first}` +
+      (decisions.length > 1 ? ` +${decisions.length - 1} more` : "")
+    : "";
   SESSION_HISTORY.push({
-    label: `Cycle ${SESSION_HISTORY.length + 1} — ${BASE.length} → ${WORKING_SCOPE.length} docs`,
+    label: `Cycle ${SESSION_HISTORY.length + 1} — ${BASE.length} → ${WORKING_SCOPE.length} docs${gist}`,
     ledger: [...LEDGER],
     base:   [...BASE],
   });
@@ -1096,6 +1122,7 @@ function go() {
   WORKING_SCOPE = [...BASE];
 
   document.getElementById("searchInput").value = "";
+  S.drillPath = []; // back to the "All" level so the new base is seen whole
   updateGoButton();
   updateHistoryDropdown();
   recompute();
@@ -1146,13 +1173,29 @@ function showHistoryOverlay(idx) {
       const row = document.createElement("div");
       const pol = entry.polarity === "include" ? "history-include" : entry.polarity === "exclude" ? "history-exclude" : "";
       row.className = "history-entry " + pol;
-      row.textContent = `${entry.source} · ${entry.target_type}:${entry.target_id} → ${entry.polarity}`;
+      const verb = entry.polarity === "neutral" ? "Cleared" : entry.polarity === "include" ? "Include" : "Exclude";
+      const kind = entry.target_type === "node" ? "category" : entry.target_type === "term" ? "term" : "doc";
+      row.textContent = `${verb} ${kind}: ${ledgerTargetLabel(entry)}`;
+      row.title = `${entry.source} · ${entry.target_type}:${entry.target_id}`; // internal codes on hover
+
       body.appendChild(row);
     }
   }
   overlay.style.display = "flex";
   // Reset the select so choosing the same cycle again still fires a change event
   document.getElementById("historySelect").value = "";
+}
+
+// Human-readable name for a ledger entry's target: node label, term, or doc title
+function ledgerTargetLabel(entry) {
+  if (entry.target_type === "term") return entry.quoted ? `"${entry.target_id}"` : entry.target_id;
+  if (entry.target_type === "node") return nodeLabel(entry.target_id);
+  const doc = CORPUS.find(d => String(d.id) === String(entry.target_id));
+  return doc ? doc.title : entry.target_id;
+}
+function nodeLabel(nodeId) {
+  const node = findNode(nodeId, DOMAIN_TREE) || findNode(nodeId, FUNCTION_TREE);
+  return node ? node.label : nodeId;
 }
 
 function closeHistoryOverlay() {
@@ -1532,9 +1575,10 @@ function renderSidebar() {
 function renderTreeNodes(nodes, depth, container) {
   for (const node of nodes) {
     const polarity = getNodeDisplayPolarity(node.id);
-    if (S.pruned && polarity === "exclude") continue;
-
     const working = nodeWorkingCount(node.id);
+    // Prune: hide every branch with nothing left in scope, however it got excluded
+    if (S.pruned && working === 0) continue;
+
     // Clean-slate state (no active ledger — right after Go/Reset/on load):
     // a branch with zero docs is gone, not just dimmed. Pre-Go it still shows
     // red (below) so you can see what a filter emptied out before committing.
@@ -1548,11 +1592,15 @@ function renderTreeNodes(nodes, depth, container) {
 
     // ns: mapped for display purposes ("pos"/"neg"/null) — reused by existing color helpers
     let ns = polarity === "include" ? "pos" : polarity === "exclude" ? "neg" : null;
-    if (!ns && emptyPreGo) ns = "neg";
+    // Emptied only by the default-exclude (something else was included) —
+    // shown muted rather than struck through, like the treemap's dim red
+    const implicitOnly = emptyPreGo && !ns && nodeSelection(node.id).exclude === 0;
+    if (!ns && emptyPreGo && !implicitOnly) ns = "neg";
 
     let rowCls = "tree-row";
     if      (ns==="pos")       rowCls += " pos-selected";
     else if (ns==="neg")       rowCls += " neg-selected";
+    else if (implicitOnly)     rowCls += " implicit-out";
     else if (hl==="pos")       rowCls += " highlight-pos";
     else if (hl==="neg")       rowCls += " highlight-neg";
     else if (hl==="weak")      rowCls += " highlight-weak";
@@ -1707,7 +1755,12 @@ function renderTreemap() {
   // smallest cards wide enough to read. Sizing off BASE (not WORKING_SCOPE)
   // keeps the layout still while clicks/queries repaint the selection bars;
   // cards only resize on Go/Reset, when BASE moves.
-  const kids = focusNode.children.filter(c => nodeBaseCount(c.id) > 0);
+  const kids = focusNode.children.filter(c =>
+    nodeBaseCount(c.id) > 0 && !(S.pruned && nodeWorkingCount(c.id) === 0));
+  if (!kids.length) {
+    container.innerHTML = '<div class="tm-empty">Everything here is excluded. Turn off Prune to see it.</div>';
+    return;
+  }
   const area = node => Math.sqrt(nodeBaseCount(node.id));
   const minArea = 0.35 * Math.max(0, ...kids.map(area));
   const root = d3.hierarchy({ children: kids.map(node => ({ node })) })
@@ -1738,7 +1791,10 @@ function renderTreemap() {
     card.innerHTML = `
       <div class="tm-card-head">
         <div class="tm-card-title"></div>
-        <div class="tm-card-count">${sel.include ? `${sel.include} / ${total}` : `${total} doc${total === 1 ? "" : "s"}`}</div>
+        <div class="tm-card-meta">
+          <span class="tm-card-count">${sel.include ? `${sel.include} / ${total}` : `${total} doc${total === 1 ? "" : "s"}`}</span>
+          <button class="tm-hop" type="button"></button>
+        </div>
       </div>
       <div class="tm-bar">
         <div class="tm-bar-red"   style="width:${red * 100}%"></div>
@@ -1749,6 +1805,7 @@ function renderTreemap() {
     card.querySelector(".tm-card-title").textContent = node.label;
     card.querySelector(".tm-card-summary").textContent = node.summary || "";
     container.appendChild(card);
+    renderCardHopperBug(card.querySelector(".tm-hop"), node);
 
     // Clamp the summary to the whole lines that fit what's left of the card
     const summary = card.querySelector(".tm-card-summary");
@@ -1772,6 +1829,33 @@ function renderTreemap() {
     card.addEventListener("mousemove", moveTooltip);
     card.addEventListener("mouseleave", hideTooltip);
   });
+}
+
+// Hopper "bug" on a treemap card: adds the card's in-scope docs to the hopper,
+// or takes them back out once they're all already there.
+function nodeScopeDocIds(nodeId) {
+  return WORKING_SCOPE
+    .filter(d => { const p = DOC_PATHS.get(d.id); return p && (p.domPath.includes(nodeId) || p.fnPath.includes(nodeId)); })
+    .map(d => d.id);
+}
+function renderCardHopperBug(btn, node) {
+  btn._node = node; // so renderHopper() can refresh it when the hopper changes elsewhere
+  const ids = nodeScopeDocIds(node.id);
+  const allIn = ids.length > 0 && ids.every(id => HOPPER.has(id));
+  btn.textContent = allIn ? "✓" : "⊕";
+  btn.classList.toggle("active", allIn);
+  btn.disabled = ids.length === 0;
+  btn.title = !ids.length ? "Nothing in scope to add"
+    : allIn ? `Remove these ${ids.length} docs from the hopper`
+    : `Add ${ids.length} in-scope doc${ids.length === 1 ? "" : "s"} to the hopper`;
+  btn.onclick = e => {
+    e.stopPropagation();
+    for (const id of ids) allIn ? HOPPER.delete(id) : HOPPER.add(id);
+    renderHopper(); renderList();
+    setStatus(`${allIn ? "Removed" : "Added"} ${ids.length} doc${ids.length === 1 ? "" : "s"} ${allIn ? "from" : "to"} hopper — ${node.label}`);
+  };
+  btn.oncontextmenu = e => e.stopPropagation();
+  btn.onmouseenter = hideTooltip;
 }
 
 // ── Treemap breadcrumb ──
@@ -1889,7 +1973,7 @@ function renderList() {
         <div class="result-path">${doc.path}</div>
         <div class="result-snippet">${hlTerms(doc.body.slice(0,120)+"…",doc.terms||[])}</div>
       </div>
-      <button class="hopper-btn${inH?" active":""}" onclick="toggleHopperDoc(${doc.id},event)" title="Add to hopper">⊕</button>
+      <button class="hopper-btn${inH?" active":""}" onclick="toggleHopperDoc('${doc.id}',event)" title="Add to hopper">⊕</button>
     `;
     item.addEventListener("click", e=>{ if(!e.target.closest(".hopper-btn")) openPreview(doc); });
     item.addEventListener("contextmenu", e=>{ e.preventDefault(); cycleDocPolarity(doc.id); });
@@ -1952,12 +2036,13 @@ function renderHopper() {
   const count=document.getElementById("hopperCount");
   [...body.querySelectorAll(".hopper-chip")].forEach(c=>c.remove());
   count.textContent=HOPPER.size;
+  document.querySelectorAll(".tm-hop").forEach(b => b._node && renderCardHopperBug(b, b._node));
   document.getElementById("hopperEmpty").style.display=HOPPER.size?"none":"";
   for (const id of HOPPER) {
     const doc=DOCS.find(d=>d.id===id); if(!doc) continue;
     const chip=document.createElement("div");
     chip.className="hopper-chip";
-    chip.innerHTML=`<span>${doc.title}</span><span class="chip-x" onclick="toggleHopperDoc(${id},event)">×</span>`;
+    chip.innerHTML=`<span>${doc.title}</span><span class="chip-x" onclick="toggleHopperDoc('${id}',event)">×</span>`;
     chip.addEventListener("click",e=>{ if(!e.target.classList.contains("chip-x")) openPreview(doc); });
     body.appendChild(chip);
   }
